@@ -1,0 +1,85 @@
+// Typography
+$Proxima: "Tw Cen MT", "Lucida Grande", "Tahoma", "Verdana", "Arial", sans-serif;
+
+$base-font-family: $Proxima;
+$heading-font-family: $base-font-family;
+
+$title: $Proxima;
+$content: $georgia;
+
+// Font Sizes
+$base-font-size: 1em;
+
+// Line height
+$base-line-height: 1.5;
+$baseline : $base-line-height * 1rem;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 0px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+$reading-width: 37em;
+
+// Colors
+$gray: #ededed;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #ddd;
+
+
+
+$bc-1 : #E54800;
+$bc-2 : #004CE5;
+$bc-3 : #ACFF00;
+$bc-4 : #FF3D57;
+
+$bc-orange : #E54800;
+$bc-blue : #004CE5;
+$bc-green : #ACFF00;
+$bc-red : #FF3D57;
+
+$red : $bc-red;
+$orange: $bc-orange;
+
+
+$white : #F1F1EF;
+$black : #272822;
+
+$primary-font-color: $bc-red;
+$link-color: $bc-blue;
+$shadow: rgba(0, 0, 0, .6);
+
+// Font Colors
+$base-background-color: #fff;
+$base-body-color: #fff;
+$base-font-color: $bc-red;
+$action-color: $bc-blue;
+$icon-color: $base-font-color;
+
+// Border
+$base-border-color: $light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+
+// Screen Widths
+
+$phone : 27.5rem;
+
+$phablet : 40rem;
+
+$tablet : 60rem;
+
+$laptop : 80rem;
+
+$desktop : 90rem;
+
+//Paths
+
+// Glyphicons font path
+$icon-font-path:        "../images/fonts/";
+$image-path:        "../images/";

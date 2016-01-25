@@ -1,0 +1,33 @@
+.social {
+  @extend %unstyled-list;
+  svg:hover {
+    fill: darkslateblue;
+  }
+  li {
+    display: inline-block;
+    margin-right: 1em;
+    &.social__icon {
+      width: 2em;
+      transition: .12s ease;
+    }
+    &.social__icon:hover {
+      transform: scale(1.07);
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .email {
+    display: block;
+    margin-top: .5em;
+    a {
+      color: lighten($action-color,10%);
+      font-size: 1.4em;
+      &:hover {
+        color: lighten($action-color,5%);
+      }
+    }
+  }
+}

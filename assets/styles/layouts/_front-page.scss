@@ -1,0 +1,162 @@
+.home {
+  body &,
+  html &,
+  & div.wrap.container,
+  & div.content.row,
+  & main.main {
+    height: 100%;
+  }
+
+  footer {
+    text-align: center;
+  }
+  header.banner {
+    position: absolute;
+    background-color: transparent;
+    top: 2.5em;
+    ul li.menu-item a {
+      color: white;
+    }
+  }
+  section {
+    padding: 2.5em 2%;
+    &.highlight {
+        background-color: lighten($bc-blue, 30%);
+        color: $black;
+    }
+    background-color: white;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    text-transform: uppercase;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+section#info {
+  .expandable {
+    max-width: $reading-width;
+    margin: auto;
+    p {
+      padding: .5em;
+    }
+  }
+}
+
+section#tickets {
+  background-color: lighten($bc-blue,30%);
+  text-align: center;
+  h1 {
+    color: white;
+  }
+  button {
+    font-size: 1.3em;
+  }
+  button.future-tier {
+    font-size: .9em;
+  }
+}
+
+section#getinvolved {
+  text-align: center;
+  ul {
+    margin-right: auto;
+    margin-left: auto;
+    }
+}
+
+section#gallery {
+  @include outer-container;
+  .slide {
+    @include row;
+  }
+  .slide__image {
+    @include silkscreen();
+    margin-bottom: 10px;
+    @include span-columns(6);
+    margin-right: 10px;
+    &:nth-of-type(2) {
+      @include omega();
+    }
+    &:nth-of-type(3) {
+      @include span-columns(12);
+    }
+  }
+  img {
+    display: block;
+  }
+}
+
+.lineup-posters {
+  @include row;
+  a {
+    @include span-columns(4);
+  }
+
+}
+
+section.splash {
+  z-index: 0;
+  margin: 0 auto;
+  padding: 0px;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  .splash__frame {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    @include media($phone) {
+      border: 1.7em solid white;
+    }
+  }
+  .splash__text {
+    text-align: left;
+    opacity: .99; //new stacking order.
+    background: transparent;
+    text-transform: uppercase;
+    color: white;
+    transition: visibility .2s ease-in-out;
+    padding: .5em;
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include media($phone) {
+      padding: 2.5em;
+    }
+    &>:not(.logo) {
+      margin-left: 14px;
+    }
+    h3 {
+      font-size: 1.2em;
+      text-align: left;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 3em;
+      margin-bottom: 0;
+      text-align: left;
+    }
+    h2.location {
+      font-size: 1.7em;
+    }
+    img.logo {
+      max-width: 12em;
+    }
+    ul.social {
+      position: absolute;
+      bottom: 2.5em;
+    }
+    .modal {
+      color: black;
+    }
+  }
+}

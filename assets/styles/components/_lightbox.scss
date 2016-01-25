@@ -1,0 +1,33 @@
+.bc-zoom.featherlight {
+  background: rgba(250,250,250,.9);
+  cursor: zoom-out;
+  .featherlight-content {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 0;
+    border-bottom: 0px solid rgba(0, 0, 0, 0);
+  }
+  .featherlight-close-icon {
+    display: none;
+  }
+  .featherlight-next,.featherlight-previous {
+    top: 0;
+      span {
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.11);
+      }
+  }
+  .featherlight-next {
+    right: 0;
+    cursor: e-resize;
+  }
+  .featherlight-previous {
+    left: 0;
+    cursor: w-resize;
+  }
+}
+
+.bc-gallery.featherlight {
+  .featherlight-content {
+    // cursor: e-resize;
+  }
+}
