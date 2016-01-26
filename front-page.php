@@ -68,22 +68,22 @@
 <!-- Splash Section -->
 <section id="about" class="inner-wrap">
   <div id="manifesto">
-    <p class="big-txt">Welcome to Brainchild. We are a small, volunteer-led festival centred around creativity and promoting new ideas. For three days in July, we stitch together the exceptional talents and ideas of the people around us into a program of live music, spoken word, DJ sets, talks, workshops, film, theatre and installation art. Artists, crew and festival-goers camp together, all with the chance to collaborate, jam and learn something new.</p>
+    <p><?php the_field('welcome_text'); ?></p>
   </div>
 
 </section>
 <section id="tickets">
-  <h1>Get your ticket!</h1>
+  <h1><?php the_field('ticket_header'); ?></h1>
   <button class="reveal-button">£50 Early Bird</button>
   <button class="future-tier" disabled="true">£60 Second Tier</button>
   <button class="future-tier" disabled="true">£70 Third Tier</button>
   <div class="reveal" style="display:none;">
-    <p>Buy tickets below</p>
+    <p><?php the_field('ticket_text'); ?></p>
   </div>
 </section>
 <section id="lineup">
   <h2>Lineup</h2>
-  <h3>Lineup Coming Soon!</h3>
+  <p><?php the_field('lineup_text'); ?></p>
   <h3>Previous Lineups</h3>
   <div class="lineup-posters row">
     <a href="<?php bloginfo('template_directory'); ?>/dist/images/contents/bc12poster.jpg" class="zoom-in">
@@ -100,7 +100,7 @@
 
 <section id="bc-words">
   <h2>Words</h2>
-  <h3>Words coming soon!</h3>
+  <h3><?php the_field('words_text'); ?></h3>
 </section>
 
 <section id="gallery" class="gallery">
@@ -239,20 +239,7 @@
 
 <section id="getinvolved" class="getinvolved inner-wrap">
   <h2>Get Involved</h2>
-    <div>
-      <p class="big-txt">We're always on the lookout for new people to join the team on production, marketing, coverage and programming.</p>
-        <ul class="contactslist big-txt">
-          <li>Theatre: <b>Zoe</b></li>
-          <li>Installation &amp; artwork: <b>Lily</b></li>
-          <li>Spoken word &amp; talks: <b>Bridget</b></li>
-          <li>Film: <b>Georgia</b></li>
-          <li>Music: <b>Ben</b></li>
-          <li>Traders: <b>Joey</b></li>
-          <li>Volunteering: <b>Tomo</b></li>
-          <li>Media/Design: <b>Jerome</b></li>
-          <li>All other enquiries: <b>Team</b></li>
-        </ul>
-        <p class="big-txt"><b>@brainchildfestival.co.uk</b></p>
+  <?php the_field('get_involved_text'); ?>
 </section>
 <footer>
   <p>Video by <a target="_blank" href='https://www.awtstudios.com'>Alex Thomson</a></p>
