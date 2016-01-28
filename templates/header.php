@@ -1,8 +1,6 @@
 <header class="banner">
   <div class="container">
-    <a href="/" class="mobile-logo">
-      <img src="<?php bloginfo('template_directory'); ?>/dist/images/bclogo.png" alt="Logo image">
-    </a>
+    <a href="#" class="menu-icon"></a>
     <nav class="nav-primary">
       <?php
       if (has_nav_menu('single_page_nav')) :

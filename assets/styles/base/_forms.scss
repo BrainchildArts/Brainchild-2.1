@@ -40,7 +40,7 @@ textarea {
   padding: $base-spacing / 3;
   transition: border-color;
   width: 100%;
-  border: 1px solid $red;
+  border: 1px solid $bc-orange;
   border-radius: 0;
 
   &:hover {
@@ -51,7 +51,7 @@ textarea {
     border-color: $action-color;
     box-shadow: $form-box-shadow-focus;
     outline: none;
-    border-color: $red;
+    border-color: $bc-orange;
   }
 }
 

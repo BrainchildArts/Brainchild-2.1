@@ -1,14 +1,13 @@
 header.banner {
-  $large-screen: $phablet;
   $navigation-padding: 1em;
   $navigation-background: white;
-  $navigation-color: transparentize($bc-red, 0.3);
-  $navigation-color-hover: $bc-red;
+  $navigation-color: transparentize($bc-orange, 0.3);
+  $navigation-color-hover: $bc-orange;
   $navigation-height: 2.7em;
-  $navigation-nav-button-background: $bc-red;
+  $navigation-nav-button-background: $bc-orange;
   $navigation-nav-button-background-hover: lighten($navigation-background, 10%);
   $navigation-nav-button-border: 1px solid lighten($navigation-nav-button-background, 20%);
-  $navigation-active-link-color: transparentize($bc-red, 0.5);
+  $navigation-active-link-color: transparentize($bc-orange, 0.5);
   $navigation-submenu-padding: 1em;
   $navigation-submenu-width: 12em;
   $navigation-padding: 1em;
@@ -17,7 +16,7 @@ header.banner {
   $navigation-submenu-padding: 1em;
   $navigation-submenu-width: 12em;
   $navigation-item-nudge: 2.2em;
-  $horizontal-bar-mode: $large-screen;
+  $horizontal-bar-mode: $tablet;
 
   background-color: $navigation-background;
   min-height: $navigation-height;
@@ -26,16 +25,17 @@ header.banner {
 
 // Mobile view
 
-  .mobile-logo {
-    display: inline;
-    float: left;
-    max-height: $navigation-height;
-    padding-left: $navigation-padding;
-
-    img {
-      max-height: $navigation-height;
-      opacity: .6;
-      padding: .8em 0;
+  .menu-icon {
+    position: relative;
+    @extend .dashicons;
+    @extend .dashicons-menu;
+    @include hover-grow();
+    color: white;
+    display: none;
+    right: 3.5em;
+    float: right;
+    &:before {
+      font-size: 2.2em;
     }
 
     @include media($horizontal-bar-mode) {
@@ -90,7 +90,8 @@ header.banner {
 
     @include media ($horizontal-bar-mode) {
       display: block;
-      text-align: center;
+      text-align: right;
+      padding-right: 4.5em;
     }
   }
 
@@ -114,6 +115,7 @@ header.banner {
     z-index: 10;
 
     a {
+      position: relative;
       color: $navigation-color;
       display: inline-block;
       outline: none;
@@ -121,6 +123,36 @@ header.banner {
       text-transform: uppercase;
       font-weight: 600;
       font-size: 1.2em;
+      padding-right: .5em;
+      padding-left: .5em;
+      letter-spacing: 1px;
+      // @extend .btn-effect--fade;
+      &:before {
+        content: "";
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        z-index: -1;
+        background-size: 3px 3px;
+        background-repeat: repeat;
+      }
+      &:hover:before {
+        background-image: url(#{$image-path}/partials/silkscreen.svg);
+        animation: wave .2s infinite;
+        @keyframes wave {
+          0% {
+            background-position: 0px 0px;
+          }
+          50% {
+            background-position: 2px 0px;
+          }
+          100% {
+            background-position: 0px 0px;
+          }
+        }
+      }
 
       &:focus,
       &:hover {
@@ -134,7 +166,7 @@ header.banner {
       line-height: $navigation-height;
 
       a {
-        padding-right: $navigation-item-padding;
+        margin-right: $navigation-item-padding;
       }
     }
   }
@@ -143,7 +175,7 @@ header.banner {
     display: none;
     line-height: 0;
 
-    @include media($large-screen) {
+    @include media($horizontal-bar-mode) {
       display: inline;
     }
   }
@@ -160,7 +192,7 @@ header.banner {
   li.more.menu-item {
     padding-right: 0;
 
-    @include media($large-screen) {
+    @include media($horizontal-bar-mode) {
       padding-right: $navigation-submenu-padding;
     }
 
@@ -195,7 +227,7 @@ header.banner {
       padding-right: 1.6em;
       position: relative;
 
-      @include media($large-screen) {
+      @include media($horizontal-bar-mode) {
         margin-right: $navigation-submenu-padding;
       }
 

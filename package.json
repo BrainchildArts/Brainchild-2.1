@@ -40,6 +40,7 @@
     "gulp-jshint": "^1.11.2",
     "gulp-less": "^3.0.3",
     "gulp-minify-css": "^1.2.0",
+    "gulp-newer": "^1.1.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-rev": "^6.0.0",
@@ -54,5 +55,8 @@
     "run-sequence": "^1.1.2",
     "traverse": "^0.6.6",
     "wiredep": "^2.2.2"
+  },
+  "dependencies": {
+    "gulp-ftp": "^1.1.0"
   }
 }

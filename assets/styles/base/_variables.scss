@@ -1,10 +1,10 @@
 // Typography
-$Proxima: "Tw Cen MT", "Lucida Grande", "Tahoma", "Verdana", "Arial", sans-serif;
+$TWCen: "TWCen", "Proxima Nova", "Lucida Grande", "Tahoma", "Verdana", "Arial", sans-serif;
 
-$base-font-family: $Proxima;
+$base-font-family: $TWCen;
 $heading-font-family: $base-font-family;
 
-$title: $Proxima;
+$title: $TWCen;
 $content: $georgia;
 
 // Font Sizes
@@ -28,33 +28,24 @@ $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
 
-
-
-$bc-1 : #E54800;
-$bc-2 : #004CE5;
-$bc-3 : #ACFF00;
-$bc-4 : #FF3D57;
-
-$bc-orange : #E54800;
-$bc-blue : #004CE5;
-$bc-green : #ACFF00;
-$bc-red : #FF3D57;
-
-$red : $bc-red;
-$orange: $bc-orange;
+$bc-blue : #2169ff;
+$bc-lime : #9ee600;
+$bc-orange : #ff7300;
+$bc-yellow : #ffd900;
+$bc-pink : #FF939F;
 
 
 $white : #F1F1EF;
 $black : #272822;
 
-$primary-font-color: $bc-red;
+$primary-font-color: $bc-orange;
 $link-color: $bc-blue;
 $shadow: rgba(0, 0, 0, .6);
 
 // Font Colors
 $base-background-color: #fff;
 $base-body-color: #fff;
-$base-font-color: $bc-red;
+$base-font-color: black;
 $action-color: $bc-blue;
 $icon-color: $base-font-color;
 

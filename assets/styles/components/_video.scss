@@ -1,4 +1,5 @@
 video.responsive {
+  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -12,6 +13,9 @@ video.responsive {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
   background-size: cover;
+  @include media($tablet) {
+      display: block;
+  }
 }
 
 #sound {
@@ -23,9 +27,8 @@ video.responsive {
   z-index: 15;
   cursor: pointer;
   transition: all .4s ease-in-out;
-  transition: transform .2s ease;
   display: none;
-  @include media($phone) {
+  @include media($tablet) {
     display: block;
   }
   &.disabled {
@@ -40,14 +43,11 @@ video.responsive {
     bottom: 0;
     left: 0;
     transition: transform .07s ease;
+    @include hover-grow();
   }
   .black {
     opacity: .5;
   }
-}
-
-#sound:hover img {
-  transform: scale(1.07);
 }
 
 #sound.muted {

@@ -101,3 +101,17 @@
     }
   }
 }
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+@mixin hover-grow($scale: 1.07) {
+  transition: transform .12s ease;
+  &:hover {
+    transform: scale($scale);
+    transform-origin: 50% 50%;
+  }
+}

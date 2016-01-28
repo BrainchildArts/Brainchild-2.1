@@ -75,4 +75,5 @@ Rails
 dist
 bower_components
 npm-debug.log
+sftp-config.json
 

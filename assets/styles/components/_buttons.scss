@@ -1,100 +1,28 @@
-@mixin neat-buttons($border-color: #ccc, $border-radius: 0, $button-padding: 20px, $button-bg: #ffffff ) {
-    background: $button-bg;
-    border: solid 5px $border-color;
-    border-radius: $border-radius;
-    box-shadow: none;
-    clear: both;
-    font-family: $title;
-    margin: 10px 0;
-    padding: $button-padding;
-    transition: all 200ms ease-in-out;
-    text-transform: uppercase;
-
-    &:focus {
-        background: darken( $button-bg, 5% );
-        border: solid 5px darken( $border-color, 20% );
-        border-radius: $border-radius;
-        box-shadow: none;
-        font-family: $title;
-        padding: $button-padding;
-    }
-
-    &:hover {
-        background: darken( $button-bg, 5% );
-        border: solid 5px darken( $border-color, 20% );
-        border-radius: $border-radius;
-        box-shadow: none;
-        font-family: $title;
-        padding: $button-padding;
-    }
+/* Effect 3: bottom line slides/fades in */
+.btn-effect--fade {
+  position: relative;
+  &:after {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: white;
+    content: '';
+    opacity: 0;
+    -webkit-transition: opacity 0.095s, -webkit-transform 0.095s;
+    -moz-transition: opacity 0.095s, -moz-transform 0.095s;
+    transition: opacity 0.095s, transform 0.095s;
+    -webkit-transform: translateY(2px);
+    -moz-transform: translateY(2px);
+    transform: translateY(2px);
+  }
+  &:hover::after,
+  &:focus::after {
+    opacity: 1;
+    -webkit-transform: translateY(-3px);
+    -moz-transform: translateY(-3px);
+    transform: translateY(-3px);
+  }
 }
 
-@mixin neat-3d-buttons($border-color: #ccc, $border-radius: 0, $button-padding: 20px, $button-bg: #ffffff) {
-    background: $button-bg;
-    border-top: solid 3px $border-color;
-    border-right: solid 3px $border-color;
-    border-left: solid 3px $border-color;
-    border-bottom: solid 5px #999;
-    border-radius: $border-radius;
-    clear: both;
-    float: left;
-    font-family: oswald;
-    margin: 15px 0;
-    padding: $button-padding;
-    transition: all 200ms ease-in-out;
-    text-transform: uppercase;
-
-    &:focus {
-        background: darken( $button-bg, 5% );
-        border-top: solid 3px darken( $border-color, 20% );
-        border-right: solid 3px darken( $border-color, 20% );
-        border-left: solid 3px darken( $border-color, 20% );
-        border-bottom: solid 3px darken( $border-color, 20% );
-        border-radius: $border-radius;
-        box-shadow: none;
-        font-family: $title;
-        padding: $button-padding;
-    }
-
-    &:hover {
-        background: darken( $button-bg, 5% );
-        border-top: solid 3px darken( $border-color, 20% );
-        border-right: solid 3px darken( $border-color, 20% );
-        border-left: solid 3px darken( $border-color, 20% );
-        border-bottom: solid 3px darken( $border-color, 20% );
-        border-radius: $border-radius;
-        box-shadow: none;
-        font-family: $title;
-        padding: $button-padding;
-    }
-}
-
-#submit {
-    @include neat-buttons($button-bg: $primary-font-color, $border-radius: 0, $border-color: #555 );
-        &:hover {
-            background-color: #555;
-        }
-}
-
-.neat-button {
-     // @include ui-tooltip(210px, bottom, rgba(0,0,0, 0.7), ".tooltip");
-     @include neat-buttons();
-}
-
-.neat-3d-button {
-    @include neat-3d-buttons();
-}
-
-.example-button {
-    @include neat-buttons($button-bg: $action-color, $border-radius: 0, $border-color: #555 );
-    margin: 0;
-    padding: 8px;
-        &:hover {
-            background-color: darken($base-body-color, 40%);
-            padding: 8px;
-        }
-}
-input#s {
-    float: left;
-    width: 70%;
-}

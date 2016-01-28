@@ -34,27 +34,52 @@
   }
 }
 
-section#info {
+section.home__section {
+  text-align: center;
+  h2 {
+    letter-spacing: 2px;
+    display: inline-block;
+    color: $bc-pink;
+  }
+  p {
+    text-align: left;
+  }
+}
+
+section#faq {
   .expandable {
     max-width: $reading-width;
     margin: auto;
     p {
       padding: .5em;
+      text-align: center;
     }
   }
 }
 
 section#tickets {
-  background-color: lighten($bc-blue,30%);
+  background-color: $dark-gray;
+  background-image: url(#{$image-path}background/BW.jpg);
   text-align: center;
+  background-size: cover;
   h1 {
     color: white;
   }
-  button {
+  .cta {
     font-size: 1.3em;
+    &:hover,&:active,&:focus {
+      color: $bc-pink;
+      border-color: $bc-pink;
+      background-color: white;
+    }
   }
   button.future-tier {
     font-size: .9em;
+    opacity: .75;
+  }
+  button,.button {
+    background-color: $bc-pink;
+    margin: 0 0.2em 0.7em;
   }
 }
 
@@ -64,36 +89,59 @@ section#getinvolved {
     margin-right: auto;
     margin-left: auto;
     }
+  p {
+    text-align: center;
+  }
 }
 
 section#gallery {
-  @include outer-container;
   .slide {
     @include row;
   }
   .slide__image {
-    @include silkscreen();
-    margin-bottom: 10px;
     @include span-columns(6);
-    margin-right: 10px;
-    &:nth-of-type(2) {
-      @include omega();
-    }
-    &:nth-of-type(3) {
+    @include omega();
+    padding: 5px;
+    &:nth-of-type(3n+3) {
       @include span-columns(12);
     }
   }
   img {
     display: block;
+    width: 100%;
+  }
+  p {
+    font-size: .9em;
+    text-align: right;
+    max-width: 100%;
   }
 }
 
 .lineup-posters {
   @include row;
-  a {
-    @include span-columns(4);
+  margin-bottom: 1.5em;
+  .bc2013 {
+    @include span-columns(12);
+    a {
+      @include span-columns(6);
+    }
   }
-
+  .bc2015 {
+    @include span-columns(6);
+    @include shift(3);
+  }
+  @include media($phablet) {
+    .bc2013 {
+      @include span-columns(8);
+    }
+    .bc2015 {
+      @include span-columns(4);
+      @include shift(0);
+    }
+  }
+  img {
+    max-height: 80vh;
+  }
 }
 
 section.splash {
@@ -103,6 +151,8 @@ section.splash {
   position: relative;
   height: 100%;
   overflow: hidden;
+  background-image: url(#{$image-path}/background/video-poster.jpg);
+  background-size: cover;
   .splash__frame {
     background: transparent;
     position: absolute;
@@ -131,6 +181,9 @@ section.splash {
     left: 0;
     @include media($phone) {
       padding: 2.5em;
+      img.logo {
+        max-width: 12em;
+      }
     }
     &>:not(.logo) {
       margin-left: 14px;
@@ -149,14 +202,22 @@ section.splash {
       font-size: 1.7em;
     }
     img.logo {
-      max-width: 12em;
+      max-width: 9em;
     }
-    ul.social {
-      position: absolute;
-      bottom: 2.5em;
-    }
-    .modal {
-      color: black;
-    }
+  }
+}
+
+
+div.social {
+  position: absolute;
+  bottom: 0;
+  padding: .5em;
+  margin-left: 14px;
+  @include media($phone) {
+    padding: 2.5em;
+  }
+  .modal {
+    color: black;
+    text-transform: uppercase;
   }
 }

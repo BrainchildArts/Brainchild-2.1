@@ -19,6 +19,7 @@
     },
     "vendor.js": {
       "vendor": [
+        "assets/scripts/vendor/jquery-easing.js",
         "assets/scripts/vendor/featherlight.min.js",
         "assets/scripts/vendor/featherlight.gallery.min.js"
       ]
