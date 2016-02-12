@@ -19,6 +19,7 @@
     },
     "vendor.js": {
       "vendor": [
+        "assets/scripts/vendor/jquery.scrolldepth.js",
         "assets/scripts/vendor/jquery-easing.js",
         "assets/scripts/vendor/featherlight.min.js",
         "assets/scripts/vendor/featherlight.gallery.min.js"
@@ -29,6 +30,6 @@
     }
   },
   "config": {
-    "devUrl": "brainchild.dev"
+    "devUrl": "brainchild.dev/home"
   }
 }

@@ -65,21 +65,28 @@ section#tickets {
   h1 {
     color: white;
   }
+  button,.button {
+    background-color: $bc-pink;
+    margin: 0 0.2em 0.7em;
+  }
+  button {
+    font-size: .9em;
+    opacity: .9;
+    background-color: desaturate($bc-pink, 80%);
+  }
   .cta {
     font-size: 1.3em;
+    margin: .5em 0 1em;
     &:hover,&:active,&:focus {
       color: $bc-pink;
       border-color: $bc-pink;
       background-color: white;
     }
   }
-  button.future-tier {
-    font-size: .9em;
-    opacity: .75;
-  }
-  button,.button {
-    background-color: $bc-pink;
-    margin: 0 0.2em 0.7em;
+  .active-tier {
+    @include media ($tablet) {
+      display: inline-block;
+    }
   }
 }
 

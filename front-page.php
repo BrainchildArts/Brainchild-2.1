@@ -76,14 +76,7 @@
 </section>
 <section class="home__section" id="tickets">
   <h1><?php the_field('ticket_header'); ?></h1>
-  <a target="_blank" href="http://buytickets.at/brainchildfestival/43686/r/website" class="cta button">£55 Early Bird</a>
-  <div class="upcoming">
-    <button class="future-tier" disabled="true">£60 Tier 2</button>
-    <button class="future-tier" disabled="true">£65 Tier 3</button>
-    <button class="future-tier" disabled="true">£70 Tier 4</button>
-    <button class="future-tier" disabled="true">£75 Tier 5</button>
-    <button class="future-tier" disabled="true">£80 Tier 6</button>
-  </div>
+  <?php the_field('tickets_buttons'); ?>
 <!--   <div class="reveal" style="display:none;">
     <p><php the_field('ticket_text'); ?></p>
   </div> -->

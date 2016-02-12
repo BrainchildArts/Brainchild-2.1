@@ -125,7 +125,12 @@
           e.stopPropagation();
         });
 
+        $(".ticket-link").on("click", function() {
+          mixpanel.track("Click on Ticket Link");
+          ga('send', 'event', 'Clicks', 'click', 'Ticket Link');
+        });
 
+        $.scrollDepth({labelPrefix:"Scroll: "});
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
