@@ -52,9 +52,16 @@
         // Reveals
         $(".reveal-button").click(function(e) {
             e.preventDefault();
-            $(this).nextAll('.reveal').toggle();
-            $(this).nextAll('.reveal').toggleClass('vhs-fade');
-            $(this).toggleClass('active');
+            if ( $(this).nextAll('.reveal').length ) {
+              $(this).nextAll('.reveal').first().toggle();
+              $(this).nextAll('.reveal').first().toggleClass('vhs-fade');
+              $(this).toggleClass('active');
+            } else {
+                console.log('length not');
+                $(this).parent().nextAll('.reveal').first().toggle();
+                $(this).parent().nextAll('.reveal').first().toggleClass('vhs-fade');
+                $(this).toggleClass('active');
+            }
         });
 
         // Lightbox/Gallery
@@ -62,6 +69,7 @@
           previousIcon: '«',
           nextIcon: '»',
           variant: 'bc-zoom bc-gallery',
+          loading: '<div class="gallery__loader"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>',
           openSpeed: 50,
           closeSpeed: 50,
           galleryFadeIn: 20,          /* fadeIn speed when slide is loaded */

@@ -74,12 +74,11 @@
   </div>
 
 </section>
-<section class="home__section" id="tickets">
-  <h1><?php the_field('ticket_header'); ?></h1>
-  <?php the_field('tickets_buttons'); ?>
-<!--   <div class="reveal" style="display:none;">
-    <p><php the_field('ticket_text'); ?></p>
-  </div> -->
+<section class="home__section tickets" id="tickets">
+  <div class="tickets__links">
+    <h1><?php the_field('ticket_header'); ?></h1>
+    <?php the_field('tickets_buttons'); ?>
+  </div>
 </section>
 <section class="home__section" id="lineup">
   <p><?php the_field('lineup_text'); ?></p>
@@ -131,6 +130,16 @@
   ?>
   </div>
   <p class="big-txt">Photography: <a target="_blank" href="http://www.holliefernandophotography.com/">Hollie Fernando</a></p>
+</section>
+
+<section class="volunteer" id="volunteer">
+  <div class="tickets__more">
+  <h2>Want to volunteer?</h2>
+  <h3><a class="reveal-button" href="#">Find out more here.</a></h3>
+    <div class="reveal">
+      <?php the_field('volunteering_text'); ?>
+    </div>
+  </div>
 </section>
 
 <section class="home__section" id="faq">
