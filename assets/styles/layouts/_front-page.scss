@@ -20,6 +20,9 @@
   }
   section {
     padding: 2.5em 2%;
+    &.tickets {
+      padding: 0;
+    }
     &.highlight {
         background-color: lighten($bc-blue, 30%);
         color: $black;
@@ -57,13 +60,23 @@ section#faq {
   }
 }
 
-section#tickets {
-  background-color: $dark-gray;
-  background-image: url(#{$image-path}background/BW.jpg);
-  text-align: center;
-  background-size: cover;
+section#volunteer {
+  &:target .reveal {
+    display: block;
+  }
+}
+
+.tickets {
+  &__links {
+    background-color: $dark-gray;
+    background-image: url(#{$image-path}background/BW.jpg);
+    text-align: center;
+    background-size: cover;
+    padding: 2.5em;
+  }
   h1 {
     color: white;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
   }
   button,.button {
     background-color: $bc-pink;
@@ -121,6 +134,7 @@ section#gallery {
     font-size: .9em;
     text-align: right;
     max-width: 100%;
+    margin-bottom: 0;
   }
 }
 
@@ -148,6 +162,8 @@ section#gallery {
   }
   img {
     max-height: 80vh;
+    width: 100%;
+    max-width: 17em;
   }
 }
 
