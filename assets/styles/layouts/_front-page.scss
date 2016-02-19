@@ -6,7 +6,12 @@
   & main.main {
     height: 100%;
   }
-
+  h1,h2,h3,h4,h5,h6 {
+    text-transform: uppercase;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
   footer {
     text-align: center;
   }
@@ -20,6 +25,15 @@
   }
   section {
     padding: 2.5em 2%;
+    text-align: center;
+    h2 {
+      letter-spacing: 2px;
+      display: inline-block;
+      color: $bc-pink;
+    }
+    p {
+      text-align: left;
+    }
     &.tickets {
       padding: 0;
     }
@@ -29,24 +43,16 @@
     }
     background-color: white;
   }
-  h1,h2,h3,h4,h5,h6 {
-    text-transform: uppercase;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
-section.home__section {
-  text-align: center;
-  h2 {
-    letter-spacing: 2px;
-    display: inline-block;
-    color: $bc-pink;
+section#bc-words {
+  >p {
+    text-align: center;
   }
-  p {
-    text-align: left;
+  .bc-words__posts {
+    @include row();
   }
+
 }
 
 section#faq {
@@ -66,8 +72,8 @@ section#volunteer {
   }
 }
 
-.tickets {
-  &__links {
+section#tickets {
+  .tickets__links {
     background-color: $dark-gray;
     background-image: url(#{$image-path}background/BW.jpg);
     text-align: center;
@@ -167,7 +173,7 @@ section#gallery {
   }
 }
 
-section.splash {
+.home section#splash {
   z-index: 0;
   margin: 0 auto;
   padding: 0px;
@@ -220,6 +226,8 @@ section.splash {
       font-size: 3em;
       margin-bottom: 0;
       text-align: left;
+      display: block;
+      color: white;
     }
     h2.location {
       font-size: 1.7em;

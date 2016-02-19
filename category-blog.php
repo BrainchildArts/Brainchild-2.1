@@ -2,8 +2,7 @@
 <section class="outer-container">
 	<section class="outer-container">
 	  <div id="blog-header">
-	    <h1>BC Words</h1>
-	    <p>Brainchild's blog |  <a href="<?php echo $url;?>">Festival</a> | <a href="<?php echo $url; echo "/about-blog"; ?>">About</a></p>
+	    <h1>Blog Posts</h1>
 	  </div>
 	</section>
 	<div id="blog-loop">
@@ -22,9 +21,13 @@ if ( $query->have_posts() ) {
 		$query->the_post(); { ?>
 			<div class="blog-post blog-post-front">
 				<a href="<?php the_permalink(); ?>">
-				<img src=<?php if ( has_post_thumbnail() ) { the_post_thumbnail();} ?>
-				<h1><?php the_title(); ?></h1>
-				<p><?php the_excerpt(); ?></p>
+          <div class="blog-post-front__image">
+            <?php if ( has_post_thumbnail() ) { the_post_thumbnail();} ?>
+          </div>
+          <div class="blog-post-front__text">
+            <h1><?php the_title(); ?></h1>
+            <p><?php the_excerpt(); ?></p>
+          </div>
 				</a>
 			</div>
 		<?php }

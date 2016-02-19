@@ -2,7 +2,7 @@
   <img class='black' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/note.svg'>
   <img class='white' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/note--white.svg'>
 </div>
-<section class='splash'>
+<section class='splash' id="splash">
   <div class="splash-content splash__frame"></div>
   <video id="video_background" class="headervideo responsive" preload="auto" autoplay="autoplay" muted="true" loop="loop" poster="<?php bloginfo('template_directory'); ?>/dist/images/background/video-poster.jpg">
     <source src="https://github.com/BrainchildArts/bc-launchpage/raw/gh-pages/build/assets/images/bcfinal.mp4" type="video/mp4">
@@ -101,9 +101,9 @@
   </div>
 </section>
 
-<section class="home__section" id="bc-words">
-  <center><h1>Recently on BC Words</h1></center>
-  <div id="blog-loop">
+<section class="home__section bc-words" id="bc-words">
+  <h2>Recent Posts from our blog</h2>
+  <div class="bc-words__posts">
   <?php
   //Start recent post loop
 
@@ -126,9 +126,13 @@
   		$query->the_post(); { ?>
   			<div class="blog-post blog-post-front">
   				<a href="<?php the_permalink(); ?>">
-  				<img src=<?php if ( has_post_thumbnail() ) { the_post_thumbnail();} ?>
-  				<h1><?php the_title(); ?></h1>
-  				<p><?php the_excerpt(); ?></p>
+          <div class="blog-post-front__image">
+    				<?php if ( has_post_thumbnail() ) { the_post_thumbnail();} ?>
+          </div>
+          <div class="blog-post-front__text">
+    				<h1><?php the_title(); ?></h1>
+    				<p><?php the_excerpt(); ?></p>
+          </div>
   				</a>
   			</div>
   		<?php }

@@ -1,10 +1,4 @@
 <?php $url = home_url();?>
-<section class="outer-container">
-  <div id="blog-header">
-    <h1>BC Words</h1>
-    <p>Brainchild's <a href="<?php echo $url; echo "/category/blog";?>">blog</a> |  <a href="<?php echo $url;?>">Festival</a> | <a href="<?php echo $url; echo "/about-blog"; ?>">About</a></p>
-  </div>
-</section>
 <?php
 if ( have_posts() ) {
 	while ( have_posts() ) {
