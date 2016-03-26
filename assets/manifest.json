@@ -30,6 +30,6 @@
     }
   },
   "config": {
-    "devUrl": "brainchild.dev/home"
+    "devUrl": "192.168.33.12"
   }
 }
