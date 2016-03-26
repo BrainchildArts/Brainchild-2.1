@@ -200,6 +200,17 @@ gulp.task('scripts', ['jshint'], function() {
     .pipe(writeToManifest('scripts'));
 });
 
+// ### JSHint
+// `gulp jshint` - Lints configuration JSON and project JS.
+gulp.task('jshint', function() {
+  return gulp.src([
+    'bower.json', 'gulpfile.js'
+  ].concat(project.js))
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
+});
+
 // ### Fonts
 // `gulp fonts` - Grabs all the fonts and outputs them in a flattened directory
 // structure. See: https://github.com/armed/gulp-flatten
@@ -224,16 +235,6 @@ gulp.task('images', function() {
     .pipe(browserSync.stream());
 });
 
-// ### JSHint
-// `gulp jshint` - Lints configuration JSON and project JS.
-gulp.task('jshint', function() {
-  return gulp.src([
-    'bower.json', 'gulpfile.js'
-  ].concat(project.js))
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(gulpif(enabled.failJSHint, jshint.reporter('fail')));
-});
 
 // ### Clean
 // `gulp clean` - Deletes the build folder entirely.
