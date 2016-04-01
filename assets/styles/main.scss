@@ -29,9 +29,9 @@
 
 //Vendor
 @import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
-@import 'base/base'; // Bitters
 @import 'grid-settings';
 @import '../bower_components/neat/app/assets/stylesheets/neat';
+@import 'base/base'; // Bitters
 @import '../bower_components/bourbon/app/assets/stylesheets/addons/clearfix';
 
 @import 'vendor/featherlight';
@@ -48,6 +48,7 @@
 @import 'components/flexnav';
 @import 'components/video';
 @import 'components/lightbox';
+@import 'components/thumb-grid';
 
 // Layouts
 @import "layouts/front-page";
@@ -57,4 +58,6 @@
 @import "layouts/footer";
 @import "layouts/pages";
 @import "layouts/posts";
+@import "layouts/archive";
+@import "layouts/lineup";
 @import "layouts/tinymce";

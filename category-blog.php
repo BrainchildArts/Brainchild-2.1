@@ -1,43 +1,13 @@
-<?php $url = home_url();?>
-<section class="outer-container">
-	<section class="outer-container">
-	  <div id="blog-header">
-	    <h1>Blog Posts</h1>
-	  </div>
-	</section>
-	<div id="blog-loop">
-<?php
-// WP_Query arguments
-$args = array (
-	'category_name'          => 'blog',
-);
+<?php get_template_part('templates/page', 'header'); ?>
 
-// The Query
-$query = new WP_Query( $args );
+<?php if (!have_posts()) : ?>
+  <div class="alert alert-warning">
+    <?php _e('Sorry, no results were found.', 'sage'); ?>
+  </div>
+<?php endif; ?>
 
-// The Loop
-if ( $query->have_posts() ) {
-	while ( $query->have_posts() ) {
-		$query->the_post(); { ?>
-			<div class="blog-post blog-post-front">
-				<a href="<?php the_permalink(); ?>">
-          <div class="blog-post-front__image">
-            <?php if ( has_post_thumbnail() ) { the_post_thumbnail();} ?>
-          </div>
-          <div class="blog-post-front__text">
-            <h1><?php the_title(); ?></h1>
-            <p><?php the_excerpt(); ?></p>
-          </div>
-				</a>
-			</div>
-		<?php }
-	}
-} else {
-	// no posts found
-}
+<?php while (have_posts()) : the_post(); ?>
+  <?php get_template_part('templates/content', get_post_type() != 'post' ? get_post_type() : get_post_format()); ?>
+<?php endwhile; ?>
 
-// Restore original Post Data
-wp_reset_postdata();
-?>
-</div>
-</section>
+<?php the_posts_navigation(); ?>

@@ -13,3 +13,7 @@ body {
 .reveal {
   display: none;
 }
+
+main.main {
+  @include row();
+}

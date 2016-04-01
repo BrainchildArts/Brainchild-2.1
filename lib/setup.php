@@ -35,7 +35,12 @@ function setup() {
   // http://codex.wordpress.org/Post_Thumbnails
   // http://codex.wordpress.org/Function_Reference/set_post_thumbnail_size
   // http://codex.wordpress.org/Function_Reference/add_image_size
-  add_theme_support('post-thumbnails');
+
+  if (function_exists('add_theme_support')) {
+    add_theme_support('post-thumbnails');
+
+    add_image_size( 'grid-square', 250, 250, true );
+  }
 
   // Enable post formats
   // http://codex.wordpress.org/Post_Formats

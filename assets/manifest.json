@@ -19,6 +19,9 @@
     },
     "vendor.js": {
       "vendor": [
+        "assets/scripts/vendor/modernizr.custom.js",
+        "assets/scripts/vendor/jquery.debouncedresize.js",
+        "assets/scripts/vendor/imagesloaded.pkgd.min.js",
         "assets/scripts/vendor/jquery.scrolldepth.js",
         "assets/scripts/vendor/jquery-easing.js",
         "assets/scripts/vendor/featherlight.min.js",
