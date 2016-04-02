@@ -17,6 +17,11 @@
         "scripts/customizer.js"
       ]
     },
+    "grid.js": {
+      "files": [
+        "scripts/grid.js"
+      ]
+    },
     "vendor.js": {
       "vendor": [
         "assets/scripts/vendor/modernizr.custom.js",
