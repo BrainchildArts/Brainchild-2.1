@@ -1,4 +1,4 @@
-.archive.category-lineup {
+#lineup {
   section {
     padding: 20px 0;
     margin: 0 auto;
@@ -10,9 +10,7 @@
     margin: 10px 5px 40px 5px;
     vertical-align: top;
     height: 250px;
-    width: auto;
     float: none;
-    position: relative;
     > a,
     > a img {
       border: none;
@@ -22,12 +20,47 @@
     }
     .entry-image {
       width: 250px;
-    }
-    h2 {
-
+      img {
+        filter: grayscale(100%);
+        transition: all .8s
+      }
+      .entry-image__overlay {
+        background-color: $bc-blue;
+        opacity: .8;
+        mix-blend-mode: screen;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transition: .8s;
+        transition: .8s;
+      }
+      &:hover {
+        .entry-image__overlay {
+          opacity: .2;
+        }
+        img {
+          filter: none;
+        }
+      }
+      h2 {
+        color: $bc-pink;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 250px;
+        font-size: 2.5em;
+        $bc-orange2: rgba($bc-orange, .1);
+      }
     }
   }
-  article.hentry.artist-expanded > a::after {
+  article.hentry.artist__expanded > a:after {
     top: auto;
     border: solid transparent;
     content: " ";
@@ -103,6 +136,8 @@
 
 .artist__details {
   padding: 0 40px 0 20px;
+  overflow-style: scrollbar;
+  overflow: scroll;
 }
 
 .artist__fullimg {
@@ -118,7 +153,7 @@
 .artist__details h3 {
   font-weight: 300;
   font-size: 52px;
-  padding: 40px 0 10px;
+  padding: 0;
   margin-bottom: 10px;
 }
 
@@ -127,6 +162,7 @@
   font-size: 16px;
   line-height: 22px;
   color: #999;
+  padding: 0;
 }
 
 .artist__details a {
@@ -201,3 +237,40 @@
 
 }
 
+.filter-tabs {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  font-size: .6em;
+  >li {
+    -webkit-transition: all ease .2s;
+    -moz-transition: all ease .2s;
+    -ms-transition: all ease .2s;
+    -o-transition: all ease .2s;
+    transition: all ease .2s;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 0 .35em;
+    margin-bottom: 0.2em;
+    font-size: 1.6em;
+    padding: 0 .1em;
+    line-height: 1.3;
+    @media all and (min-width: $phone) {
+      font-size: 2em;
+    }
+    a {
+      &:hover {
+      border-bottom: 3px solid lighten($bc-orange,5%);
+      transition: none ease .2s;
+      }
+      &.is-checked {
+        font-weight: 600;
+      border-bottom: 4px solid $bc-orange;
+        transition: none ease .2s;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

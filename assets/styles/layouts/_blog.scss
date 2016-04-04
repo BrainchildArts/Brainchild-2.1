@@ -2,7 +2,7 @@
   @include row;
 }
 
-.archive {
+.archive.category-blog {
   article.hentry {
     @include span-columns(11);
     @include shift(.5);

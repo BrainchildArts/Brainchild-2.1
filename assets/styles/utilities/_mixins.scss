@@ -115,3 +115,15 @@
     transform-origin: 50% 50%;
   }
 }
+
+@function shadwell($color, $length) {
+  $val: 0px 0px $color;
+  @for $i from 1 through $length {
+    $val: #{$val}, #{$i}px #{$i}px #{$color};
+  }
+  @return $val;
+}
+
+@mixin shadwell($color, $length) {
+  text-shadow: shadwell($color, $length);
+}

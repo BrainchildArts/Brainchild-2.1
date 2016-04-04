@@ -99,7 +99,7 @@ var Grid = (function() {
       saveItemInfo();
       getWinSize();
       var preview = jQuery.data( this, 'preview' );
-      if( typeof preview != 'undefined' ) {
+      if( typeof preview !== 'undefined' ) {
         hidePreview();
       }
 
@@ -108,7 +108,7 @@ var Grid = (function() {
   }
 
   function initItemsEvents( $items ) {
-    $items.on( 'click', 'span.og-close', function() {
+    $items.on( 'click', 'span.artist__close', function() {
       hidePreview();
       return false;
     } ).children( 'a' ).on( 'click', function(e) {
@@ -134,7 +134,7 @@ var Grid = (function() {
     scrollExtra = 0;
 
     // if a preview exists and previewPos is different (different row) from itemÂ´s top then close it
-    if( typeof preview != 'undefined' ) {
+    if( typeof preview !== 'undefined' ) {
 
       // not in the same row
       if( previewPos !== position ) {
@@ -180,14 +180,14 @@ var Grid = (function() {
     create : function() {
       // create Preview structure:
       this.$title = jQuery( '<h3></h3>' );
-      this.$description = jQuery( '<p></p>' );
+      this.$description = jQuery( '<div class="artist__bio"></div>' );
       this.$href = jQuery( '<a href="#">Visit website</a>' );
-      this.$details = jQuery( '<div class="og-details"></div>' ).append( this.$title, this.$description, this.$href );
-      this.$loading = jQuery( '<div class="og-loading"></div>' );
-      this.$fullimage = jQuery( '<div class="og-fullimg"></div>' ).append( this.$loading );
-      this.$closePreview = jQuery( '<span class="og-close"></span>' );
-      this.$previewInner = jQuery( '<div class="og-expander-inner"></div>' ).append( this.$closePreview, this.$fullimage, this.$details );
-      this.$previewEl = jQuery( '<div class="og-expander"></div>' ).append( this.$previewInner );
+      this.$details = jQuery( '<div class="artist__details"></div>' ).append( this.$title, this.$description, this.$href );
+      this.$loading = jQuery( '<div class="artist__loading"></div>' );
+      this.$fullimage = jQuery( '<div class="artist__fullimg"></div>' ).append( this.$loading );
+      this.$closePreview = jQuery( '<span class="artist__close"></span>' );
+      this.$previewInner = jQuery( '<div class="artist__expander-inner"></div>' ).append( this.$closePreview, this.$fullimage, this.$details );
+      this.$previewEl = jQuery( '<div class="artist__expander"></div>' ).append( this.$previewInner );
       // append preview element to the item
       this.$item.append( this.getEl() );
       // set the transitions for the preview and the item
@@ -201,11 +201,11 @@ var Grid = (function() {
         this.$item = $item;
       }
 
-      // if already expanded remove class "og-expanded" from current item and add it to new item
+      // if already expanded remove class "artist__expanded" from current item and add it to new item
       if( current !== -1 ) {
         var $currentItem = $items.eq( current );
-        $currentItem.removeClass( 'og-expanded' );
-        this.$item.addClass( 'og-expanded' );
+        $currentItem.removeClass( 'artist__expanded' );
+        this.$item.addClass( 'artist__expanded' );
         // position the preview correctly
         this.positionPreview();
       }
@@ -229,7 +229,7 @@ var Grid = (function() {
       var self = this;
 
       // remove the current image in the preview
-      if( typeof self.$largeImg != 'undefined' ) {
+      if( typeof self.$largeImg !== 'undefined' ) {
         self.$largeImg.remove();
       }
 
@@ -266,7 +266,7 @@ var Grid = (function() {
           if( support ) {
             jQuery( this ).off( transEndEventName );
           }
-          self.$item.removeClass( 'og-expanded' );
+          self.$item.removeClass( 'artist__expanded' );
           self.$previewEl.remove();
         };
 
@@ -310,7 +310,7 @@ var Grid = (function() {
           if( support ) {
             self.$item.off( transEndEventName );
           }
-          self.$item.addClass( 'og-expanded' );
+          self.$item.addClass( 'artist__expanded' );
         };
 
       this.calcHeight();
@@ -342,7 +342,7 @@ var Grid = (function() {
     getEl : function() {
       return this.$previewEl;
     }
-  }
+  };
 
   return {
     init : init,

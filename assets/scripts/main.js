@@ -82,7 +82,6 @@
         $('#lineup a.zoom-in').featherlightGallery(galleryOptions);
 
         // Init Lineup Grid
-        console.log('this');
         Grid.init();
 
 
@@ -111,6 +110,29 @@
         });
 
         $.scrollDepth({labelPrefix:"Scroll: "});
+
+        $('.filter').click(function() {
+          // fetch the class of the clicked item
+          var ourClass = $(this).data('filter');
+
+          // reset the active class on all the buttons
+          $('#artist__grid article').removeClass('active');
+          // update the active state on our clicked button
+          $(this).parent().addClass('active');
+
+          if(ourClass === 'all') {
+            // show all our items
+            $('#artist__grid').children('article').show();
+          }
+          else {
+            // hide all elements that don't share ourClass
+            $('#artist__grid').children('article:not(.' + ourClass + ')').hide();
+            // show all elements that do share ourClass
+            $('#artist__grid').children('article.' + ourClass).show();
+          }
+          return false;
+        });
+
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
