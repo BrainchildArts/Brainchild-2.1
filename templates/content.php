@@ -9,7 +9,7 @@
         <div class="entry-summary">
           <?php the_excerpt(); ?>
         </div>
-    </header>
       </div>
+    </header>
   </a>
 </article>

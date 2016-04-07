@@ -20,6 +20,24 @@
       init: function() {
         // JavaScript to be fired on all pages
 
+        //Sticky Nav
+        var stickyNavTop = $('header.banner').offset().top;
+
+        var stickyNav = function(){
+          var scrollTop = $(window).scrollTop();
+
+          if (scrollTop > stickyNavTop) {
+              $('header.banner').addClass('sticky');
+          } else {
+              $('header.banner').removeClass('sticky');
+          }
+        };
+
+        stickyNav();
+
+        $(window).scroll(function() {
+            stickyNav();
+        });
         // Smooth Scrolling
 
         $('a[href*=#]:not([href=#])').click(function() {
@@ -84,6 +102,62 @@
         // Init Lineup Grid
         Grid.init();
 
+        var client_id = '9d5d36353b4fa04a9e70b1de4fc56669';
+        SC.initialize({
+          client_id: '9d5d36353b4fa04a9e70b1de4fc56669'
+        });
+
+        var $items        = $( '#artist__grid .hentry>a').filter('[data-track]');
+        var permalink_url = $($items).first().data('track');
+        var $itemsdata    = $($items);
+        var widgetIframe = document.getElementById('sc-widget'),
+            widget       = SC.Widget(widgetIframe),
+            widget_wrap  = $('#sc-widget-wrap'),
+            options       = {
+              show_artwork: false,
+              show_comments: false,
+              liking: false,
+              buying: false,
+              sharing: false,
+              auto_play: true
+            }
+
+        $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+          newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
+          widget.bind(SC.Widget.Events.READY, function() {
+            // load new widget
+              widget.load(newSoundUrl, options);
+              $(widget_wrap).addClass('active');
+            widget.bind(SC.Widget.Events.FINISH, function() {
+              widget.load(newSoundUrl, options);
+            });
+          });
+        });
+
+        $("#sc-widget-wrap").on("click", "button.play", function(e) {
+          e.preventDefault();
+          widget.pause();
+        });
+
+        $("article.category-lineup").on("click", "a.soundcloud_link", function(e) {
+          e.preventDefault();
+          var permalink_url = $(this).attr('href');
+          $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+                newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
+
+            widget.bind(SC.Widget.Events.READY, function() {
+              // load new widget
+                widget.load(newSoundUrl, options);
+                $(widget_wrap).addClass('active');
+              widget.bind(SC.Widget.Events.FINISH, function() {
+                widget.load(newSoundUrl, options);
+              });
+            });
+          });
+        });
+
+
+
 
         // Modal
         $("#modal-1").on("change", function() {
@@ -116,19 +190,20 @@
           var ourClass = $(this).data('filter');
 
           // reset the active class on all the buttons
-          $('#artist__grid article').removeClass('active');
+          $('#artist__grid').children('article').hide();
+          $('.filter-tabs li').removeClass('active');
           // update the active state on our clicked button
           $(this).parent().addClass('active');
 
           if(ourClass === 'all') {
             // show all our items
-            $('#artist__grid').children('article').show();
+            $('#artist__grid').children('article').fadeIn();
           }
           else {
             // hide all elements that don't share ourClass
             $('#artist__grid').children('article:not(.' + ourClass + ')').hide();
             // show all elements that do share ourClass
-            $('#artist__grid').children('article.' + ourClass).show();
+            $('#artist__grid').children('article.' + ourClass).fadeIn();
           }
           return false;
         });

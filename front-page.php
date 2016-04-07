@@ -85,22 +85,22 @@
 
   <ul class="filter-tabs">
     <li>
-      <a class="button filter is-checked all" onclick="return false;" href="#" data-filter="all">All</a>
+      <a class="filter" onclick="return false;" href="#" data-filter="all">All</a>
     </li>
     <li>
-      <a class="button filter tag-music" onclick="return false;" href="#" data-filter="tag-music">Music</a>
+      <a class="filter" onclick="return false;" href="#" data-filter="tag-music">Music</a>
     </li>
     <li>
-      <a class="button filter tag-poetry" onclick="return false;" href="#" data-filter="tag-poetry, .tag-theatre">Theatre &amp; Spoken Word</a>
+      <a class="filter" onclick="return false;" href="#" data-filter="tag-poetry, .tag-theatre">Theatre &amp; Spoken Word</a>
     </li>
     <li>
-      <a class="button filter tag-film" onclick="return false;" href="#" data-filter="tag-film">Film</a>
+      <a class="filter" onclick="return false;" href="#" data-filter="tag-film">Film</a>
     </li>
     <li>
-      <a class="button filter tag-talks" onclick="return false;" href="#" data-filter="tag-talks, .tag-workshops">Talks &amp; Workshops</a>
+      <a class="filter" onclick="return false;" href="#" data-filter="tag-talks, .tag-workshops">Talks &amp; Workshops</a>
     </li>
     <li>
-      <a class="button filter tag-art" onclick="return false;" href="#" data-filter="tag-art">Art</a>
+      <a class="filter" onclick="return false;" href="#" data-filter="tag-art">Art</a>
     </li>
   </ul>
   <div id="artist__grid">
@@ -122,48 +122,36 @@
 <section class="home__section bc-words" id="bc-words">
   <h2>Recent Posts from our blog</h2>
   <div class="bc-words__posts">
-  <?php
-  //Start recent post loop
+    <?php
+    //Start recent post loop
 
-  // WP_Query arguments
+    // WP_Query arguments
 
-  $id = (get_the_id());
+    $id = (get_the_id());
 
-  $args = array (
-  	'category_name'          => 'blog',
-    'post__not_in'           => array($post->ID),
-    'posts_per_page'         => '2',
-  );
+    $args = array (
+    	'category_name'          => 'blog',
+      'post__not_in'           => array($post->ID),
+      'posts_per_page'         => '2',
+    );
 
-  // The Query
-  $query = new WP_Query( $args );
+    // The Query
+    $query = new WP_Query( $args );
 
-  // The Loop
-  if ( $query->have_posts() ) {
-  	while ( $query->have_posts() ) {
-  		$query->the_post(); { ?>
-  			<div class="blog-post blog-post-front">
-  				<a href="<?php the_permalink(); ?>">
-          <div class="blog-post-front__image">
-    				<?php if ( has_post_thumbnail() ) { the_post_thumbnail();} ?>
-          </div>
-          <div class="blog-post-front__text">
-    				<h1><?php the_title(); ?></h1>
-    				<p><?php the_excerpt(); ?></p>
-          </div>
-  				</a>
-  			</div>
-  		<?php }
-  	}
-  } else {
-  	// no posts found
-  }
+      // The Loop
+    if ( $query->have_posts() ) {
+      while ($query->have_posts()) : $query->the_post();
+        get_template_part('templates/content', get_post_type() != 'post' ? get_post_type() : get_post_format());
+      endwhile;
+    } else {
+      //no posts found
+    }
 
-  // Restore original Post Data
-  wp_reset_postdata();
-  ?>
-  </div>
-  </section></section>
+    // Restore original Post Data
+    wp_reset_postdata();
+    ?>
+    </div>
+  </section>
 
 <section class="home__section gallery" id="gallery">
   <div class="slide slide-1">
@@ -216,4 +204,14 @@
 <footer>
   <?php the_field('footer_text'); ?>
 </footer>
+
+<div id="sc-widget-wrap">
+  <div class="controls">
+    <button class="prev">&larr;&larr;</button>
+    <button class="play">&rarr;</button>
+    <button class="next">&rarr;&rarr;</button>
+  </div>
+  <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=http://api.soundcloud.com/users/145800147/favorites&sharing=false&show_artwork=false&show_comments=false&color=FF939F&show_playcount=false&liking=false" width="100%" height="100%" scrolling="no" frameborder="no"></iframe>
+</div>
+
 <?php the_posts_navigation(); ?>

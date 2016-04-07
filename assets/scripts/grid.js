@@ -181,8 +181,10 @@ var Grid = (function() {
       // create Preview structure:
       this.$title = jQuery( '<h3></h3>' );
       this.$description = jQuery( '<div class="artist__bio"></div>' );
-      this.$href = jQuery( '<a href="#">Visit website</a>' );
-      this.$details = jQuery( '<div class="artist__details"></div>' ).append( this.$title, this.$description, this.$href );
+      this.$href = jQuery( '<a target="_blank" class="website_link" href="#">Find Out More</a>' );
+      this.$track = jQuery( '<a target="_blank" class="soundcloud_link" href="#">Play</a>' );
+      this.$youtube = jQuery( '<a target="_blank" class="youtube_link" href="#">Video</a>' );
+      this.$details = jQuery( '<div class="artist__details"></div>' ).append( this.$title, this.$description, this.$track, this.$youtube, this.$href );
       this.$loading = jQuery( '<div class="artist__loading"></div>' );
       this.$fullimage = jQuery( '<div class="artist__fullimg"></div>' ).append( this.$loading );
       this.$closePreview = jQuery( '<span class="artist__close"></span>' );
@@ -216,7 +218,9 @@ var Grid = (function() {
       // update previewÂ´s content
       var $itemEl = this.$item.children( 'a' ),
         eldata = {
-          href : $itemEl.attr( 'href' ),
+          href : $itemEl.data( 'link' ),
+          track : $itemEl.data( 'track' ),
+          youtube : $itemEl.data( 'youtube' ),
           largesrc : $itemEl.data( 'largesrc' ),
           title : $itemEl.data( 'title' ),
           description : $itemEl.data( 'description' )
@@ -225,6 +229,20 @@ var Grid = (function() {
       this.$title.html( eldata.title );
       this.$description.html( eldata.description );
       this.$href.attr( 'href', eldata.href );
+      this.$track.attr( 'href', eldata.track );
+      this.$youtube.attr( 'href', eldata.youtube );
+
+      if( eldata.href ) {
+        this.$href.addClass('active');
+      }
+
+      if( eldata.track ) {
+        this.$track.addClass('active');
+      }
+
+      if( eldata.youtube ) {
+        this.$youtube.addClass('active');
+      }
 
       var self = this;
 
@@ -247,7 +265,6 @@ var Grid = (function() {
           }
         } ).attr( 'src', eldata.largesrc );
       }
-
     },
     open : function() {
 

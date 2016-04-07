@@ -21,6 +21,16 @@
     top: 2.5em;
     ul li.menu-item a {
       color: white;
+      transition: color ease 3s;
+    }
+    &.sticky ul li.menu-item a {
+      color: white;
+    }
+    &.sticky {
+      position: fixed;
+      top: 0;
+      background-color: rgba($bc-blue,.5);
+      transition: background ease 3s;
     }
   }
   section {
@@ -250,5 +260,22 @@ div.social {
   .modal {
     color: black;
     text-transform: uppercase;
+  }
+}
+
+#sc-widget-wrap {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-left: 10%;
+  // height: 125px;
+  &.active {
+    display: block;
+  }
+  // &.playlist {
+  //   height: 70%;
+  // }
+  iframe {
+    display: none;
   }
 }

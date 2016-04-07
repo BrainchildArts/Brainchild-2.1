@@ -31,7 +31,6 @@ header.banner {
     @extend .dashicons-menu;
     @include hover-grow();
     color: white;
-    display: none;
     right: 3.5em;
     float: right;
     &:before {
@@ -132,7 +131,6 @@ header.banner {
       padding-right: .5em;
       padding-left: .5em;
       letter-spacing: 1px;
-      // @extend .btn-effect--fade;
       &:before {
         content: "";
         top: 0;
