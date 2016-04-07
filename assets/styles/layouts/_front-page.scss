@@ -265,17 +265,31 @@ div.social {
 
 #sc-widget-wrap {
   position: fixed;
-  bottom: 0;
+  bottom: -100px;
   width: 100%;
-  margin-left: 10%;
-  // height: 125px;
+  height: 60px;
+  transition: all ease-in-out .8s;
   &.active {
-    display: block;
+    bottom: 0;
+  }
+  &.up {
+    height: 125px;
+  }
+  &__close {
+    position: absolute;
+    right: 15px;
+    top: -18px;
+    background: #F5F5F5;
+    color: #999;
+    cursor: pointer;
+    &:hover {
+      @include hover-grow(1.2);
+    }
   }
   // &.playlist {
   //   height: 70%;
   // }
   iframe {
-    display: none;
+    display: block;
   }
 }

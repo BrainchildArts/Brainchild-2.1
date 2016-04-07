@@ -107,54 +107,79 @@
           client_id: '9d5d36353b4fa04a9e70b1de4fc56669'
         });
 
-        var $items        = $( '#artist__grid .hentry>a').filter('[data-track]');
-        var permalink_url = $($items).first().data('track');
-        var $itemsdata    = $($items);
-        var widgetIframe = document.getElementById('sc-widget'),
-            widget       = SC.Widget(widgetIframe),
-            widget_wrap  = $('#sc-widget-wrap'),
-            options       = {
-              show_artwork: false,
-              show_comments: false,
-              liking: false,
-              buying: false,
-              sharing: false,
-              auto_play: true
-            }
+        if ($('#sc-widget').length) {
+          var $items        = $( '#artist__grid .hentry>a').filter('[data-track]'),
+              permalink_url = $($items).first().data('track'),
+              widgetIframe = document.getElementById('sc-widget'),
+              widget       = SC.Widget(widgetIframe),
+              widget_wrap  = $('#sc-widget-wrap'),
+              options       = {
+                show_artwork: false,
+                show_comments: false,
+                liking: false,
+                buying: false,
+                sharing: false,
+                auto_play: true
+              };
 
-        $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-          newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
-          widget.bind(SC.Widget.Events.READY, function() {
-            // load new widget
-              widget.load(newSoundUrl, options);
-              $(widget_wrap).addClass('active');
-            widget.bind(SC.Widget.Events.FINISH, function() {
-              widget.load(newSoundUrl, options);
-            });
-          });
-        });
-
-        $("#sc-widget-wrap").on("click", "button.play", function(e) {
-          e.preventDefault();
-          widget.pause();
-        });
-
-        $("article.category-lineup").on("click", "a.soundcloud_link", function(e) {
-          e.preventDefault();
-          var permalink_url = $(this).attr('href');
           $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-                newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
-
+            newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
             widget.bind(SC.Widget.Events.READY, function() {
               // load new widget
-                widget.load(newSoundUrl, options);
-                $(widget_wrap).addClass('active');
-              widget.bind(SC.Widget.Events.FINISH, function() {
-                widget.load(newSoundUrl, options);
+              widget.load(newSoundUrl, {
+                show_artwork: false,
+                show_comments: false,
+                liking: false,
+                buying: false,
+                sharing: false,
+                auto_play: false
               });
             });
           });
-        });
+
+          var playNext = function(){
+            var scrollTop = $(window).scrollTop();
+
+            if (scrollTop > stickyNavTop) {
+                $('header.banner').addClass('sticky');
+            } else {
+                $('header.banner').removeClass('sticky');
+            }
+          };
+
+          $("article.category-lineup").on("click", "a.soundcloud_link", function(e) {
+            e.preventDefault();
+            var permalink_url = $(this).attr('href');
+            $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+                  newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
+
+              widget.bind(SC.Widget.Events.READY, function() {
+                // load new widget
+                  widget.load(newSoundUrl, options);
+                  $(widget_wrap).addClass('active');
+                widget.bind(SC.Widget.Events.FINISH, function() {
+                  $(widget_wrap).removeClass('active');
+                });
+              });
+            });
+          });
+
+          $("#sc-widget-wrap").on("click", "#sc-widget-wrap__close", function(e) {
+            e.preventDefault();
+            widget.pause();
+            $(widget_wrap).removeClass('active');
+          });
+
+          $(widgetIframe).hover(function() {
+            $(widget_wrap).toggleClass('up');
+          });
+
+          $("#sc-widget-wrap").on("click", "button.play", function(e) {
+            e.preventDefault();
+            widget.pause();
+          });
+        }
+
 
 
 

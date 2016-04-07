@@ -115,9 +115,12 @@ var Grid = (function() {
 
       var $item = jQuery( this ).parent();
       // check if item already opened
-      current === $item.index() ? hidePreview() : showPreview( $item );
+      if (current === $item.index() ) {
+        hidePreview();
+      } else {
+        showPreview( $item );
+      }
       return false;
-
     } );
   }
 

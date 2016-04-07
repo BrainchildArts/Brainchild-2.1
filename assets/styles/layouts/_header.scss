@@ -22,6 +22,10 @@ header.banner {
   min-height: $navigation-height;
   width: 100%;
   z-index: 10;
+  display: none;
+  @include media($horizontal-bar-mode) {
+    display: block;
+  }
 
 // Mobile view
 

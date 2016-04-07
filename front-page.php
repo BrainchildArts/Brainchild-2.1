@@ -80,43 +80,9 @@
     <?php the_field('tickets_buttons'); ?>
   </div>
 </section>
+
 <section class="home__section" id="lineup">
-  <p><?php the_field('lineup_text'); ?></p>
-
-  <ul class="filter-tabs">
-    <li>
-      <a class="filter" onclick="return false;" href="#" data-filter="all">All</a>
-    </li>
-    <li>
-      <a class="filter" onclick="return false;" href="#" data-filter="tag-music">Music</a>
-    </li>
-    <li>
-      <a class="filter" onclick="return false;" href="#" data-filter="tag-poetry, .tag-theatre">Theatre &amp; Spoken Word</a>
-    </li>
-    <li>
-      <a class="filter" onclick="return false;" href="#" data-filter="tag-film">Film</a>
-    </li>
-    <li>
-      <a class="filter" onclick="return false;" href="#" data-filter="tag-talks, .tag-workshops">Talks &amp; Workshops</a>
-    </li>
-    <li>
-      <a class="filter" onclick="return false;" href="#" data-filter="tag-art">Art</a>
-    </li>
-  </ul>
-  <div id="artist__grid">
-
-  <?php
-  $lineupargs = array (
-    'category_name'          => 'lineup',
-  );
-  // The Query
-  $lineup = new WP_Query( $lineupargs );
-
-  // The Loop
-  while ($lineup->have_posts()) : $lineup->the_post();
-    get_template_part('templates/content-lineup', get_post_type() != 'post' ? get_post_type() : get_post_format());
-    endwhile;?>
-  </div>
+  <div><?php the_field('lineup_text'); ?></div>
 </section>
 
 <section class="home__section bc-words" id="bc-words">
@@ -193,7 +159,7 @@
 <section class="home__section" id="faq">
   <h2>FAQ</h2>
   <div class="expandable">
-  <?php the_field('faq_text') ?>
+    <?php the_field('faq_text') ?>
   </div>
 </section>
 
@@ -205,13 +171,6 @@
   <?php the_field('footer_text'); ?>
 </footer>
 
-<div id="sc-widget-wrap">
-  <div class="controls">
-    <button class="prev">&larr;&larr;</button>
-    <button class="play">&rarr;</button>
-    <button class="next">&rarr;&rarr;</button>
-  </div>
-  <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=http://api.soundcloud.com/users/145800147/favorites&sharing=false&show_artwork=false&show_comments=false&color=FF939F&show_playcount=false&liking=false" width="100%" height="100%" scrolling="no" frameborder="no"></iframe>
-</div>
+<?php get_template_part('templates/player') ?>
 
 <?php the_posts_navigation(); ?>
