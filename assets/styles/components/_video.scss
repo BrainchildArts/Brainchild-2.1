@@ -1,4 +1,4 @@
-video.responsive {
+div.headervideo.responsive {
   display: none;
   position: absolute;
   top: 50%;
@@ -13,9 +13,29 @@ video.responsive {
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
   background-size: cover;
-  @include media($tablet) {
+  @include media(850px) {
       display: block;
   }
+  opacity: 0;
+  @include transition( all .6s );
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+.ytplayer-container{
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.ytplayer-shield {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 #sound {
@@ -26,9 +46,14 @@ video.responsive {
   right: 2.5em;
   z-index: 15;
   cursor: pointer;
-  transition: all .4s ease-in-out;
   display: none;
-  @include media($tablet) {
+  @include hover-grow();
+  transition: all .4s ease-in-out, transform .07s ease;
+  opacity: 0;
+  &.loaded {
+    opacity: 1;
+  }
+  @include media(850px) {
     display: block;
   }
   &.disabled {
@@ -42,8 +67,9 @@ video.responsive {
     right: 0;
     bottom: 0;
     left: 0;
-    transition: transform .07s ease;
-    @include hover-grow();
+  }
+  .white {
+    @include transition( opacity .9s );
   }
   .black {
     opacity: .5;
@@ -55,6 +81,5 @@ video.responsive {
     opacity: 1;
   }
   .black {
-    opacity: 0;
   }
 }

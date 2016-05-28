@@ -8,4 +8,5 @@
   <?php get_template_part('templates/lineup') ?>
 </section>
 
-<?php the_posts_navigation(); ?>
+<?php get_template_part('templates/player') ?>
+

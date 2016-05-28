@@ -40,7 +40,7 @@
         });
         // Smooth Scrolling
 
-        $('a[href*=#]:not([href=#])').click(function() {
+        $('a[href*="#"]:not([href="#"])').click(function() {
             if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
 
                 var target = $(this.hash);
@@ -108,7 +108,7 @@
         });
 
         if ($('#sc-widget').length) {
-          var $items        = $( '#artist__grid .hentry>a').filter('[data-track]'),
+          var $items        = $( '#artist__grid .hentry' ),
               permalink_url = $($items).first().data('track'),
               widgetIframe = document.getElementById('sc-widget'),
               widget       = SC.Widget(widgetIframe),
@@ -122,10 +122,12 @@
                 auto_play: true
               };
 
+
           $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
             newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
             widget.bind(SC.Widget.Events.READY, function() {
               // load new widget
+              console.log($items);
               widget.load(newSoundUrl, {
                 show_artwork: false,
                 show_comments: false,
@@ -138,36 +140,36 @@
           });
 
           var playNext = function(){
-            var scrollTop = $(window).scrollTop();
-
-            if (scrollTop > stickyNavTop) {
-                $('header.banner').addClass('sticky');
-            } else {
-                $('header.banner').removeClass('sticky');
-            }
+            console.log('next');
           };
 
           $("article.category-lineup").on("click", "a.soundcloud_link", function(e) {
             e.preventDefault();
             var permalink_url = $(this).attr('href');
+            $(this).addClass('sc-playing');
             $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-                  newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
-
-              widget.bind(SC.Widget.Events.READY, function() {
-                // load new widget
+                newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
+                widget.bind(SC.Widget.Events.READY, function() {
+                  // load new widget
                   widget.load(newSoundUrl, options);
-                  $(widget_wrap).addClass('active');
-                widget.bind(SC.Widget.Events.FINISH, function() {
-                  $(widget_wrap).removeClass('active');
+                  widget.bind(SC.Widget.Events.PLAY, function() {
+                    $(widget_wrap).addClass('active');
+                    $(widget_wrap).addClass('show');
+                  });
+                  widget.bind(SC.Widget.Events.FINISH, function() {
+                    playNext();
+                  });
                 });
               });
-            });
           });
 
           $("#sc-widget-wrap").on("click", "#sc-widget-wrap__close", function(e) {
             e.preventDefault();
             widget.pause();
-            $(widget_wrap).removeClass('active');
+            $(widget_wrap).removeClass('show');
+            setTimeout(function(){
+              $(widget_wrap).removeClass('active');
+            }, 800);
           });
 
           $(widgetIframe).hover(function() {
@@ -182,6 +184,48 @@
 
 
 
+        // Youtube Modal - http://codepen.io/forthewinn/pen/bNXNGK
+        // REQUIRED: "jQuery Query Parser" plugin.
+
+        // YOUTUBE VIDEO CODE
+
+        // Modal Window for dynamically opening videos
+        $("article.category-lineup").on("click", ".youtube_link", function(e) {
+          // Store the query string variables and values
+          // Uses "jQuery Query Parser" plugin, to allow for various URL formats (could have extra parameters)
+          var queryString = $(this).attr('href').slice( $(this).attr('href').indexOf('?') + 1);
+          var queryVars = $.parseQuery( queryString );
+
+          // if GET variable "v" exists. This is the Youtube Video ID
+          if ( queryVars.v && $(window).width() >= 600 ) {
+            // Prevent opening of external page
+            e.preventDefault();
+
+            // Variables for iFrame code. Width and height from data attributes, else use default.
+            var vidWidth = 560; // default
+            var vidHeight = 315; // default
+            var iFrameCode = '<iframe width="' + vidWidth + '" height="'+ vidHeight +'" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/'+  queryVars.v +'?autoplay=true&rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>';
+
+            // Replace Modal HTML with iFrame Embed
+            $('#modal-youtube .modal-youtube__video').html(iFrameCode);
+
+            // Open Modal
+            $("body").addClass("modal-youtube-open");
+            $("#sound").addClass("disabled");
+          }
+        });
+
+        // Clear modal contents on close.
+        // There was mention of videos that kept playing in the background.
+        $("#modal-youtube .modal-fade-screen, #modal-youtube .modal-close").on("click", function() {
+            $("body").removeClass("modal-youtube-open");
+            $('#modal-youtube .modal-youtube__video').html('');
+            $("#sound").removeClass("disabled");
+        });
+
+        $(".modal-inner").on("click", function(e) {
+          e.stopPropagation();
+        });
 
 
         // Modal
@@ -220,15 +264,15 @@
           // update the active state on our clicked button
           $(this).parent().addClass('active');
 
-          if(ourClass === 'all') {
+          if( ourClass === 'all') {
             // show all our items
-            $('#artist__grid').children('article').fadeIn();
+            $('#artist__grid').children('article').fadeIn().removeClass('filtered-out');
           }
           else {
             // hide all elements that don't share ourClass
-            $('#artist__grid').children('article:not(.' + ourClass + ')').hide();
+            $('#artist__grid').children('article:not(.' + ourClass + ')').hide().addClass('filtered-out');
             // show all elements that do share ourClass
-            $('#artist__grid').children('article.' + ourClass).fadeIn();
+            $('#artist__grid').children('article.' + ourClass).fadeIn().removeClass('filtered-out');
           }
           return false;
         });
@@ -242,26 +286,60 @@
     'home': {
       init: function() {
         // JavaScript to be fired on the home page
-
-        // Video Muting
-        $("#sound").click( function (){
-          if( $(this).hasClass('muted') ) {
-            $("video.headervideo").prop('muted', false); //mute
-            $(this).removeClass('muted');
+        function onPlayerReady() {
+          var player = $('#video_background').data('ytPlayer').player;
+          player.mute();
+          player.addEventListener('onStateChange', function(event) {
+              // OnStateChange Data
+              if (event.data === 1) {
+                  $("#sound").addClass('loaded');
+              }
+          });
+          // Video Muting
+          function unmute() {
+            player.unMute();
+            $("#sound").removeClass('muted');
             $(".splash-content").addClass('vhs-flicker vhs-reverse');
             $("header.banner").addClass('vhs-flicker vhs-reverse');
             setTimeout(hide, 400);
           }
-          else {
-            $("video.headervideo").prop('muted', true);
-            $(this).addClass('muted');
-            $(".splash-content").removeClass('hidden');
-            $("header.banner").removeClass('hidden');
-            $(".splash-content").addClass('vhs-flicker');
-            $("header.banner").addClass('vhs-flicker');
-            setTimeout(clean, 400);
+
+          function mute() {
+              player.mute();
+              $("#sound").addClass('muted');
+              $(".splash-content").removeClass('hidden');
+              $("header.banner").removeClass('hidden');
+              $(".splash-content").addClass('vhs-flicker');
+              $("header.banner").addClass('vhs-flicker');
+              setTimeout(clean, 400);
           }
-        });
+
+          $("#sound").click( function (){
+            if( $(this).hasClass('muted') ) {
+              unmute();
+            }
+            else {
+              mute();
+            }
+          });
+        }
+        var videoElement = $('#video_background'),
+            $window      = $(window);
+
+        var windowWidth = $window.width();
+        if (windowWidth >= 850) {
+          $('#video_background').YTPlayer({
+            fitToBackground: true,
+            videoId: 'gcyUUKPmt0A',
+            mute: true,
+            playerVars: {
+              mute: true
+            },
+            events: {
+              'onReady': onPlayerReady
+            }
+          });
+        }
 
         function hide() {
           $(".splash-content").addClass('hidden');

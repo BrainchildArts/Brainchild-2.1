@@ -1,18 +1,18 @@
 <ul class="filter-tabs">
-  <li>
+  <li class="active">
     <a class="filter" onclick="return false;" href="#" data-filter="all">All</a>
   </li>
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-music">Music</a>
   </li>
   <li>
-    <a class="filter" onclick="return false;" href="#" data-filter="tag-poetry, .tag-theatre">Theatre &amp; Spoken Word</a>
+    <a class="filter" onclick="return false;" href="#" data-filter="tag-poetry, tag-theatre">Theatre &amp; Spoken Word</a>
   </li>
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-film">Film</a>
   </li>
   <li>
-    <a class="filter" onclick="return false;" href="#" data-filter="tag-talks, .tag-workshops">Talks &amp; Workshops</a>
+    <a class="filter" onclick="return false;" href="#" data-filter="tag-talks, tag-workshops">Talks &amp; Workshops</a>
   </li>
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-art">Art</a>
@@ -22,7 +22,10 @@
 
 <?php
 $lineupargs = array (
-  'category_name'          => 'lineup',
+  'category_name' => 'lineup',
+  'nopaging'      => true,
+  'orderby'       => 'name',
+  'order'         => 'ASC'
 );
 // The Query
 $lineup = new WP_Query( $lineupargs );

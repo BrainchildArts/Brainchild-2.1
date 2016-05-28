@@ -184,14 +184,15 @@ var Grid = (function() {
       // create Preview structure:
       this.$title = jQuery( '<h3></h3>' );
       this.$description = jQuery( '<div class="artist__bio"></div>' );
-      this.$href = jQuery( '<a target="_blank" class="website_link" href="#">Find Out More</a>' );
-      this.$track = jQuery( '<a target="_blank" class="soundcloud_link" href="#">Play</a>' );
-      this.$youtube = jQuery( '<a target="_blank" class="youtube_link" href="#">Video</a>' );
-      this.$details = jQuery( '<div class="artist__details"></div>' ).append( this.$title, this.$description, this.$track, this.$youtube, this.$href );
+      this.$href = jQuery( '<a target="_blank" class="website_link artist__link" href="#">Find Out More</a>' );
+      this.$track = jQuery( '<a target="_blank" class="soundcloud_link artist__link" href="#">Play</a>' );
+      this.$youtube = jQuery( '<a target="_blank" class="youtube_link artist__link" href="#">Video</a>' );
+      this.$details = jQuery( '<div class="artist__details"></div>' ).append( this.$title, this.$description );
+      this.$links = jQuery( '<div class="artist__links"></div>' ).append( this.$track, this.$youtube, this.$href );
       this.$loading = jQuery( '<div class="artist__loading"></div>' );
       this.$fullimage = jQuery( '<div class="artist__fullimg"></div>' ).append( this.$loading );
       this.$closePreview = jQuery( '<span class="artist__close"></span>' );
-      this.$previewInner = jQuery( '<div class="artist__expander-inner"></div>' ).append( this.$closePreview, this.$fullimage, this.$details );
+      this.$previewInner = jQuery( '<div class="artist__expander-inner"></div>' ).append( this.$closePreview, this.$fullimage, this.$details, this.$links );
       this.$previewEl = jQuery( '<div class="artist__expander"></div>' ).append( this.$previewInner );
       // append preview element to the item
       this.$item.append( this.getEl() );
@@ -230,10 +231,14 @@ var Grid = (function() {
         };
 
       this.$title.html( eldata.title );
-      this.$description.html( eldata.description );
+      this.$description.html( '<p>'+eldata.description+'</p>' );
       this.$href.attr( 'href', eldata.href );
       this.$track.attr( 'href', eldata.track );
       this.$youtube.attr( 'href', eldata.youtube );
+
+      this.$href.removeClass('active');
+      this.$track.removeClass('active');
+      this.$youtube.removeClass('active');
 
       if( eldata.href ) {
         this.$href.addClass('active');
@@ -263,7 +268,7 @@ var Grid = (function() {
           if( $img.attr( 'src' ) === self.$item.children('a').data( 'largesrc' ) ) {
             self.$loading.hide();
             self.$fullimage.find( 'img' ).remove();
-            self.$largeImg = $img.fadeIn( 350 );
+            self.$largeImg = $img.delay( 350 ).fadeIn( 350 );
             self.$fullimage.append( self.$largeImg );
           }
         } ).attr( 'src', eldata.largesrc );

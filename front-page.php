@@ -4,9 +4,7 @@
 </div>
 <section class='splash' id="splash">
   <div class="splash-content splash__frame"></div>
-  <video id="video_background" class="headervideo responsive" preload="auto" autoplay="autoplay" muted="true" loop="loop" poster="<?php bloginfo('template_directory'); ?>/dist/images/background/video-poster.jpg">
-    <source src="https://github.com/BrainchildArts/bc-launchpage/raw/gh-pages/build/assets/images/bcfinal.mp4" type="video/mp4">
-  </video>
+  <div id="video_background" class="headervideo responsive"></div>
   <div class='splash__text splash-content content'>
     <img class='logo splash-content' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/bclogo.png'>
     <h3 class='splash-content'>Festival 2016</h3>
@@ -83,6 +81,7 @@
 
 <section class="home__section" id="lineup">
   <div><?php the_field('lineup_text'); ?></div>
+  <?php get_template_part('templates/lineup') ?>
 </section>
 
 <section class="home__section bc-words" id="bc-words">
@@ -170,6 +169,16 @@
 <footer>
   <?php the_field('footer_text'); ?>
 </footer>
+
+
+<div class="modal" id="modal-youtube">
+  <div class="modal-fade-screen">
+    <div class="modal-inner">
+      <div class="modal-close"></div>
+      <div class="modal-youtube__video"></div>
+    </div>
+  </div>
+</div>
 
 <?php get_template_part('templates/player') ?>
 

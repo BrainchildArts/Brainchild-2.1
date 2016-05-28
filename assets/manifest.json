@@ -25,6 +25,7 @@
     "vendor.js": {
       "vendor": [
         "assets/scripts/vendor/modernizr.custom.js",
+        "assets/scripts/vendor/snippets.min.js",
         "assets/scripts/vendor/jquery.debouncedresize.js",
         "assets/scripts/vendor/imagesloaded.pkgd.min.js",
         "assets/scripts/vendor/jquery.scrolldepth.js",
@@ -32,7 +33,8 @@
         "assets/scripts/vendor/soundcloud-sdk.js",
         "assets/scripts/vendor/soundcloud.player.api.js",
         "assets/scripts/vendor/featherlight.min.js",
-        "assets/scripts/vendor/featherlight.gallery.min.js"
+        "assets/scripts/vendor/featherlight.gallery.min.js",
+        "assets/scripts/vendor/jquery.youtubebackground.js"
       ]
     },
     "jquery.js": {
