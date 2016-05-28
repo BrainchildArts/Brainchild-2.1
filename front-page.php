@@ -166,19 +166,12 @@
   <h2>Get In Touch</h2>
   <?php the_field('get_involved_text'); ?>
 </section>
+
 <footer>
   <?php the_field('footer_text'); ?>
 </footer>
 
-
-<div class="modal" id="modal-youtube">
-  <div class="modal-fade-screen">
-    <div class="modal-inner">
-      <div class="modal-close"></div>
-      <div class="modal-youtube__video"></div>
-    </div>
-  </div>
-</div>
+<?php get_template_part('templates/modal-youtube') ?>
 
 <?php get_template_part('templates/player') ?>
 

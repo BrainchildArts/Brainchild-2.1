@@ -170,9 +170,20 @@
   }
 }
 
+.artist__expander {
+  .artist__links {
+    width: 48%;
+    float: right;
+    a {
+      display: none;
+      &.active {
+        display: inline-block;
+      }
+    }
+  }
+}
+
 .artist__links {
-  width: 48%;
-  float: right;
   a {
       font-weight: 700;
       font-size: 0.9em;
@@ -182,13 +193,11 @@
       padding: 0.3em 0.7em;
       border: 2px solid #333;
       display: inline-block;
-      display: none;
       margin: 0 3px 10px;
       outline: 0;
-    &.active {
-      display: inline-block;
-    }
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       border-color: #999;
       color: #999;
     }
@@ -197,8 +206,13 @@
       display: inline-block;
       margin-right: .2em;
     }
+    &.youtube_link:before {
+      content: "\f235";
+      font-family: dashicons;
+    }
     &.website_link:before {
-      content: none;
+      content: "\f103";
+      font-family: dashicons;
     }
   }
 }
