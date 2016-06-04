@@ -97,7 +97,7 @@
     $args = array (
     	'category_name'          => 'blog',
       'post__not_in'           => array($post->ID),
-      'posts_per_page'         => '2',
+      'posts_per_page'         => '3',
     );
 
     // The Query
@@ -116,7 +116,10 @@
     wp_reset_postdata();
     ?>
     </div>
-  </section>
+    <div>
+      <a class="bc-words-allposts" href="/blog">See all posts...</a>
+    </div>
+</section>
 
 <section class="home__section gallery" id="gallery">
   <div class="slide slide-1">
