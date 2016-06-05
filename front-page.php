@@ -132,8 +132,8 @@
 
       foreach ($pieces as $key => $value ) {
 
-          $image_large   = wp_get_attachment_image_src( $value, 'large');
-          $image_full     = wp_get_attachment_image_src( $value, 'full');
+          $image_large   = wp_get_attachment_image_src( $value, 'gallery');
+          $image_full     = wp_get_attachment_image_src( $value, 'large');
       ?>
 
 

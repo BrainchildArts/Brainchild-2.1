@@ -1,5 +1,5 @@
 .bc-words {
-  @include row;
+  @include outer-container;
   &__posts {
     @include span-columns(11);
     @include shift(.5);
@@ -13,7 +13,7 @@
 
 article.hentry.category-blog {
   &:nth-last-of-type(3) ~ article {
-    @include span-columns(5.5);
+    @include span-columns(6);
     @include shift(0)
     .entry-image,
     .entry-text {
@@ -59,6 +59,7 @@ article.hentry.category-blog {
       font-size: 1.5em;
       text-align: left;
       text-transform: none;
+      display: block;
       &:hover, &:active, &:focus {
         color: black;
       }

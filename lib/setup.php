@@ -40,6 +40,8 @@ function setup() {
     add_theme_support('post-thumbnails');
 
     add_image_size( 'grid-square', 250, 250, true );
+
+    add_image_size( 'gallery', 1800, 1013, true); // used in Gallery Ratio 16:9
   }
 
   // Enable post formats

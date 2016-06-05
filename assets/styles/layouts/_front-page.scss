@@ -148,8 +148,11 @@ section#gallery {
   }
   .slide__image {
     @include span-columns(6);
-    @include omega();
+    width: 50%;
     padding: 5px;
+    @include omega();
+    &:nth-of-type(3n-1) {
+    }
     &:nth-of-type(3n+3) {
       @include span-columns(12);
     }

@@ -48,12 +48,13 @@
 @import 'components/flexnav';
 @import 'components/video';
 @import 'components/lightbox';
-@import 'components/gallery';
+@import 'components/thumb-grid';
 @import 'components/sc-widget';
 
 // Layouts
 @import "layouts/front-page";
 @import "layouts/blog";
+@import "layouts/highlights";
 @import "layouts/header";
 @import "layouts/sidebar";
 @import "layouts/footer";
