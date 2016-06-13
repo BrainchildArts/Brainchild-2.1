@@ -16,4 +16,11 @@ body {
 
 main.main {
   @include row();
+  margin-top: $navigation-height*2;
+  @include media($horizontal-bar-mode) {
+    margin-top: $navigation-height;
+  }
+  .home & {
+    margin-top: 0;
+  }
 }

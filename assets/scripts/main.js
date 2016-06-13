@@ -11,6 +11,9 @@
  * ======================================================================== */
 
 (function($) {
+  function showLineup() {
+    $('#lineup').addClass('untruncate').removeClass('truncate');
+  }
 
   // Use this variable to set up the common and page specific functions. If you
   // rename this variable, you will also need to rename the namespace below.
@@ -19,6 +22,7 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
+
 
         //Sticky Nav
         var stickyNavTop = $('header.banner').offset().top;
@@ -68,19 +72,24 @@
         });
 
         // Reveals
-        $(".reveal-button").click(function(e) {
-            e.preventDefault();
-            if ( $(this).nextAll('.reveal').length ) {
-              $(this).nextAll('.reveal').first().toggle();
-              $(this).nextAll('.reveal').first().toggleClass('vhs-fade');
-              $(this).toggleClass('active');
-            } else {
-                console.log('length not');
-                $(this).parent().nextAll('.reveal').first().toggle();
-                $(this).parent().nextAll('.reveal').first().toggleClass('vhs-fade');
-                $(this).toggleClass('active');
-            }
+
+        var allReveals = $('.reveal');
+        $('.reveal-button').bind('click', function(e){
+          if ($(this).parent().hasClass('is-expanded')) {
+            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parent().find('.reveal').toggleClass('vhs-fade');
+            $(this).parent().toggleClass('is-expanded');
+          } else {
+            allReveals.hide();
+            allReveals.parent().removeClass('is-expanded');
+            allReveals.removeClass('vhs-fade');
+            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parent().find('.reveal').toggleClass('vhs-fade');
+            $(this).parent().toggleClass('is-expanded');
+          }
+          e.preventDefault();
         });
+
 
 
         // Lightbox/Gallery
@@ -193,6 +202,8 @@
         $("article.category-lineup").on("click", ".youtube_link", function(e) {
           // Store the query string variables and values
           // Uses "jQuery Query Parser" plugin, to allow for various URL formats (could have extra parameters)
+          showLineup();
+          console.log('thing');
           var queryString = $(this).attr('href').slice( $(this).attr('href').indexOf('?') + 1);
           var queryVars = $.parseQuery( queryString );
 
@@ -210,6 +221,7 @@
             $('#modal-youtube .modal-youtube__video').html(iFrameCode);
 
             // Open Modal
+
             $("body").addClass("modal-youtube-open");
             $("#sound").addClass("disabled");
           }
@@ -254,9 +266,10 @@
 
         $.scrollDepth({labelPrefix:"Scroll: "});
 
-        $('.filter').click(function() {
+        $('#lineup .filter').click(function() {
           // fetch the class of the clicked item
           var ourClass = $(this).data('filter');
+
 
           // reset the active class on all the buttons
           $('#artist__grid').children('article').hide();
@@ -273,10 +286,10 @@
             $('#artist__grid').children('article:not(.' + ourClass + ')').hide().addClass('filtered-out');
             // show all elements that do share ourClass
             $('#artist__grid').children('article.' + ourClass).fadeIn().removeClass('filtered-out');
+            showLineup();
           }
           return false;
         });
-
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -286,6 +299,14 @@
     'home': {
       init: function() {
         // JavaScript to be fired on the home page
+
+        $('#lineup').addClass('truncate');
+        $('#lineup a.showmore').click( function(e) {
+          e.preventDefault();
+          showLineup();
+        });
+
+
         function onPlayerReady() {
           var player = $('#video_background').data('ytPlayer').player;
           player.mute();

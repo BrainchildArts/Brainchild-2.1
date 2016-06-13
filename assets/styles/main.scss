@@ -50,12 +50,13 @@
 @import 'components/lightbox';
 @import 'components/thumb-grid';
 @import 'components/sc-widget';
+@import 'components/nav';
 
 // Layouts
 @import "layouts/front-page";
 @import "layouts/blog";
 @import "layouts/highlights";
-@import "layouts/header";
+// @import "layouts/header";
 @import "layouts/sidebar";
 @import "layouts/footer";
 @import "layouts/pages";

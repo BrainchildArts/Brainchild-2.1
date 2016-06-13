@@ -1,3 +1,21 @@
+// Screen Widths
+
+$phone : 27.5rem;
+
+$phablet : 40rem;
+
+$tablet : 60rem;
+
+$laptop : 80rem;
+
+$desktop : 90rem;
+
+//Specific Widths
+$horizontal-bar-mode: $phablet;
+
+$homepage-video-width: 850px;
+
+
 // Typography
 $TWCen: "TWCen", "Proxima Nova", "Lucida Grande", "Tahoma", "Verdana", "Arial", sans-serif;
 
@@ -21,6 +39,7 @@ $base-spacing: $base-line-height * 1em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 $reading-width: 37em;
+$navigation-height: 2.7em;
 
 // Colors
 $gray: #ededed;
@@ -34,7 +53,7 @@ $bc-orange : #FF7656;
 $bc-yellow : #ffd900;
 $bc-pink : #FF939F;
 
-$white : #F1F1EF;
+$white : #FFF;
 $black : #272822;
 
 $primary-font-color: $dark-gray;
@@ -55,18 +74,6 @@ $base-border: 1px solid $base-border-color;
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
-
-// Screen Widths
-
-$phone : 27.5rem;
-
-$phablet : 40rem;
-
-$tablet : 60rem;
-
-$laptop : 80rem;
-
-$desktop : 90rem;
 
 //Paths
 

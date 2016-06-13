@@ -79,10 +79,49 @@
   </div>
 </section>
 
+
 <section class="home__section" id="lineup">
   <div><?php the_field('lineup_text'); ?></div>
   <?php get_template_part('templates/lineup') ?>
+  <a href="#" class="showmore">See More...</a>
 </section>
+
+<?php $highlights = get_posts('category_name=highlights');
+if ($highlights) { ?>
+  <section class="home__section highlights" id="highlights">
+    <h2>Explore the Festival</h2>
+    <div class="posts">
+      <?php
+      //Start recent post loop
+
+      // WP_Query arguments
+
+      $id = (get_the_id());
+
+      $args = array (
+        'category_name'          => 'highlights',
+        'post__not_in'           => array($post->ID),
+        'posts_per_page'         => '0',
+      );
+
+      // The Query
+      $query = new WP_Query( $args );
+
+        // The Loop
+      if ( $query->have_posts() ) {
+        while ($query->have_posts()) : $query->the_post();
+          get_template_part('templates/content-highlights', get_post_type() != 'post' ? get_post_type() : get_post_format());
+        endwhile;
+      } else {
+        //no posts found
+      }
+
+      // Restore original Post Data
+      wp_reset_postdata();
+      ?>
+      </div>
+  </section>
+<?php } ?>
 
 <section class="home__section bc-words" id="bc-words">
   <h2>Recent Posts from our blog</h2>
@@ -116,9 +155,7 @@
     wp_reset_postdata();
     ?>
     </div>
-    <div>
-      <a class="bc-words-allposts" href="/blog">See all posts...</a>
-    </div>
+    <a class="bc-words-allposts" href="/blog">See all posts...</a>
 </section>
 
 <section class="home__section gallery" id="gallery">
@@ -151,7 +188,9 @@
 <section class="volunteer" id="volunteer">
   <div class="tickets__more">
   <h2>Want to volunteer?</h2>
-  <h3><a class="reveal-button" href="#">Find out more here.</a></h3>
+  <a class="reveal-button" href="#">
+    <h3>Find out more here.</h3>
+  </a>
     <div class="reveal">
       <?php the_field('volunteering_text'); ?>
     </div>

@@ -275,6 +275,8 @@ var Grid = (function() {
       }
     },
     open : function() {
+      jQuery('#lineup').addClass('untruncate').removeClass('truncate');
+      console.log('untruncate!');
 
       setTimeout( jQuery.proxy( function() {
         // set the height for the preview and the item
@@ -282,7 +284,6 @@ var Grid = (function() {
         // scroll to position the preview in the right place
         this.positionPreview();
       }, this ), 25 );
-
     },
     close : function() {
 

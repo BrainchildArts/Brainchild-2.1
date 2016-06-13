@@ -53,6 +53,15 @@ a {
   }
 }
 
+%blacklink {
+  color: $black;
+  &:active,
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 hr {
   border-bottom: $base-border;
   border-left: none;
@@ -85,6 +94,11 @@ a:focus {
 .big-txt {
   text-align: center;
   font-weight: 700;
+}
+
+@include selection {
+  background-color: rgba($bc-blue,0.95);
+  color: white;
 }
 
 /* =Genericons and Dashicons

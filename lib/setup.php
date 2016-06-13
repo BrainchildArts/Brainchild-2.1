@@ -42,6 +42,8 @@ function setup() {
     add_image_size( 'grid-square', 250, 250, true );
 
     add_image_size( 'gallery', 1800, 1013, true); // used in Gallery Ratio 16:9
+
+    add_image_size( 'large-3-2', 750, 500, true);
   }
 
   // Enable post formats

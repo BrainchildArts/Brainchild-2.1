@@ -53,7 +53,7 @@ div.headervideo.responsive {
   &.loaded {
     opacity: 1;
   }
-  @include media(850px) {
+  @include media($homepage-video-width) {
     display: block;
   }
   &.disabled {

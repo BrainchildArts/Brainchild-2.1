@@ -20,10 +20,10 @@
     display: block;
     margin-top: .5em;
     a {
-      color: lighten($white,10%);
+      color: darken($white,5%);
       font-size: 1.4em;
       &:hover {
-        color: lighten($white,5%);
+        color: darken($white,10%);
       }
     }
   }

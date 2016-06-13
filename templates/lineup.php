@@ -6,13 +6,13 @@
     <a class="filter" onclick="return false;" href="#" data-filter="tag-music">Music</a>
   </li>
   <li>
-    <a class="filter" onclick="return false;" href="#" data-filter="tag-poetry, tag-theatre">Theatre &amp; Spoken Word</a>
+    <a class="filter" onclick="return false;" href="#" data-filter="tag-poetrytheatre">Theatre &amp; Spoken Word</a>
   </li>
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-film">Film</a>
   </li>
   <li>
-    <a class="filter" onclick="return false;" href="#" data-filter="tag-talks, tag-workshops">Talks &amp; Workshops</a>
+    <a class="filter" onclick="return false;" href="#" data-filter="tag-talksworkshops">Talks &amp; Workshops</a>
   </li>
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-art">Art</a>

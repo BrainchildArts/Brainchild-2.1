@@ -1,20 +1,31 @@
 .bc-words {
-  @include outer-container;
   &__posts {
     @include span-columns(11);
     @include shift(.5);
   }
   .bc-words-allposts {
     display: block;
+    font-size: 1.4em;
+    @extend %blacklink;
+    @include fill-parent;
   }
-}
+  article.hentry.category-blog {
+    @include span-columns(12);
+    @include shift(0);
+    @include media($phablet) {
+      @include span-columns(6);
+      &:nth-of-type(1) {
+        @include span-columns(12);
+        .entry-image {
+          @include span-columns(8);
+        }
+        .entry-text {
+          @include span-columns(4);
+          margin-top: 0;
+        }
+      }
+    }
 
-
-
-article.hentry.category-blog {
-  &:nth-last-of-type(3) ~ article {
-    @include span-columns(6);
-    @include shift(0)
     .entry-image,
     .entry-text {
       @include fill-parent();
@@ -22,71 +33,61 @@ article.hentry.category-blog {
     .entry-text {
       margin-top: 1em;
     }
-    &:first-of-type {
-      @include shift(1);
-    }
-  }
-  @include span-columns(12);
-  margin-bottom: 2.5em;
-  .entry-image,
-  .entry-text {
-    @include fill-parent();
-  }
-  .entry-text {
-    margin-top: 1em;
-  }
-  .entry-image {
-    background-color: $bc-yellow;
-  }
-  img {
-    width: 100%;
-    display: block;
-    @include transition( all .5s ease );
-  }
-  @include media($phablet) {
+    margin-bottom: 1em;
     .entry-image {
-      @include span-columns(8);
+      background-color: $white;
+      @include aspect-ratio(3,2);
+      overflow: hidden;
     }
-    .entry-text {
-      @include span-columns(4);
-      margin-top: 0;
-    }
-  }
-  a {
-    text-decoration: none;
-    h2 {
-      color: black;
-      font-size: 1.5em;
-      text-align: left;
-      text-transform: none;
+    img {
+      width: 100%;
       display: block;
-      &:hover, &:active, &:focus {
+      @include transition( all .5s ease );
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      object-fit: cover;
+      object-position: 50% 50%;
+      max-width: none;
+      width: auto;
+    }
+    a {
+      text-decoration: none;
+      h2 {
         color: black;
+        font-size: 1.5em;
+        text-align: left;
+        text-transform: none;
+        display: block;
+        &:hover, &:active, &:focus {
+          color: black;
+        }
       }
-    }
-    &:hover h2 {
-      text-decoration: underline;
-    }
-
-    &:hover, &:active, &:focus {
-      img {
-        opacity: .6;
-        @include filter(grayscale(50%));
+      &:hover h2 {
+        text-decoration: underline;
       }
 
-    }
+      &:hover, &:active, &:focus {
+        img {
+          opacity: .6;
+        }
 
-    p {
-      color: $base-font-color;
-      padding: 0;
-      font-size: 1em;
-    }
-    @include media($tablet) {
+      }
+
       p {
-        font-size: 1.2em;
+        color: $base-font-color;
+        padding: 0;
+        font-size: 1em;
       }
-      h1 {
-        font-size: 1.8em;
+      @include media($tablet) {
+        p {
+          font-size: 1.2em;
+        }
+        h1 {
+          font-size: 1.8em;
+        }
       }
     }
   }
