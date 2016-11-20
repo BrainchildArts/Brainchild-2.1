@@ -17,10 +17,14 @@ body {
 main.main {
   @include row();
   margin-top: $navigation-height*2;
+  max-width: $tablet;
+  margin-left: auto;
+  margin-right: auto;
   @include media($horizontal-bar-mode) {
     margin-top: $navigation-height;
   }
   .home & {
     margin-top: 0;
+    max-width: none;
   }
 }

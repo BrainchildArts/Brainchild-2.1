@@ -26,3 +26,25 @@ foreach ($sage_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+
+add_filter( 'get_the_archive_title', function ($title) {
+
+    if ( (is_category()) || (is_tag()) ) {
+
+            $title = single_cat_title( '', false );
+
+        } elseif ( is_author() ) {
+
+            $title = '<span class="vcard">' . get_the_author() . '</span>' ;
+
+        }
+
+    return $title;
+
+});
+
+add_filter( 'woocommerce_product_tabs', 'wcs_woo_remove_reviews_tab', 98 );
+    function wcs_woo_remove_reviews_tab($tabs) {
+    unset($tabs['reviews']);
+    return $tabs;
+}

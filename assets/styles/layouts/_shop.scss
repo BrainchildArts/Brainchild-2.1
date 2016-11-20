@@ -1,0 +1,34 @@
+body.woocommerce {
+  .page-header {
+    margin-bottom: 2.5em;
+  }
+  ul.products {
+    text-align: center;
+    li.product {
+      float: none;
+      margin-left: 1em;
+      margin-right: 1em;
+      display: inline-block;
+    }
+  }
+}
+
+body.woocommerce.single-product {
+  h1.page-title {
+    display: none;
+  }
+  div.product {
+    margin-top: 2.5em;
+  }
+  .product_meta span {
+    display: block;
+  }
+  .woocommerce-tabs {
+    width: 48%;
+    float: right;
+    clear: none;
+    ul.tabs li {
+      border-radius: 1px;
+    }
+  }
+}

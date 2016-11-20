@@ -32,6 +32,9 @@ article.category-highlights {
   padding-left: 0;
   padding-right: 0;
   max-width: 100%;
+}
+
+.posts {
   article.category-highlights {
     width: 100%;
     padding: 0;
@@ -40,47 +43,21 @@ article.category-highlights {
     display: inline-block;
     vertical-align: top;
     float: left;
-    header:hover {
-      .entry-image__overlay {
-        opacity: .2;
-      }
-      img {
-        transform: scale(1.03);
-      }
-    }
-    > a,
-    > a img {
-      border: none;
-      outline: none;
-      display: block;
-    }
     @include media($phone) {
       width: 49.999%;
     }
-    h1 {
-      font-size: 1.8em;
-      @include media($phablet) {
-        font-size: 2em;
-      }
-      @include media($laptop) {
-        font-size: 4.2vw;
-      }
-    }
-    .entry-image__overlay {
-      background-color: $bc-blue;
-      opacity: .3;
-      mix-blend-mode: screen;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      -webkit-transition: .8s;
-      transition: .8s;
-    }
     header {
       @include aspect-ratio(3,2);
+      margin-bottom: 0;
       overflow: hidden;
+      &:hover {
+        .entry-image__overlay {
+          opacity: .2;
+        }
+        img {
+          transform: scale(1.03);
+        }
+      }
       .entry-image {
         position: absolute;
         top: 0;
@@ -95,9 +72,36 @@ article.category-highlights {
         object-fit: cover;
         height: 100%;
       }
+      > a,
+      > a img {
+        border: none;
+        outline: none;
+        display: block;
+      }
+      h1 {
+        font-size: 2.2em;
+        @include media($phone) {
+          font-size: 1.8em;
+        }
+        @include media($phablet) {
+          font-size: 2.6em;
+        }
+        @include media($laptop) {
+          font-size: 4.2vw;
+        }
+      }
+      .entry-image__overlay {
+        background-color: $bc-blue;
+        opacity: .3;
+        mix-blend-mode: screen;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        -webkit-transition: .8s;
+        transition: .8s;
+      }
     }
   }
-}
-
-.single article.category-highlights {
 }

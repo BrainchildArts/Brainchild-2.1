@@ -25,8 +25,8 @@
     }
     @include media($phablet) {
       &.sticky {
-        background-color: rgba($bc-blue,.5);
-        transition: background ease 3s;
+        background-color: $bc-blue;
+        transition: background ease 1s;
       }
     }
   }
