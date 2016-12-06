@@ -12,24 +12,31 @@ body.woocommerce {
     }
   }
 
+  p.price,
+  span.price {
+    color: $bc-blue;
+  }
+
   #respond input#submit,
   a.button,
   button.button,
-  input.button
+  input.button,
   a.button.alt,
   button.button.alt,
   input.button.alt {
     border-radius: 1px;
-    background-color: lighten($bc-orange, 10%);
-    &:hover,
-    &:active,
-    &:focus {
-      border: none;
-      background-color: $bc-orange;
-    }
-    &.disabled,
-    &:disabled {
-      background-color: $bc-orange;
+    &.alt {
+      background-color: lighten($bc-orange, 10%);
+      &:hover,
+      &:active,
+      &:focus {
+        border: none;
+        background-color: $bc-orange;
+      }
+      &.disabled,
+      &:disabled {
+        background-color: $bc-orange;
+      }
     }
   }
 }
@@ -45,6 +52,11 @@ body.woocommerce.single-product {
     @include pad();
     padding: 1.5em 5%;
   }
+  div.images img {
+    max-width: 19em;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .product_meta span {
     display: block;
   }
@@ -52,5 +64,10 @@ body.woocommerce.single-product {
     ul.tabs li {
       border-radius: 1px;
     }
+  }
+  form.cart .variations select {
+    min-width: 0;
+    display: inline-block;
+    margin-bottom: 0;
   }
 }
