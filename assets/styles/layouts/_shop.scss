@@ -15,10 +15,21 @@ body.woocommerce {
   #respond input#submit,
   a.button,
   button.button,
-  input.button {
+  input.button
+  a.button.alt,
+  button.button.alt,
+  input.button.alt {
     border-radius: 1px;
-    &:hover {
+    background-color: lighten($bc-orange, 10%);
+    &:hover,
+    &:active,
+    &:focus {
       border: none;
+      background-color: $bc-orange;
+    }
+    &.disabled,
+    &:disabled {
+      background-color: $bc-orange;
     }
   }
 }
