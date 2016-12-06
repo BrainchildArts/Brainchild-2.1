@@ -11,22 +11,33 @@ body.woocommerce {
       display: inline-block;
     }
   }
+
+  #respond input#submit,
+  a.button,
+  button.button,
+  input.button {
+    border-radius: 1px;
+    &:hover {
+      border: none;
+    }
+  }
 }
 
 body.woocommerce.single-product {
+
   h1.page-title {
     display: none;
   }
   div.product {
     margin-top: 2.5em;
+    @include outer-container;
+    @include pad();
+    padding: 1.5em 5%;
   }
   .product_meta span {
     display: block;
   }
   .woocommerce-tabs {
-    width: 48%;
-    float: right;
-    clear: none;
     ul.tabs li {
       border-radius: 1px;
     }
