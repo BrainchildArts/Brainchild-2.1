@@ -28,11 +28,11 @@
 @import "utilities/fonts";
 
 //Vendor
-@import '../bower_components/bourbon/app/assets/stylesheets/bourbon';
+@import '../../bower_components/bourbon/app/assets/stylesheets/bourbon';
 @import 'grid-settings';
-@import '../bower_components/neat/app/assets/stylesheets/neat';
+@import '../../bower_components/neat/app/assets/stylesheets/neat';
 @import 'base/base'; // Bitters
-@import '../bower_components/bourbon/app/assets/stylesheets/addons/clearfix';
+@import '../../bower_components/bourbon/app/assets/stylesheets/addons/clearfix';
 
 @import 'vendor/featherlight';
 @import 'vendor/featherlight-gallery';
