@@ -4,11 +4,11 @@
 </div>
 <section class='splash' id="splash">
   <div class="splash-content splash__frame"></div>
-  <div id="video_background" class="headervideo responsive"></div>
+  <video autoplay loop src="<?php bloginfo('template_directory'); ?>/dist/images/background/splash.mp4" class="headervideo responsive"></video>
   <div class='splash__text splash-content content'>
     <img class='logo splash-content' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/bclogo.png'>
-    <h3 class='splash-content'>Festival 2016</h3>
-    <h2 class='dates splash-content'>8-10 July</h2>
+    <h3 class='splash-content'>Festival 2017</h3>
+    <h2 class='dates splash-content'>7-9 July</h2>
     <h2 class='location splash-content'>East Sussex</h2>
   </div>
 </section>
@@ -65,6 +65,8 @@
     </li>
   </ul>
 </div>
+
+
 <!-- Splash Section -->
 <section class="home__section" id="about">
   <div id="manifesto">
@@ -72,56 +74,25 @@
   </div>
 
 </section>
+
+
 <section class="home__section tickets" id="tickets">
   <div class="tickets__links">
     <h1><?php the_field('ticket_header'); ?></h1>
+    <a target="_blank" href="http://buytickets.at/brainchildfestival/43686/r/website" class="cta button">£55 Early Bird</a>
+    <div class="upcoming">
+      <button class="future-tier" disabled="true">£60 Tier 2</button>
+      <button class="future-tier" disabled="true">£65 Tier 3</button>
+      <button class="future-tier" disabled="true">£70 Tier 4</button>
+      <button class="future-tier" disabled="true">£75 Tier 5</button>
+      <button class="future-tier" disabled="true">£80 Tier 6</button>
+    </div>
+
     <?php the_field('tickets_buttons'); ?>
   </div>
 </section>
 
-
-<section class="home__section" id="lineup">
-  <div><?php the_field('lineup_text'); ?></div>
-  <?php get_template_part('templates/lineup') ?>
-  <a href="#" class="showmore">See More...</a>
-</section>
-
-<?php $highlights = get_posts('category_name=highlights');
-if ($highlights) { ?>
-  <section class="home__section highlights" id="highlights">
-    <h2>Explore the Festival</h2>
-    <div class="posts">
-      <?php
-      //Start recent post loop
-
-      // WP_Query arguments
-
-      $id = (get_the_id());
-
-      $args = array (
-        'category_name'          => 'highlights',
-        'post__not_in'           => array($post->ID),
-        'posts_per_page'         => '0',
-      );
-
-      // The Query
-      $query = new WP_Query( $args );
-
-        // The Loop
-      if ( $query->have_posts() ) {
-        while ($query->have_posts()) : $query->the_post();
-          get_template_part('templates/content-highlights', get_post_type() != 'post' ? get_post_type() : get_post_format());
-        endwhile;
-      } else {
-        //no posts found
-      }
-
-      // Restore original Post Data
-      wp_reset_postdata();
-      ?>
-      </div>
-  </section>
-<?php } ?>
+Lineup Section (text)
 
 <section class="home__section bc-words" id="bc-words">
   <h2>Recent Posts from our blog</h2>
@@ -185,25 +156,6 @@ if ($highlights) { ?>
   <p class="big-txt">Photography: <a target="_blank" href="http://www.holliefernandophotography.com/">Hollie Fernando</a></p>
 </section>
 
-<section class="volunteer" id="volunteer">
-  <div class="tickets__more">
-  <h2>Want to volunteer?</h2>
-  <a class="reveal-button" href="#">
-    <h3>Find out more here.</h3>
-  </a>
-    <div class="reveal">
-      <?php the_field('volunteering_text'); ?>
-    </div>
-  </div>
-</section>
-
-<section class="home__section" id="faq">
-  <h2>FAQ</h2>
-  <div class="expandable">
-    <?php the_field('faq_text') ?>
-  </div>
-</section>
-
 <section class="home__section getinvolved" id="getinvolved">
   <h2>Get In Touch</h2>
   <?php the_field('get_involved_text'); ?>
@@ -212,9 +164,3 @@ if ($highlights) { ?>
 <footer>
   <?php the_field('footer_text'); ?>
 </footer>
-
-<?php get_template_part('templates/modal-youtube') ?>
-
-<?php get_template_part('templates/player') ?>
-
-<?php the_posts_navigation(); ?>
