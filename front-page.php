@@ -4,7 +4,7 @@
 </div>
 <section class='splash' id="splash">
   <div class="splash-content splash__frame"></div>
-  <video autoplay loop src="<?php bloginfo('template_directory'); ?>/dist/images/background/splash.mp4" class="headervideo responsive"></video>
+  <div id="video_background" class="headervideo responsive"></div>
   <div class='splash__text splash-content content'>
     <img class='logo splash-content' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/bclogo.png'>
     <h3 class='splash-content'>Festival 2017</h3>
