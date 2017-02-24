@@ -85,9 +85,10 @@ section#volunteer {
 section#tickets {
   .tickets__links {
     background-color: $dark-gray;
-    background-image: url(#{$image-path}background/BW.jpg);
+    background-image: url(#{$image-path}background/BW-17.jpg);
     text-align: center;
     background-size: cover;
+    background-position: center center;
     padding: 2.5em;
   }
   h1 {

@@ -1,3 +1,6 @@
+/*jslint browser: true*/
+/*global $, jQuery*/
+
 var Grid = (function() {
 
     // list of items
@@ -33,42 +36,13 @@ var Grid = (function() {
       easing : 'ease'
     };
 
-  function init( config ) {
 
-    // the settings..
-    settings = jQuery.extend( true, {}, settings, config );
-
-    // preload all images
-    $grid.imagesLoaded( function() {
-
-      // save itemÂ´s size and offset
-      saveItemInfo( true );
-      // get windowÂ´s size
-      getWinSize();
-      // initialize some events
-      initEvents();
-
-    } );
-
-  }
-
-  // add more items to the grid.
-  // the new items need to appended to the grid.
-  // after that call Grid.addItems(theItems);
-  function addItems( $newitems ) {
-
-    $items = $items.add( $newitems );
-
-    $newitems.each( function() {
-      var $item = jQuery( this );
-      $item.data( {
-        offsetTop : $item.offset().top,
-        height : $item.height()
-      } );
-    } );
-
-    initItemsEvents( $newitems );
-
+  // the preview obj / overlay
+  function Preview( $item ) {
+    this.$item = $item;
+    this.expandedIdx = this.$item.index();
+    this.create();
+    this.update();
   }
 
   // saves the itemÂ´s offset top and height (if saveheight is true)
@@ -82,51 +56,18 @@ var Grid = (function() {
     } );
   }
 
-  function initEvents() {
-
-    // when clicking an item, show the preview with the itemÂ´s info and large image.
-    // close the item if already expanded.
-    // also close if clicking on the itemÂ´s cross
-    initItemsEvents( $items );
-
-    // on window resize get the windowÂ´s size again
-    // reset some values..
-    $window.on( 'debouncedresize', function() {
-
-      scrollExtra = 0;
-      previewPos = -1;
-      // save itemÂ´s offset
-      saveItemInfo();
-      getWinSize();
-      var preview = jQuery.data( this, 'preview' );
-      if( typeof preview !== 'undefined' ) {
-        hidePreview();
-      }
-
-    } );
-
-  }
-
-  function initItemsEvents( $items ) {
-    $items.on( 'click', 'span.artist__close', function() {
-      hidePreview();
-      return false;
-    } ).children( 'a' ).on( 'click', function(e) {
-
-      var $item = jQuery( this ).parent();
-      // check if item already opened
-      if (current === $item.index() ) {
-        hidePreview();
-      } else {
-        showPreview( $item );
-      }
-      return false;
-    } );
-  }
-
   function getWinSize() {
     winsize = { width : $window.width(), height : $window.height() };
   }
+
+
+  function hidePreview() {
+    current = -1;
+    var preview = jQuery.data( this, 'preview' );
+    preview.close();
+    jQuery.removeData( this, 'preview' );
+  }
+
 
   function showPreview( $item ) {
 
@@ -164,19 +105,85 @@ var Grid = (function() {
 
   }
 
-  function hidePreview() {
-    current = -1;
-    var preview = jQuery.data( this, 'preview' );
-    preview.close();
-    jQuery.removeData( this, 'preview' );
+
+  function initItemsEvents( $items ) {
+    $items.on( 'click', 'span.artist__close', function() {
+      hidePreview();
+      return false;
+    } ).children( 'a' ).on( 'click', function(e) {
+
+      var $item = jQuery( this ).parent();
+      // check if item already opened
+      if (current === $item.index() ) {
+        hidePreview();
+      } else {
+        showPreview( $item );
+      }
+      return false;
+    } );
   }
 
-  // the preview obj / overlay
-  function Preview( $item ) {
-    this.$item = $item;
-    this.expandedIdx = this.$item.index();
-    this.create();
-    this.update();
+  function initEvents() {
+
+    // when clicking an item, show the preview with the itemÂ´s info and large image.
+    // close the item if already expanded.
+    // also close if clicking on the itemÂ´s cross
+    initItemsEvents( $items );
+
+    // on window resize get the windowÂ´s size again
+    // reset some values..
+    $window.on( 'debouncedresize', function() {
+
+      scrollExtra = 0;
+      previewPos = -1;
+      // save itemÂ´s offset
+      saveItemInfo();
+      getWinSize();
+      var preview = jQuery.data( this, 'preview' );
+      if( typeof preview !== 'undefined' ) {
+        hidePreview();
+      }
+
+    } );
+
+  }
+
+  function init( config ) {
+
+    // the settings..
+    settings = jQuery.extend( true, {}, settings, config );
+
+    // preload all images
+    $grid.imagesLoaded( function() {
+
+      // save itemÂ´s size and offset
+      saveItemInfo( true );
+      // get windowÂ´s size
+      getWinSize();
+      // initialize some events
+      initEvents();
+
+    } );
+
+  }
+
+  // add more items to the grid.
+  // the new items need to appended to the grid.
+  // after that call Grid.addItems(theItems);
+  function addItems( $newitems ) {
+
+    $items = $items.add( $newitems );
+
+    $newitems.each( function() {
+      var $item = jQuery( this );
+      $item.data( {
+        offsetTop : $item.offset().top,
+        height : $item.height()
+      } );
+    } );
+
+    initItemsEvents( $newitems );
+
   }
 
   Preview.prototype = {

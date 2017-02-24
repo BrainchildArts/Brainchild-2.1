@@ -79,20 +79,42 @@
 <section class="home__section tickets" id="tickets">
   <div class="tickets__links">
     <h1><?php the_field('ticket_header'); ?></h1>
-    <a target="_blank" href="http://buytickets.at/brainchildfestival/43686/r/website" class="cta button">£55 Early Bird</a>
-    <div class="upcoming">
-      <button class="future-tier" disabled="true">£60 Tier 2</button>
-      <button class="future-tier" disabled="true">£65 Tier 3</button>
-      <button class="future-tier" disabled="true">£70 Tier 4</button>
-      <button class="future-tier" disabled="true">£75 Tier 5</button>
-      <button class="future-tier" disabled="true">£80 Tier 6</button>
-    </div>
 
     <?php the_field('tickets_buttons'); ?>
   </div>
 </section>
 
-Lineup Section (text)
+<section class="home__section" id="lineup">
+  <div><?php the_field('lineup_text'); ?></div>
+</section>
+
+
+<section class="home__section gallery" id="gallery">
+  <div class="slide slide-1">
+  <?php
+  if ( get_post_gallery() ) {
+
+      $gallery        = get_post_gallery( get_the_ID(), false );
+      $galleryIDS     = $gallery['ids'];
+      $pieces         = explode(",", $galleryIDS);
+
+      foreach ($pieces as $key => $value ) {
+
+          $image_large   = wp_get_attachment_image_src( $value, 'gallery');
+          $image_full     = wp_get_attachment_image_src( $value, 'large');
+      ?>
+
+
+              <a href="<?php echo $image_full[0] ?>"  class="slide__image zoom-in">
+                  <img src="<?php echo $image_large[0] ?>"/>
+              </a>
+      <?php
+      }
+  }
+  ?>
+  </div>
+  <p class="big-txt">Photography: <a target="_blank" href="http://www.holliefernandophotography.com/">Hollie Fernando</a></p>
+</section>
 
 <section class="home__section bc-words" id="bc-words">
   <h2>Recent Posts from our blog</h2>
@@ -127,33 +149,6 @@ Lineup Section (text)
     ?>
     </div>
     <a class="bc-words-allposts" href="/blog">See all posts...</a>
-</section>
-
-<section class="home__section gallery" id="gallery">
-  <div class="slide slide-1">
-  <?php
-  if ( get_post_gallery() ) {
-
-      $gallery        = get_post_gallery( get_the_ID(), false );
-      $galleryIDS     = $gallery['ids'];
-      $pieces         = explode(",", $galleryIDS);
-
-      foreach ($pieces as $key => $value ) {
-
-          $image_large   = wp_get_attachment_image_src( $value, 'gallery');
-          $image_full     = wp_get_attachment_image_src( $value, 'large');
-      ?>
-
-
-              <a href="<?php echo $image_full[0] ?>"  class="slide__image zoom-in">
-                  <img src="<?php echo $image_large[0] ?>"/>
-              </a>
-      <?php
-      }
-  }
-  ?>
-  </div>
-  <p class="big-txt">Photography: <a target="_blank" href="http://www.holliefernandophotography.com/">Hollie Fernando</a></p>
 </section>
 
 <section class="home__section getinvolved" id="getinvolved">

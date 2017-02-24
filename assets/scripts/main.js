@@ -285,6 +285,18 @@
       init: function() {
         // JavaScript to be fired on the home page
 
+        function hide() {
+          $(".splash-content").addClass('hidden');
+          $("header.banner").addClass('hidden');
+          $(".splash-content").removeClass('vhs-flicker vhs-reverse');
+          $("header.banner").removeClass('vhs-flicker vhs-reverse');
+        }
+
+        function clean() {
+          $(".splash-content").removeClass('vhs-flicker');
+          $("header.banner").removeClass('vhs-flicker');
+        }
+
         // Smooth Scrolling
 
         $('a[href*="#"]:not([href="#"])').click(function() {
@@ -352,7 +364,7 @@
         if (windowWidth >= 850) {
           $('#video_background').YTPlayer({
             fitToBackground: true,
-            videoId: 'gcyUUKPmt0A',
+            videoId: '-x_5aJFcWaI',
             mute: true,
             playerVars: {
               mute: true
@@ -361,18 +373,6 @@
               'onReady': onPlayerReady
             }
           });
-        }
-
-        function hide() {
-          $(".splash-content").addClass('hidden');
-          $("header.banner").addClass('hidden');
-          $(".splash-content").removeClass('vhs-flicker vhs-reverse');
-          $("header.banner").removeClass('vhs-flicker vhs-reverse');
-        }
-
-        function clean() {
-          $(".splash-content").removeClass('vhs-flicker');
-          $("header.banner").removeClass('vhs-flicker');
         }
 
       },
