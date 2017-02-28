@@ -219,8 +219,6 @@ var Grid = (function() {
         var $currentItem = $items.eq( current );
         $currentItem.removeClass( 'artist__expanded' );
         this.$item.addClass( 'artist__expanded' );
-        // position the preview correctly
-        this.positionPreview();
       }
 
       // update current value
@@ -282,14 +280,9 @@ var Grid = (function() {
       }
     },
     open : function() {
-      jQuery('#lineup').addClass('untruncate').removeClass('truncate');
-      console.log('untruncate!');
 
       setTimeout( jQuery.proxy( function() {
-        // set the height for the preview and the item
-        this.setHeights();
-        // scroll to position the preview in the right place
-        this.positionPreview();
+
       }, this ), 25 );
     },
     close : function() {
@@ -308,10 +301,6 @@ var Grid = (function() {
         if( typeof this.$largeImg !== 'undefined' ) {
           this.$largeImg.fadeOut( 'fast' );
         }
-        this.$previewEl.css( 'height', 0 );
-        // the current expanded item (might be different from this.$item)
-        var $expandedItem = $items.eq( this.expandedIdx );
-        $expandedItem.css( 'height', $expandedItem.data( 'height' ) ).on( transEndEventName, onEndFn );
 
         if( !support ) {
           onEndFn.call();
@@ -321,56 +310,6 @@ var Grid = (function() {
 
       return false;
 
-    },
-    calcHeight : function() {
-
-      var heightPreview = winsize.height - this.$item.data( 'height' ) - marginExpanded,
-        itemHeight = winsize.height;
-
-      if( heightPreview < settings.minHeight ) {
-        heightPreview = settings.minHeight;
-        itemHeight = settings.minHeight + this.$item.data( 'height' ) + marginExpanded;
-      }
-
-      this.height = heightPreview;
-      this.itemHeight = itemHeight;
-
-    },
-    setHeights : function() {
-
-      var self = this,
-        onEndFn = function() {
-          if( support ) {
-            self.$item.off( transEndEventName );
-          }
-          self.$item.addClass( 'artist__expanded' );
-        };
-
-      this.calcHeight();
-      this.$previewEl.css( 'height', this.height );
-      this.$item.css( 'height', this.itemHeight ).on( transEndEventName, onEndFn );
-
-      if( !support ) {
-        onEndFn.call();
-      }
-
-    },
-    positionPreview : function() {
-
-      // scroll page
-      // case 1 : preview height + item height fits in windowÂ´s height
-      // case 2 : preview height + item height does not fit in windowÂ´s height and preview height is smaller than windowÂ´s height
-      // case 3 : preview height + item height does not fit in windowÂ´s height and preview height is bigger than windowÂ´s height
-      var position = this.$item.data( 'offsetTop' ),
-        previewOffsetT = this.$previewEl.offset().top - scrollExtra,
-        scrollVal = this.height + this.$item.data( 'height' ) + marginExpanded <= winsize.height ? position : this.height < winsize.height ? previewOffsetT - ( winsize.height - this.height ) : previewOffsetT;
-
-      $body.animate( { scrollTop : scrollVal }, settings.speed );
-
-    },
-    setTransition  : function() {
-      this.$previewEl.css( 'transition', 'height ' + settings.speed + 'ms ' + settings.easing );
-      this.$item.css( 'transition', 'height ' + settings.speed + 'ms ' + settings.easing );
     },
     getEl : function() {
       return this.$previewEl;

@@ -11,9 +11,6 @@
  * ======================================================================== */
 
 (function($) {
-  function showLineup() {
-    $('#lineup').addClass('untruncate').removeClass('truncate');
-  }
 
   // Use this variable to set up the common and page specific functions. If you
   // rename this variable, you will also need to rename the namespace below.
@@ -94,7 +91,23 @@
         $('#lineup a.zoom-in').featherlightGallery(galleryOptions);
 
         // Init Lineup Grid
-        Grid.init();
+        // Grid.init();
+        $('#artist__grid .hentry a').magnificPopup({
+          type: 'ajax',
+          gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+          },
+          callbacks: {
+            parseAjax: function(mfpResponse) {
+              mfpResponse.data = $(mfpResponse.data).find('article.hentry');
+            },
+            ajaxContentAdded: function() {
+              // Ajax content is loaded and appended to DOM
+            }
+          }
+        });
 
         var client_id = '9d5d36353b4fa04a9e70b1de4fc56669';
         SC.initialize({
@@ -137,7 +150,7 @@
             console.log('next');
           };
 
-          $("article.category-lineup").on("click", "a.soundcloud_link", function(e) {
+          $("article.type-artists").on("click", "a.soundcloud_link", function(e) {
             e.preventDefault();
             var permalink_url = $(this).attr('href');
             $(this).addClass('sc-playing');
@@ -184,11 +197,9 @@
         // YOUTUBE VIDEO CODE
 
         // Modal Window for dynamically opening videos
-        $("article.category-lineup").on("click", ".youtube_link", function(e) {
+        $("article.type-artists").on("click", ".youtube_link", function(e) {
           // Store the query string variables and values
           // Uses "jQuery Query Parser" plugin, to allow for various URL formats (could have extra parameters)
-          showLineup();
-          console.log('thing');
           var queryString = $(this).attr('href').slice( $(this).attr('href').indexOf('?') + 1);
           var queryVars = $.parseQuery( queryString );
 

@@ -1,4 +1,5 @@
-<?php $thumb_id = get_post_thumbnail_id();
+<?php
+$thumb_id = get_post_thumbnail_id();
 $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'medium', true);
 $thumb_url = $thumb_url_array[0]; ?>
 
@@ -15,7 +16,7 @@ $thumb_url = $thumb_url_array[0]; ?>
   data-youtube="<?php $is_yt ? the_field('youtube_link') : null; ?>"
   data-description="<?php esc_html_e(get_the_content()); ?>">
     <div class="entry-image">
-      <?php if ( has_post_thumbnail() ) { the_post_thumbnail('grid-square');} else {
+      <?php if ( has_post_thumbnail() ) { the_post_thumbnail('medium');} else {
         echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" alt="" />';
       } ?>
       <div class="entry-image__overlay"></div>

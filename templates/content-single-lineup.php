@@ -8,7 +8,7 @@
   <article <?php post_class(); ?>>
     <header>
       <?php if ( has_post_thumbnail() ) {
-      the_post_thumbnail('large', array( 'class' => 'featured-img' ));
+      the_post_thumbnail('grid-square', array( 'class' => 'featured-img' ));
       }?>
       <div class="header__content">
         <h1 class="entry-title"><?php the_title(); ?></h1>

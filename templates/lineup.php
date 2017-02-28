@@ -22,7 +22,7 @@
 
 <?php
 $lineupargs = array (
-  'category_name' => 'lineup',
+  'post_type'     => 'artists',
   'nopaging'      => true,
   'orderby'       => 'name',
   'order'         => 'ASC'
