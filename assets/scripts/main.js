@@ -91,21 +91,16 @@
         $('#lineup a.zoom-in').featherlightGallery(galleryOptions);
 
         // Init Lineup Grid
-        // Grid.init();
-        $('#artist__grid .hentry a').magnificPopup({
-          type: 'ajax',
+        // Grid.init()
+
+
+
+        $('#artist__grid article').magnificPopup({
+          type: 'inline',
           gallery: {
             enabled: true,
             navigateByImgClick: true,
             preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-          },
-          callbacks: {
-            parseAjax: function(mfpResponse) {
-              mfpResponse.data = $(mfpResponse.data).find('article.hentry');
-            },
-            ajaxContentAdded: function() {
-              // Ajax content is loaded and appended to DOM
-            }
           }
         });
 
@@ -367,6 +362,18 @@
               mute();
             }
           });
+          var inview = new Waypoint.Inview({
+            element: $('#splash')[0],
+            enter: function(direction) {
+              player.playVideo();
+            },
+            exited: function(direction) {
+              if( $('#sound').hasClass('muted') ) {
+                player.pauseVideo();
+              }
+            }
+          });
+
         }
         var videoElement = $('#video_background'),
             $window      = $(window);
@@ -374,7 +381,8 @@
         var windowWidth = $window.width();
         if (windowWidth >= 850) {
           $('#video_background').YTPlayer({
-            fitToBackground: true,
+            fitToBackground: false,
+            width: $('#splash').width(),
             videoId: '-x_5aJFcWaI',
             mute: true,
             playerVars: {
@@ -385,6 +393,7 @@
             }
           });
         }
+
 
       },
       finalize: function() {

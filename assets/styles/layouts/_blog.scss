@@ -1,7 +1,6 @@
 .bc-words {
   &__posts {
-    @include span-columns(11);
-    @include shift(.5);
+    @include outer-container;
   }
   .bc-words-allposts {
     display: block;

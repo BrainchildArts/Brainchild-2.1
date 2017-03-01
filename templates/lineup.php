@@ -18,6 +18,8 @@
     <a class="filter" onclick="return false;" href="#" data-filter="tag-art">Art</a>
   </li>
 </ul>
+
+
 <div id="artist__grid">
 
 <?php

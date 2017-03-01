@@ -30,26 +30,37 @@
       }
     }
   }
-  section {
-    padding-top: 2.5em;
-    padding-right: 2%;
-    padding-bottom: 2.5em;
-    padding-left: 2%;
+  .main-section {
+    @include pad(4em 2%);
     text-align: center;
+    p {
+      text-align: left;
+    }
+    &__text {
+      text-align: center;
+      margin: 4em auto;
+      p {
+        text-align: center;
+        font-size: 1.3em;
+      }
+    }
     h2 {
       letter-spacing: 2px;
       display: inline-block;
       color: $bc-pink;
     }
-    p {
-      text-align: left;
+    &#about {
+      padding-top: 2em;
     }
-    &.tickets {
+    &#tickets {
       padding: 0;
     }
-    &.highlight {
-        background-color: lighten($bc-blue, 30%);
-        color: $black;
+    &#lineup {
+      padding-top: 0em;
+    }
+    &#highlight {
+      background-color: lighten($bc-blue, 30%);
+      color: $black;
     }
     background-color: white;
   }
@@ -59,10 +70,6 @@ section#bc-words {
   >p {
     text-align: center;
   }
-  .bc-words__posts {
-    @include row();
-  }
-
 }
 
 section#faq {
@@ -89,7 +96,7 @@ section#tickets {
     text-align: center;
     background-size: cover;
     background-position: center center;
-    padding: 2.5em;
+    padding: 10%;
   }
   h1 {
     color: white;
@@ -145,7 +152,7 @@ section#getinvolved {
 
 section#gallery {
   .slide {
-    @include row;
+    @include outer-container;
   }
   .slide__image {
     @include span-columns(6);
@@ -206,6 +213,7 @@ section#gallery {
   overflow: hidden;
   background-image: url(#{$image-path}/background/video-poster.jpg);
   background-size: cover;
+  background-position: center center;
   .splash__frame {
     background: transparent;
     position: absolute;

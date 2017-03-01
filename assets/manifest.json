@@ -29,6 +29,8 @@
         "assets/scripts/vendor/jquery.debouncedresize.js",
         "assets/scripts/vendor/imagesloaded.pkgd.min.js",
         "assets/scripts/vendor/jquery.scrolldepth.js",
+        "assets/scripts/vendor/jquery.waypoints.min.js",
+        "assets/scripts/vendor/inview.waypoints.min.js",
         "assets/scripts/vendor/jquery-easing.js",
         "assets/scripts/vendor/soundcloud-sdk.js",
         "assets/scripts/vendor/soundcloud.player.api.js",

@@ -1,6 +1,6 @@
 .single-post {
   article {
-    @include outer-container;
+    @include row;
     margin-bottom: 1.5em;
     header {
       margin-bottom: 1em;
@@ -11,7 +11,7 @@
         @include span-columns(7);
         @include shift(3);
       }
-      @include row;
+      @include fill-parent;
     }
 
     footer {

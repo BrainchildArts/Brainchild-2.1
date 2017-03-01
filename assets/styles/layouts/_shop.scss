@@ -55,7 +55,7 @@ body.woocommerce.single-product {
   }
   div.product {
     margin-top: 2.5em;
-    @include outer-container;
+    @include row;
     @include pad();
     padding: 1.5em 5%;
   }

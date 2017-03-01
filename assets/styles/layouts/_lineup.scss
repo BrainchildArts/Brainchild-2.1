@@ -2,7 +2,6 @@
   text-align: center;
   position: relative;
   #artist__grid {
-    margin: 2.5em 0;
     @include outer-container;
   }
   a.showmore {
@@ -13,12 +12,8 @@
     font-size: 1.4em;
     @extend %blacklink;
   }
-  p {
-    text-align: center;
-  }
-  h2,li a {
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  h2, li a {
+    text-transform: lowercase;
   }
   section {
     padding: 20px 0;
@@ -26,29 +21,65 @@
     text-align: center;
     width: 100%;
   }
+  .entry-content, .artist__links {
+    display: none;
+  }
   article.hentry {
     float: none;
     display: inline-block;
-    vertical-align: top;
     margin-bottom: 1em;
-    @include fill-parent();
-    @include media($phablet) {
-      @include span-columns(4);
-      &:nth-child(3n+1) {
-        @include span-columns(2.5);
-        @include shift(0);
-        margin-top: 1.5em;
-      }
-      &:nth-child(3n+2) {
-        @include span-columns(4);
-        @include shift(2);
-      }
+    text-align: left;
+    margin-top: 1.5em;
+    @include span-columns(6);
+    @include media( max-width $phablet ) {
+      @include pad();
+      @include omega(3n+2);
       &:nth-child(3n+3) {
-        margin-top: 3em;
+        @include span-columns(10);
+        @include shift(1);
+      }
+    }
+    @include media($phablet) {
+      padding: 0;
+      &:nth-child(8n+1) {
         @include span-columns(3);
-        @include shift(.5)
+        @include shift(1.5);
+        margin-top: 3.5em;
+      }
+      &:nth-child(8n+2) {
+        @include span-columns(4);
+        @include shift(3);
         @include omega();
         margin-bottom: 3.5em;
+      }
+      &:nth-child(8n+3) {
+        @include span-columns(5);
+        margin-top: 3em;
+        clear: left;
+      }
+      &:nth-child(8n+4) {
+        margin-top: 4em;
+        @include span-columns(2.5);
+        @include shift(.5);
+      }
+      &:nth-child(8n+5) {
+        @include span-columns(3);
+        @include shift(1);
+        @include omega();
+      }
+      &:nth-child(8n+6) {
+        @include span-columns(2.5);
+        @include shift(1.5);
+        clear: left;
+      }
+      &:nth-child(8n+7) {
+        @include span-columns(5);
+        @include shift(1.5);
+        margin-top: 10%;
+      }
+      &:nth-child(8n+8) {
+        @include span-columns(2.5);
+        @include shift(0);
       }
     }
     &.artist__expanded > a:after {
@@ -106,17 +137,12 @@
         transition: .8s;
       }
       h2 {
-        position: absolute;
-        bottom: 0;
-        left: 0;
         text-align: left;
+        letter-spacing: 2px;
         margin-bottom: 0;
-        color: rgba(white,1);
-        font-size: 1.6em;
+        color: rgba(black,1);
+        font-size: 1.3em;
         padding: .2em;
-        $bc-pink1: darken($bc-pink, 20%);
-        $bc-pink2: rgba($bc-pink1, .3);
-        @include shadwell($bc-pink2,2);
         overflow: hidden;
       }
     }
@@ -292,6 +318,7 @@
   text-align: center;
   padding: 0;
   font-size: 1.2em;
+  margin-bottom: $base-spacing;
   >li {
     transition: all ease .2s;
     text-transform: uppercase;
