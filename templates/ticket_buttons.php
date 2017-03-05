@@ -15,7 +15,7 @@
 
       <?php } elseif ( $status == 'Inactive' ) { ?>
 
-        <button disabled="disabled"><?php echo $text ?></button>
+      <button disabled="disabled"><?php echo $text ?></button>
 
       <?php } elseif ( $status == 'Sold Out' ) { ?>
 
@@ -33,7 +33,8 @@
 
     if( $status == 'Volunteer' ){ ?>
 
-      <div class="active-tier volunteer"><a class="cta button volunteermodal-link" data-featherlight=".tickets__volunteering" href="#"><?php echo $text ?></a></div>
+      <div class="active-tier volunteer"><a class="button cta volunteer-link" href="#volunteering"><?php echo $text ?></a></div>
+
 
     <?php }; ?>
   <?php endwhile; ?>

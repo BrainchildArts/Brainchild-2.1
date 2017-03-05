@@ -1,10 +1,12 @@
 #sc-widget-wrap {
   position: fixed;
   bottom: -100px;
-  width: 100%;
+  left: 2em;
+  width: 4em;
   background: white;
-  height: 30px;
+  height: 35px;
   transition: all ease-in-out .3s;
+  text-align: center;
   &.active {
     display: block;
   }
@@ -18,18 +20,34 @@
     bottom: -60px;
   }
   &__controls {
-    bottom: 0;
+    display: inline-block;
     a {
-      background: #F5F5F5;
-      color: #999;
+      color: black;
       cursor: pointer;
       display: inline;
-      &:hover {
-        @include hover-grow(1.2);
+      line-height: 35px;
+      vertical-align: middle;
+      img {
+        width: 1em;
+        vertical-align: middle;
       }
-      &.sc-widget-wrap__prev,
-      &.sc-widget-wrap__next {
-        // display: none;
+      &.sc-widget-wrap__pause:before {
+        width: 1em;
+        height: 1em;
+        background: url('../images/partials/pause.svg') center center no-repeat;
+        background-size: contain;
+        display: inline-block;
+        margin-right: .2em;
+        font-size: 0.8em;
+      }
+      &.sc-widget-wrap__play:before {
+        width: 1em;
+        height: 1em;
+        background: url('../images/partials/play.svg') center center no-repeat;
+        background-size: contain;
+        display: inline-block;
+        margin-right: .2em;
+        font-size: 0.8em;
       }
     }
   }

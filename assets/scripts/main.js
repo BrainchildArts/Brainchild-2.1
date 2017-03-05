@@ -204,22 +204,14 @@
             });
           }
 
-          $("#sc-widget-wrap").on("click", "#sc-widget-wrap__close", function(e) {
+          $("#sc-widget-wrap").on("click", "#sc-widget-wrap__pause", function(e) {
             e.preventDefault();
             widget.pause();
-            $(widget_wrap).removeClass('show');
-            setTimeout(function(){
-              $(widget_wrap).removeClass('active');
-            }, 800);
           });
 
-          $(widgetIframe).hover(function() {
-            $(widget_wrap).toggleClass('up');
-          });
-
-          $("#sc-widget-wrap").on("click", "button.play", function(e) {
+          $("#sc-widget-wrap").on("click", "#sc-widget-wrap__play", function(e) {
             e.preventDefault();
-            widget.pause();
+            widget.play();
           });
         }
 

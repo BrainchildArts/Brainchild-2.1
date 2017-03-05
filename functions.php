@@ -70,7 +70,7 @@ function create_creator_taxonomy() {
     'update_item'                    => 'Update Creator',
     'add_new_item'                   => 'Add New Creator',
     'new_item_name'                  => 'New Creator Name',
-    'menu_name'                      => 'Creator',
+    'menu_name'                      => 'Creators',
     'view_item'                      => 'View Creator',
     'popular_items'                  => 'Popular Creator',
     'separate_items_with_commas'     => 'Separate creators with commas',

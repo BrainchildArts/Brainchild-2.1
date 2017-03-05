@@ -294,24 +294,24 @@
 
 .artist__links {
   a {
-      font-weight: 700;
-      font-size: 0.9em;
-      color: #333;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      padding: 0.3em;
+      font-weight: 500;
+      color: black;
+      text-transform: lowercase;
+      letter-spacing: .05em;
+      padding: 0.5em;
       display: inline-block;
       margin: 0 3px 10px 0;
       outline: 0;
     &:hover,
     &:active {
       border-color: #999;
-      color: #999;
+      color: black;
     }
     &.soundcloud_link:before {
       content: '\25BA';
       display: inline-block;
       margin-right: .2em;
+      font-size: 0.8em;
     }
   }
 }

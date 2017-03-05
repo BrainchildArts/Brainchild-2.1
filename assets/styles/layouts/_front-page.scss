@@ -23,6 +23,11 @@
       color: white;
       transition: color ease .3s;
     }
+    @include media ($homepage-video-width) {
+      ul.nav {
+        padding-right: 4.5em;
+      }
+    }
     @include media($phablet) {
       &.sticky {
         background-color: $bc-blue;
@@ -62,6 +67,11 @@
       background-color: lighten($bc-blue, 30%);
       color: $black;
     }
+    &#volunteering {
+      p {
+        text-align: center;
+      }
+    }
     background-color: white;
   }
 }
@@ -89,7 +99,7 @@ section#volunteer {
   }
 }
 
-section#tickets, .featherlight-inner.tickets__volunteering {
+section#tickets {
   text-align: center;
   .tickets__links {
     background-color: $dark-gray;
@@ -132,20 +142,17 @@ section#tickets, .featherlight-inner.tickets__volunteering {
       border-color: $bc-pink;
       background-color: white;
     }
-    &.volunteermodal-link {
-      font-size: 1em;
-    }
   }
   .active-tier {
     @include media ($tablet) {
       display: inline-block;
       &.volunteer {
         display: block;
+        a {
+          font-size: 1em;
+        }
       }
     }
-  }
-  .tickets__volunteering {
-    display: none;
   }
 }
 
@@ -232,6 +239,7 @@ section#gallery {
     bottom: 0;
     left: 0;
     z-index: 1;
+    border: 1em solid white;
     @include media($phone) {
       border: 1.7em solid white;
     }
@@ -243,7 +251,7 @@ section#gallery {
     text-transform: uppercase;
     color: white;
     transition: visibility .2s ease-in-out;
-    padding: .5em;
+    padding: 1.5em;
     z-index: 2;
     position: absolute;
     top: 0;
@@ -251,10 +259,13 @@ section#gallery {
     bottom: 0;
     left: 0;
     @include media($phone) {
-      padding: 2.5em;
+      padding: 5.5em 2.5em 2.5em;
       img.logo {
         max-width: 12em;
       }
+    }
+    @include media($laptop) {
+      padding-top: 2.5em;
     }
     &>:not(.logo) {
       margin-left: 14px;
@@ -283,8 +294,9 @@ section#gallery {
 div.social {
   position: absolute;
   bottom: 0;
-  padding: .5em;
+  padding: 2em;
   margin-left: 14px;
+  padding: 1.5em;
   @include media($phone) {
     padding: 2.5em;
   }

@@ -73,7 +73,6 @@ header.banner {
 // Nav menu
 
   .container {
-    @include outer-container;
     @include clearfix;
     position: relative;
     z-index: 10;
@@ -103,9 +102,6 @@ header.banner {
     @include media ($horizontal-bar-mode) {
       display: block;
       text-align: right;
-    }
-    @include media ($homepage-video-width) {
-      padding-right: 4.5em;
     }
   }
 
@@ -294,5 +290,22 @@ header.banner {
 .single header.banner {
   position: fixed;
   top: 0;
+}
+
+a.cart-contents {
+  position: absolute;
+  top: 0;
+  right: 1em;
+  line-height: 2.7em;
+  span {
+    vertical-align: middle;
+    color: black;
+    line-height: 16px;
+    text-align: center;
+    margin-right: .2em;
+  }
+  img {
+    vertical-align: middle;
+  }
 }
 

@@ -31,10 +31,6 @@
   <div class="tickets__links">
     <h1><?php the_field('ticket_header'); ?></h1>
     <?php get_template_part('templates/ticket_buttons') ?>
-    <div class="tickets__volunteering">
-      <?php the_field('volunteering_text') ?>
-      <a class="ticket-link button cta volunteer-link" href="http://buytickets.at/brainchildfestival/80298/r/website" target="_blank">Buy a Ticket</a>
-    </div>
   </div>
 </section>
 
@@ -112,6 +108,12 @@
   ?>
   </div>
   <p class="big-txt">Photography: <a target="_blank" href="http://www.holliefernandophotography.com/">Hollie Fernando</a></p>
+</section>
+
+<section class="main-section volunteering" id="volunteering">
+  <h2>Volunteer</h2>
+  <?php the_field('volunteering_text') ?>
+  <a class="ticket-link button cta volunteer-link" href="http://buytickets.at/brainchildfestival/80298/r/website" target="_blank">Buy a Ticket</a>
 </section>
 
 <section class="main-section getinvolved" id="getinvolved">
