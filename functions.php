@@ -49,6 +49,67 @@ add_filter( 'woocommerce_product_tabs', 'wcs_woo_remove_reviews_tab', 98 );
     return $tabs;
 }
 
+//CHANGE NUMBER OF PRODUCTS PER PAGE
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 999;' ), 20 );
+
+remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+
+
+/**
+Custom taxonomies
+**/
+add_action( 'init', 'create_creator_taxonomy' );
+
+function create_creator_taxonomy() {
+  $labels = array(
+    'name'                           => 'Creators',
+    'singular_name'                  => 'Creator',
+    'search_items'                   => 'Search Creators',
+    'all_items'                      => 'All Creators',
+    'edit_item'                      => 'Edit Creator',
+    'update_item'                    => 'Update Creator',
+    'add_new_item'                   => 'Add New Creator',
+    'new_item_name'                  => 'New Creator Name',
+    'menu_name'                      => 'Creator',
+    'view_item'                      => 'View Creator',
+    'popular_items'                  => 'Popular Creator',
+    'separate_items_with_commas'     => 'Separate creators with commas',
+    'add_or_remove_items'            => 'Add or remove creators',
+    'choose_from_most_used'          => 'Choose from the most used creators',
+    'not_found'                      => 'No creators found'
+  );
+  register_taxonomy(
+    'creator',
+    'product',
+    array(
+      'label' => __( 'Creator' ),
+      'hierarchical' => false,
+      'labels' => $labels,
+      'public' => true,
+      'show_in_nav_menus' => false,
+      'show_tagcloud' => false,
+      'show_admin_column' => true
+    )
+  );
+}
+
+// INCLUDE CREATOR IN PRODUCT LIST
+add_action( 'woocommerce_shop_loop_item_title', 'creators_line', 11 );
+
+add_action( 'woocommerce_single_product_summary', 'creators_line', 5 );
+
+
+
+function creators_line () {
+  $list = get_the_term_list( get_the_id(), 'creator' );
+  echo '<h3 class="creator">' . $list . "</h3>";
+}
+
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+
+
 
 // Register Artist Post Type
 function register_artists() {
