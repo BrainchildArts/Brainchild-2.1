@@ -30,8 +30,11 @@
 <section class="main-section tickets" id="tickets">
   <div class="tickets__links">
     <h1><?php the_field('ticket_header'); ?></h1>
-
-    <?php the_field('tickets_buttons'); ?>
+    <?php get_template_part('templates/ticket_buttons') ?>
+    <div class="tickets__volunteering">
+      <?php the_field('volunteering_text') ?>
+      <a class="ticket-link button cta volunteer-link" href="http://buytickets.at/brainchildfestival/80298/r/website" target="_blank">Buy a Ticket</a>
+    </div>
   </div>
 </section>
 
@@ -40,7 +43,9 @@
 <section class="main-section" id="lineup">
   <div class="main-section__text"><?php the_field('lineup_text'); ?></div>
   <?php get_template_part('templates/lineup') ?>
-  <a href="#" class="showmore">See More...</a>
+  <?php if (get_field('lineup_text_2')): ?>
+    <div class="main-section__text"><?php the_field('lineup_text_2'); ?></div>
+  <?php endif ?>
 </section>
 
 
@@ -117,3 +122,5 @@
 <footer>
   <?php the_field('footer_text'); ?>
 </footer>
+
+<?php get_template_part('templates/player') ?>

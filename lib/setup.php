@@ -103,7 +103,7 @@ function display_sidebar() {
   return apply_filters('sage/display_sidebar', $display);
 }
 
-add_theme_support('woocommerce');
+add_theme_support( 'woocommerce' );
 
 /**
  * Theme assets

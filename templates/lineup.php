@@ -19,7 +19,6 @@
   </li>
 </ul>
 
-
 <div id="artist__grid">
 
 <?php

@@ -72,7 +72,12 @@
           e.preventDefault();
         });
 
-
+        function noBackgroundScroll(){
+          $('body').addClass('modal-open');
+        }
+        function restoreBackgroundScroll(){
+          $('body').removeClass('modal-open');
+        }
 
         // Lightbox/Gallery
         var galleryOptions = {
@@ -83,26 +88,35 @@
           openSpeed: 50,
           closeSpeed: 50,
           galleryFadeIn: 20,          /* fadeIn speed when slide is loaded */
-          galleryFadeOut: 50
+          galleryFadeOut: 50,
+          afterOpen: function() {
+            noBackgroundScroll();
+          },
+          afterClose: function() {
+            restoreBackgroundScroll();
+          }
         };
 
         $('#gallery a.zoom-in').featherlightGallery(galleryOptions);
 
-        $('#lineup a.zoom-in').featherlightGallery(galleryOptions);
-
-        // Init Lineup Grid
-        // Grid.init()
-
-
-
-        $('#artist__grid article').magnificPopup({
-          type: 'inline',
-          gallery: {
-            enabled: true,
-            navigateByImgClick: true,
-            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-          }
+        //Artist gallery
+        $('#artist__grid article').featherlightGallery({
+            targetAttr: 'data-mfp-src',
+            variant: 'artist-lightbox',
+            previousIcon: '«',
+            nextIcon: '»',
+            otherClose: '.artist__close span',
+            openSpeed: 0,
+            closeSpeed: 1250,
+            galleryFadeOut: 20,
+            afterOpen: function() {
+              noBackgroundScroll();
+            },
+            beforeClose: function() {
+              restoreBackgroundScroll();
+            }
         });
+
 
         var client_id = '9d5d36353b4fa04a9e70b1de4fc56669';
         SC.initialize({
@@ -141,29 +155,54 @@
             });
           });
 
-          var playNext = function(){
-            console.log('next');
+          var getNextTrack = function(node) {
+            var $player = $(node).closest('.sc-player'),
+                $nextItem = $('.sc-trackslist li.active', $player).next('li');
+            // try to find the next track in other player
+            if(!$nextItem.length){
+              $nextItem = $player.nextAll('div.sc-player:first').find('.sc-trackslist li:first');
+            }
+            return $nextItem;
           };
 
-          $("article.type-artists").on("click", "a.soundcloud_link", function(e) {
-            e.preventDefault();
-            var permalink_url = $(this).attr('href');
-            $(this).addClass('sc-playing');
-            $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-                newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
-                widget.bind(SC.Widget.Events.READY, function() {
-                  // load new widget
-                  widget.load(newSoundUrl, options);
-                  widget.bind(SC.Widget.Events.PLAY, function() {
-                    $(widget_wrap).addClass('active');
-                    $(widget_wrap).addClass('show');
-                  });
-                  widget.bind(SC.Widget.Events.FINISH, function() {
-                    playNext();
+          var getPrevTrack = function(node) {
+            var $player = $(node).closest('.sc-player'),
+                $prevItem = $('.sc-trackslist li.active', $player).prev('li');
+            // try to find the next track in other player
+            if(!$prevItem.length){
+              $prevItem = $player.prevAll('div.sc-player:first').find('.sc-trackslist li:last');
+            }
+            return $prevItem;
+          };
+
+          var playNext = function(){
+            console.log('next');
+              var $nextItem = getNextTrack(event.target);
+              // init the next track but don't play :)
+              $nextItem.click();
+          };
+
+          if ($(window).width() >= 600) {
+            $(document).on("click", "a.soundcloud_link", function(e) {
+              e.preventDefault();
+              var permalink_url = $(this).attr('href');
+              $(this).addClass('sc-playing');
+              $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+                  newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
+                  widget.bind(SC.Widget.Events.READY, function() {
+                    // load new widget
+                    widget.load(newSoundUrl, options);
+                    widget.bind(SC.Widget.Events.PLAY, function() {
+                      $(widget_wrap).addClass('active');
+                      $(widget_wrap).addClass('show');
+                    });
+                    widget.bind(SC.Widget.Events.FINISH, function() {
+                      playNext();
+                    });
                   });
                 });
-              });
-          });
+            });
+          }
 
           $("#sc-widget-wrap").on("click", "#sc-widget-wrap__close", function(e) {
             e.preventDefault();
@@ -191,8 +230,7 @@
 
         // YOUTUBE VIDEO CODE
 
-        // Modal Window for dynamically opening videos
-        $("article.type-artists").on("click", ".youtube_link", function(e) {
+        $(document).on("click", ".youtube_link", function(e) {
           // Store the query string variables and values
           // Uses "jQuery Query Parser" plugin, to allow for various URL formats (could have extra parameters)
           var queryString = $(this).attr('href').slice( $(this).attr('href').indexOf('?') + 1);
@@ -208,51 +246,26 @@
             var vidHeight = 315; // default
             var iFrameCode = '<iframe width="' + vidWidth + '" height="'+ vidHeight +'" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/'+  queryVars.v +'?autoplay=true&rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>';
 
-            // Replace Modal HTML with iFrame Embed
-            $('#modal-youtube .modal-youtube__video').html(iFrameCode);
 
-            // Open Modal
-
-            $("body").addClass("modal-youtube-open");
+            $.featherlight(iFrameCode);
             $("#sound").addClass("disabled");
           }
         });
 
-        // Clear modal contents on close.
-        // There was mention of videos that kept playing in the background.
-        $("#modal-youtube .modal-fade-screen, #modal-youtube .modal-close").on("click", function() {
-            $("body").removeClass("modal-youtube-open");
-            $('#modal-youtube .modal-youtube__video').html('');
-            $("#sound").removeClass("disabled");
-        });
-
-        $(".modal-inner").on("click", function(e) {
-          e.stopPropagation();
-        });
-
-
-        // Modal
-        $("#modal-1").on("change", function() {
-          if ($(this).is(":checked")) {
-            $("body").addClass("modal-open");
-            $("#sound").addClass("disabled");
-          } else {
-            $("body").removeClass("modal-open");
-            $("#sound").removeClass("disabled");
-          }
-        });
-
-        $(".modal-fade-screen, .modal-close").on("click", function() {
-          $(".modal-state:checked").prop("checked", false).change();
-        });
-
-        $(".modal-inner").on("click", function(e) {
-          e.stopPropagation();
-        });
 
         $(".ticket-link").on("click", function() {
           mixpanel.track("Click on Ticket Link");
           ga('send', 'event', 'Clicks', 'click', 'Ticket Link');
+        });
+
+        $(".volunteerticket-link").on("click", function() {
+          mixpanel.track("Click on Volunteer Ticket Link");
+          ga('send', 'event', 'Clicks', 'click', 'Volunteer Ticket Link');
+        });
+
+        $(".volunteermodal-link").on("click", function() {
+          mixpanel.track("Click on Volunteer modal Link");
+          ga('send', 'event', 'Clicks', 'click', 'Volunteer modal Link');
         });
 
         $.scrollDepth({labelPrefix:"Scroll: "});
@@ -260,7 +273,6 @@
         $('#lineup .filter').click(function() {
           // fetch the class of the clicked item
           var ourClass = $(this).data('filter');
-
 
           // reset the active class on all the buttons
           $('#artist__grid').children('article').hide();
@@ -281,6 +293,7 @@
           }
           return false;
         });
+
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -317,12 +330,6 @@
                 return false;
                 }
             }
-        });
-
-        $('#lineup').addClass('truncate');
-        $('#lineup a.showmore').click( function(e) {
-          e.preventDefault();
-          showLineup();
         });
 
 

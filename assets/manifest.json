@@ -27,6 +27,7 @@
         "assets/scripts/vendor/modernizr.custom.js",
         "assets/scripts/vendor/snippets.min.js",
         "assets/scripts/vendor/jquery.debouncedresize.js",
+        "assets/scripts/vendor/jquery.detectSwipe.js",
         "assets/scripts/vendor/imagesloaded.pkgd.min.js",
         "assets/scripts/vendor/jquery.scrolldepth.js",
         "assets/scripts/vendor/jquery.waypoints.min.js",

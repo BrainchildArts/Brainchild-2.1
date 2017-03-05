@@ -35,6 +35,5 @@
     </footer>
   </article>
 
-  <?php get_template_part('templates/modal-youtube') ?>
   <?php get_template_part('templates/player') ?>
 <?php endwhile; ?>

@@ -1,8 +1,5 @@
 .social__links {
   @extend %unstyled-list;
-  svg:hover {
-    fill: darkslateblue;
-  }
   li {
     display: inline-block;
     margin-right: 1em;
@@ -16,15 +13,14 @@
       height: auto;
     }
   }
-  .email {
+}
+
+#mc_embed_signup {
+  display: none;
+  max-width: 24em;
+  margin: auto;
+  padding: 2em;
+  .featherlight & {
     display: block;
-    margin-top: .5em;
-    a {
-      color: darken($white,5%);
-      font-size: 1.4em;
-      &:hover {
-        color: darken($white,10%);
-      }
-    }
   }
 }

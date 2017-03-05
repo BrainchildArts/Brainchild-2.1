@@ -92,7 +92,7 @@ function register_artists() {
     'label'                 => __( 'Artist', 'artists_text' ),
     'description'           => __( 'Artists playing the festival', 'artists_text' ),
     'labels'                => $labels,
-    'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'trackbacks', 'revisions', 'custom-fields', 'page-attributes', ),
+    'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'page-attributes', ),
     'taxonomies'            => array( 'category', 'post_tag' ),
     'hierarchical'          => false,
     'public'                => true,
@@ -114,3 +114,10 @@ function register_artists() {
 
 }
 add_action( 'init', 'register_artists', 0 );
+
+
+
+ function front_page_menu_item(){
+   add_menu_page('Front Page', 'Front Page', 'manage_options', '/post.php?post=4&action=edit', '', 'dashicons-welcome-write-blog', 4);
+ }
+ add_action('admin_menu','front_page_menu_item');

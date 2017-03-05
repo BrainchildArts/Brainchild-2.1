@@ -1,6 +1,7 @@
 <div id="sc-widget-wrap">
   <div id="sc-widget-wrap__controls">
     <a id="sc-widget-wrap__close" class="sc-widget-wrap__close dashicons dashicons-no"></a>
+    <a id="sc-widget-wrap__play" class="sc-widget-wrap__play dashicons dashicons-no"></a>
     <a id="sc-widget-wrap__prev" class="sc-widget-wrap__prev dashicons dashicons-arrow-left"></a>
     <a id="sc-widget-wrap__next" class="sc-widget-wrap__next dashicons dashicons-arrow-right"></a>
   </div>
