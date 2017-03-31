@@ -5,6 +5,8 @@ body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
+  font-weight: 500;
+  letter-spacing: .03em;
 }
 
 h1,
@@ -25,7 +27,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.8em;
+  font-size: 3em;
 }
 
 p {
@@ -97,6 +99,13 @@ a:focus {
 @include selection {
   background-color: rgba($bc-blue,0.95);
   color: white;
+}
+
+.scatterText {
+  word-spacing: .2em;
+  span {
+    @include scatterText();
+  }
 }
 
 /* =Genericons and Dashicons

@@ -72,6 +72,10 @@
           e.preventDefault();
         });
 
+        // ScatterText
+
+        $(".scatterText").lettering('words').children('span').lettering();;
+
         function noBackgroundScroll(){
           $('body').addClass('modal-open');
         }
@@ -383,9 +387,9 @@
             fitToBackground: false,
             width: $('#splash').width(),
             videoId: '-x_5aJFcWaI',
-            mute: true,
             playerVars: {
-              mute: true
+              mute: true,
+              start: '24'
             },
             events: {
               'onReady': onPlayerReady

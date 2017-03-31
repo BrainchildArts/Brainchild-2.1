@@ -37,32 +37,63 @@
   }
   .main-section {
     @include pad(4em 2%);
+    @include media($phone) {
+      @include pad(4em 5%);
+    }
     text-align: center;
     p {
       text-align: left;
     }
     &__text {
-      text-align: center;
       margin: 4em auto;
+      columns: 2 22em;
+      column-gap: 2em;
+      max-width: 50em;
       p {
-        text-align: center;
+        text-align: left;
         font-size: 1.3em;
+        letter-spacing: 0.03em;
       }
     }
     h2 {
       letter-spacing: 2px;
-      display: inline-block;
-      color: $bc-pink;
+      color: black;
+      column-span: all;
     }
     &#about {
       padding-top: 2em;
+      position: relative;
+      #manifesto {
+        position: relative;
+        z-index: 1;
+        p {
+          text-align: left;
+        }
+      }
+      .images {
+        z-index: -1;
+      }
+      img.left {
+        top: 0;
+        left: -250px;
+        position: absolute;
+        transform: rotate(2deg);
+        width: 36vw;
+      }
+      img.right {
+        top: 20px;
+        right: -50px;
+        position: absolute;
+        transform: rotate(-78deg);
+        width: 35vw;
+      }
     }
     &#tickets {
       padding: 0;
     }
     &#lineup {
       padding-top: 0em;
-    }
+    }§
     &#highlight {
       background-color: lighten($bc-blue, 30%);
       color: $black;
@@ -228,7 +259,7 @@ section#gallery {
   position: relative;
   height: 100%;
   overflow: hidden;
-  background-image: url(#{$image-path}/background/video-poster.jpg);
+  background-image: url(#{$image-path}/background/video-poster-16.jpg);
   background-size: cover;
   background-position: center center;
   .splash__frame {

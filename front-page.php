@@ -20,9 +20,13 @@
 <!-- Splash Section -->
 <section class="main-section" id="about">
   <div id="manifesto" class="main-section__text">
+    <h2 class="scatterText">Welcome</h2>
     <?php the_field('welcome_text'); ?>
   </div>
-
+  <div class="images">
+    <img class="left" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-1.svg" alt="">
+    <img class="right" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-3.svg" alt="">
+  </div>
 </section>
 
 
@@ -47,7 +51,7 @@
 
 
 <section class="main-section bc-words" id="bc-words">
-  <h2>Recent Posts from our blog</h2>
+  <h2 class="scatterText">Recent Posts from our blog</h2>
   <div class="bc-words__posts">
     <?php
     //Start recent post loop
@@ -111,13 +115,13 @@
 </section>
 
 <section class="main-section volunteering" id="volunteering">
-  <h2>Volunteer</h2>
+  <h2 class="scatterText">Volunteer</h2>
   <?php the_field('volunteering_text') ?>
   <a class="ticket-link button cta volunteer-link" href="http://buytickets.at/brainchildfestival/80298/r/website" target="_blank">Buy a Ticket</a>
 </section>
 
 <section class="main-section getinvolved" id="getinvolved">
-  <h2>Get In Touch</h2>
+  <h2 class="scatterText">Get In Touch</h2>
   <?php the_field('get_involved_text'); ?>
 </section>
 

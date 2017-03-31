@@ -72,6 +72,21 @@
   }
 }
 
+@mixin scatterText() {
+  @for $i from 1 through 50 {
+    $top: random(10) - 5;
+    $space: random(10) - 5;
+    $rotate: random(30) - 15;
+    &.char#{$i} {
+      position: relative;
+      display: inline-block;
+      top: #{$top}px;
+      letter-spacing: calc(10px + #{$space}px);
+      transform: rotate(#{$rotate}deg);
+    }
+  }
+}
+
 //halftone
 //
 @mixin silkscreen() {

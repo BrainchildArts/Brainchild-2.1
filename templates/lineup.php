@@ -14,9 +14,9 @@
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-talksworkshops">Talks &amp; Workshops</a>
   </li>
-  <li>
+<!--   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-art">Art</a>
-  </li>
+  </li> -->
 </ul>
 
 <div id="artist__grid">
