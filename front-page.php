@@ -51,7 +51,7 @@
 
 
 <section class="main-section bc-words" id="bc-words">
-  <h2 class="scatterText">Recent Posts from our blog</h2>
+  <h2 class="scatterText">Writing</h2>
   <div class="bc-words__posts">
     <?php
     //Start recent post loop

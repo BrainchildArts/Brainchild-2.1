@@ -46,6 +46,8 @@ function setup() {
     add_image_size( 'large-3-2', 750, 500, true);
 
     add_image_size( 'lineup', 750, 750, false);
+
+    add_image_size( 'lineup-hover', 200, 200, false);
   }
 
   // Enable post formats

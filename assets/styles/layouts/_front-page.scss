@@ -36,6 +36,7 @@
     }
   }
   .main-section {
+    position: relative;
     @include pad(4em 2%);
     @include media($phone) {
       @include pad(4em 5%);
@@ -72,20 +73,22 @@
       }
       .images {
         z-index: -1;
+        overflow: hidden;
       }
       img.left {
-        top: 0;
+        top: 2%;
         left: -250px;
         position: absolute;
         transform: rotate(2deg);
-        width: 36vw;
+        height: 90%;
       }
       img.right {
-        top: 20px;
-        right: -50px;
+        top: 7%;
+        right: -20%;
         position: absolute;
-        transform: rotate(-78deg);
-        width: 35vw;
+        transform: rotate(-70deg);
+        width: 68%;
+        min-width: 22em;
       }
     }
     &#tickets {

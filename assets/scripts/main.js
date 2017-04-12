@@ -53,6 +53,39 @@
           });
         });
 
+        function generateRandom(min, max) {
+          var num = Math.random() * (max - min) + min;
+          return Math.floor(num);
+        }
+
+        function getRandomPosition(element) {
+          var container = element.closest('#artist__grid');
+          var x = container[0].offsetHeight-element[0].clientHeight;
+          var y = container[0].offsetWidth-element[0].clientWidth;
+          var randomX = Math.floor(Math.random()*x);
+          var randomY = Math.floor(Math.random()*y);
+          return [randomX,randomY];
+        }
+
+        $( 'article.artists' ).each(function(index, el) {
+          var img = $(this).find('.entry-image');
+          var xy = getRandomPosition(img);
+          img.css({"position":"absolute","top": xy[0] + "px", "left": xy[1] + "px"});
+          img.prependTo('#artist__grid');
+        });
+
+        $( 'article.artists' )
+        .mouseenter( function() {
+          var artist = $(this).data('artist');
+          console.log(artist);
+          $('.entry-image[data-artist="'+artist+'"]').addClass('show');
+        } )
+        .mouseleave(function() {
+          var artist = $(this).data('artist');
+          $('.entry-image[data-artist="'+artist+'"]').removeClass('show');
+        } );
+
+
         // Reveals
 
         var allReveals = $('.reveal');
@@ -74,7 +107,7 @@
 
         // ScatterText
 
-        $(".scatterText").lettering('words').children('span').lettering();;
+        $(".scatterText").lettering('words').children('span').lettering();
 
         function noBackgroundScroll(){
           $('body').addClass('modal-open');
