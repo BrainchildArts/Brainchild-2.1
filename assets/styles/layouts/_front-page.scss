@@ -16,22 +16,20 @@
     text-align: center;
   }
   .banner {
-    position: absolute;
-    background-color: transparent;
-    top: 2.5em;
+    // position: absolute;
+    // background-color: transparent;
+    // top: 2.5em;
     ul li.menu-item a {
-      color: white;
+      color: black;
       transition: color ease .3s;
-    }
-    @include media ($homepage-video-width) {
-      ul.nav {
-        padding-right: 4.5em;
-      }
     }
     @include media($phablet) {
       &.sticky {
         background-color: $bc-blue;
         transition: background ease 1s;
+        ul li.menu-item a {
+          color: white;
+        }
       }
     }
   }

@@ -76,12 +76,15 @@ header.banner {
     @include clearfix;
     position: relative;
     z-index: 10;
+    @include row;
+    max-width: $tablet;
+    margin: auto;
   }
 
   ul.nav#menu-single-page-navigation {
     display: none;
     @include media ($horizontal-bar-mode) {
-      display: block;
+      display: flex;
     }
   }
 
@@ -94,47 +97,43 @@ header.banner {
     padding: 0;
     width: 100%;
     z-index: 99999;
+    align-items: center;
+    justify-content: space-around;
+    @include span-columns(11);
+    @include shift(.5);
 
     &.show {
       display: block;
     }
 
     @include media ($horizontal-bar-mode) {
-      display: block;
-      text-align: right;
+      display: flex;
+      text-align: center;
     }
   }
 
 
 // The nav items
 
-  .menu-item:first-child {
-    @include media($horizontal-bar-mode) {
-      margin-left: $navigation-item-nudge;
-    }
-  }
-
   ul li.menu-item {
     background: $navigation-background;
-    display: block;
+    display: inline-block;
     line-height: $navigation-height;
     overflow: hidden;
-    padding-right: $navigation-submenu-padding;
-    text-align: right;
-    width: 100%;
+    text-align: center;
     z-index: 10;
 
     a {
+      align-self: flex-start;
       position: relative;
       color: $navigation-color;
       display: inline-block;
+      white-space: nowrap;
       outline: none;
       text-decoration: none;
       text-transform: uppercase;
       font-weight: 600;
       font-size: 1.2em;
-      padding-right: .5em;
-      padding-left: .5em;
       letter-spacing: 1px;
 
       &:focus,
@@ -145,11 +144,9 @@ header.banner {
 
     @include media($horizontal-bar-mode) {
       background: transparent;
-      display: inline;
       line-height: $navigation-height;
 
       a {
-        margin-right: $navigation-item-padding;
       }
     }
   }
@@ -183,10 +180,6 @@ header.banner {
       padding-top: 1em;
     }
 
-    a {
-      margin-right: $navigation-submenu-padding;
-    }
-
     > a {
       padding-right: 0.6em;
     }
@@ -211,7 +204,6 @@ header.banner {
       position: relative;
 
       @include media($horizontal-bar-mode) {
-        margin-right: $navigation-submenu-padding;
       }
 
       &:after {

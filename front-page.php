@@ -24,8 +24,8 @@
     <?php the_field('welcome_text'); ?>
   </div>
   <div class="images">
-    <img class="left" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-1.svg" alt="">
-    <img class="right" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-3.svg" alt="">
+    <img class="left" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-1.svg">
+    <img class="right" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-3.svg">
   </div>
 </section>
 
@@ -42,7 +42,27 @@
 
 <section class="main-section" id="lineup">
   <div class="main-section__text"><?php the_field('lineup_text'); ?></div>
-  <?php get_template_part('templates/lineup') ?>
+  <?php get_template_part('templates/lineup-list') ?>
+
+  <div class="lineup-overlays">
+
+    <?php
+    $lineupargs = array (
+      'post_type'     => 'artists',
+      'nopaging'      => true,
+      'orderby'       => 'name',
+      'order'         => 'ASC'
+    );
+    // The Query
+    $lineup = new WP_Query( $lineupargs );
+
+    // The Loop
+    while ($lineup->have_posts()) : $lineup->the_post();
+      get_template_part('templates/content-lineup', get_post_type() != 'post' ? get_post_type() : get_post_format());
+      endwhile;?>
+
+  </div>
+
   <?php if (get_field('lineup_text_2')): ?>
     <div class="main-section__text"><?php the_field('lineup_text_2'); ?></div>
   <?php endif ?>

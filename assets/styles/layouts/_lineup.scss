@@ -12,7 +12,7 @@
     }
     @include pad(2.5em);
     max-height: none;
-    @include transition(all .5s ease-in-out);
+    @include transition(all 1s ease-in-out);
     .modal-open & {
       top: 0;
       opacity: 1;
@@ -95,54 +95,65 @@
 
 #lineup {
   text-align: left;
-  position: relative;
+  z-index: 1;
   #artist__grid {
     @include outer-container;
     position: relative;
     @include pad(2em 0);
+    h2.entry-title {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      font-size: 1.3em;
+      margin: 0 0 .25em;
+      a {
+        @extend %blacklink;
+        &:hover, &:active, &:focus {
+          text-decoration: none;
+        }
+      }
+      &:not(:last-of-type):after {
+        content: " / ";
+        margin: .5em;
+      }
+    }
+    .entry-image {
+      visibility: hidden;
+      display: inline-block;
+      position: absolute;
+      background: white;
+      img {
+        opacity: .8;
+        filter: grayscale(100%);
+      }
+      &.show {
+        visibility: visible;
+      }
+    }
   }
-  a.showmore {
-    opacity: 1;
-    padding: 1em 1em 1.5em;
-    width: 100%;
-    background: white;
-    font-size: 1.4em;
-    @extend %blacklink;
+
+  .lineup-overlays {
+    display: none;
   }
+
   h2, li a {
     text-transform: lowercase;
   }
+
   section {
     padding: 20px 0;
     margin: 0 auto;
     text-align: left;
     width: 100%;
   }
-  .entry-content, .artist__links, .artist__close {
-    display: none;
-  }
+
   h2.entry-title {
     letter-spacing: .03em;
-    margin: .5em;
     color: rgba(black,1);
-    font-size: 1.3em;
-    overflow: hidden;
-    position: relative;
-    &:after {
-      content: " / ";
-    }
   }
-  .entry-image {
-    visibility: hidden;
-    display: inline-block;
-    position: absolute;
-    &.show {
-      visibility: visible;
-    }
-  }
+
   article.hentry {
     display: inline-block;
-    cursor: pointer;
     &.artist__expanded > a:after {
       top: auto;
       border: solid transparent;

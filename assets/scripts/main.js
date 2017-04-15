@@ -53,31 +53,65 @@
           });
         });
 
-        function generateRandom(min, max) {
-          var num = Math.random() * (max - min) + min;
-          return Math.floor(num);
+
+
+        function noBackgroundScroll(){
+          $('body').addClass('modal-open');
         }
+        function restoreBackgroundScroll(){
+          $('body').removeClass('modal-open');
+        }
+
+
 
         function getRandomPosition(element) {
-          var container = element.closest('#artist__grid');
-          var x = container[0].offsetHeight-element[0].clientHeight;
-          var y = container[0].offsetWidth-element[0].clientWidth;
+          var artist = element.data('artist');
+
+          var reference = $('.entry-title[data-artist="'+artist+'"]');
+          var refPos = reference.position();
+          var refWidth = reference.outerWidth();
+          var refHeight = reference.outerHeight();
+
+          var relHeight = element.outerHeight();
+          console.log('relHeight = '+relHeight);
+
+          x = refPos.left + refWidth;
+          y = refPos.top + refHeight;
+
           var randomX = Math.floor(Math.random()*x);
           var randomY = Math.floor(Math.random()*y);
-          return [randomX,randomY];
+
+          element
+              .css({
+                  "position":"absolute",
+                  "left":(randomX) + "px",
+                  "top":(randomY) + "px"
+              });
+
+
+              // 1205refposleft = 538.53125
+              // 1205refpostop = 102
+              // 1205refWidth = 93
+              // 1205refHeight = 25
+              // relHeight = 355
+
+              // left 538 + 93
+              // top 102 + 25-355
+
+          // var x = relative[0].offsetHeight-element[0].clientHeight;
+          // var y = relative[0].offsetWidth-element[0].clientWidth;
+          // var randomX = Math.floor(Math.random()*x);
+          // var randomY = Math.floor(Math.random()*y);
         }
 
-        $( 'article.artists' ).each(function(index, el) {
-          var img = $(this).find('.entry-image');
-          var xy = getRandomPosition(img);
-          img.css({"position":"absolute","top": xy[0] + "px", "left": xy[1] + "px"});
-          img.prependTo('#artist__grid');
+        $( '#artist__grid .entry-image' ).each(function(index, el) {
+          img = $(this);
+          getRandomPosition(img);
         });
 
-        $( 'article.artists' )
+        $( '#artist__grid .entry-title a' )
         .mouseenter( function() {
           var artist = $(this).data('artist');
-          console.log(artist);
           $('.entry-image[data-artist="'+artist+'"]').addClass('show');
         } )
         .mouseleave(function() {
@@ -85,6 +119,24 @@
           $('.entry-image[data-artist="'+artist+'"]').removeClass('show');
         } );
 
+        //Artist gallery
+        $('#artist__grid .entry-title a').featherlightGallery({
+            targetAttr: 'data-mfp-src',
+            variant: 'artist-lightbox',
+            previousIcon: '«',
+            nextIcon: '»',
+            otherClose: '.artist__close span',
+            openSpeed: 0,
+            closeSpeed: 800,
+            galleryFadeOut: 1300,
+            galleryFadeIn: 1400,
+            afterOpen: function() {
+              noBackgroundScroll();
+            },
+            beforeClose: function() {
+              restoreBackgroundScroll();
+            }
+        });
 
         // Reveals
 
@@ -109,13 +161,6 @@
 
         $(".scatterText").lettering('words').children('span').lettering();
 
-        function noBackgroundScroll(){
-          $('body').addClass('modal-open');
-        }
-        function restoreBackgroundScroll(){
-          $('body').removeClass('modal-open');
-        }
-
         // Lightbox/Gallery
         var galleryOptions = {
           previousIcon: '«',
@@ -136,23 +181,6 @@
 
         $('#gallery a.zoom-in').featherlightGallery(galleryOptions);
 
-        //Artist gallery
-        $('#artist__grid article').featherlightGallery({
-            targetAttr: 'data-mfp-src',
-            variant: 'artist-lightbox',
-            previousIcon: '«',
-            nextIcon: '»',
-            otherClose: '.artist__close span',
-            openSpeed: 0,
-            closeSpeed: 1250,
-            galleryFadeOut: 20,
-            afterOpen: function() {
-              noBackgroundScroll();
-            },
-            beforeClose: function() {
-              restoreBackgroundScroll();
-            }
-        });
 
 
         var client_id = '9d5d36353b4fa04a9e70b1de4fc56669';
@@ -304,21 +332,20 @@
           var ourClass = $(this).data('filter');
 
           // reset the active class on all the buttons
-          $('#artist__grid').children('article').hide();
+          $('#artist__grid').children('.entry-title').hide();
           $('.filter-tabs li').removeClass('active');
           // update the active state on our clicked button
           $(this).parent().addClass('active');
 
           if( ourClass === 'all') {
             // show all our items
-            $('#artist__grid').children('article').fadeIn().removeClass('filtered-out');
+            $('#artist__grid').children('.entry-title').fadeIn().removeClass('filtered-out');
           }
           else {
             // hide all elements that don't share ourClass
-            $('#artist__grid').children('article:not(.' + ourClass + ')').hide().addClass('filtered-out');
+            $('#artist__grid').children('.entry-title:not(.' + ourClass + ')').hide().addClass('filtered-out');
             // show all elements that do share ourClass
-            $('#artist__grid').children('article.' + ourClass).fadeIn().removeClass('filtered-out');
-            showLineup();
+            $('#artist__grid').children('.entry-title.' + ourClass).fadeIn().removeClass('filtered-out');
           }
           return false;
         });

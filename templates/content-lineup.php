@@ -2,12 +2,12 @@
 <?php $is_track = get_field('soundcloud_link') ?>
 <?php $is_yt = get_field('youtube_link') ?>
 
-<article <?php post_class(); ?> data-artist="<?php the_ID(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" <?php echo ($is_track ? 'data-is_track' : null) ?> >
+<article <?php post_class(); ?> data-artist="<?php the_ID(); ?>" <?php echo ($is_track ? 'data-is_track' : null) ?> >
     <div class="artist__content" id="artist<?php the_ID(); ?>">
       <div class="artist__close"><span>close</span></div>
       <div class="entry-image" data-artist="<?php the_ID(); ?>">
         <?php if ( has_post_thumbnail() ) { the_post_thumbnail('lineup-hover');} else {
-          echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" alt="" />';
+          echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" />';
         } ?>
       </div>
       <h2 class="entry-title"><?php the_title(); ?></h2>
