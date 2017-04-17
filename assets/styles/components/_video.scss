@@ -42,9 +42,10 @@ div.headervideo.responsive {
   position: absolute;
   height: 30px;
   width: 30px;
-  top: 2.7em;
-  right: 2.5em;
+  bottom: 10%;
+  right: 1.5em;
   z-index: 15;
+  margin-bottom: 1.5em;
   cursor: pointer;
   display: none;
   @include hover-grow();

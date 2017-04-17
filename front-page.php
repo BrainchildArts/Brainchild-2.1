@@ -19,7 +19,7 @@
 
 <!-- Splash Section -->
 <section class="main-section" id="about">
-  <div id="manifesto" class="main-section__text">
+  <div id="welcome" class="main-section__text">
     <h2 class="scatterText">Welcome</h2>
     <?php the_field('welcome_text'); ?>
   </div>

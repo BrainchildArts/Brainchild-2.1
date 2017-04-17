@@ -62,52 +62,52 @@
           $('body').removeClass('modal-open');
         }
 
-
-
-        function getRandomPosition(element) {
-          var artist = element.data('artist');
-
-          var reference = $('.entry-title[data-artist="'+artist+'"]');
-          var refPos = reference.position();
-          var refWidth = reference.outerWidth();
-          var refHeight = reference.outerHeight();
-
-          var relHeight = element.outerHeight();
-          console.log('relHeight = '+relHeight);
-
-          x = refPos.left + refWidth;
-          y = refPos.top + refHeight;
-
-          var randomX = Math.floor(Math.random()*x);
-          var randomY = Math.floor(Math.random()*y);
-
-          element
-              .css({
-                  "position":"absolute",
-                  "left":(randomX) + "px",
-                  "top":(randomY) + "px"
-              });
-
-
-              // 1205refposleft = 538.53125
-              // 1205refpostop = 102
-              // 1205refWidth = 93
-              // 1205refHeight = 25
-              // relHeight = 355
-
-              // left 538 + 93
-              // top 102 + 25-355
-
-          // var x = relative[0].offsetHeight-element[0].clientHeight;
-          // var y = relative[0].offsetWidth-element[0].clientWidth;
-          // var randomX = Math.floor(Math.random()*x);
-          // var randomY = Math.floor(Math.random()*y);
-        }
-
         $( '#artist__grid .entry-image' ).each(function(index, el) {
+
           img = $(this);
-          getRandomPosition(img);
+
+          var min_x = 0;
+          var max_x = $(window).width() - $(this).width();
+          var min_y = 0;
+          var max_y = $('#artist__grid').outerHeight();
+
+
+          var check_overlap = function (area,check_area) {
+
+            var bottom1 = area.y + area.height;
+            var bottom2 = check_area.y + check_area.height;
+            var top1 = area.y;
+            var top2 = check_area.y;
+            var left1 = area.x;
+            var left2 = check_area.x;
+            var right1 = area.x + area.width;
+            var right2 = check_area.x + check_area.width;
+            if (bottom1 < top2 || top1 > bottom2 || right1 < left2 || left1 > right2) {
+              console.log('overlap');
+              return false;
+            }
+            return true;
+          };
+
+          $(this).each(function() {
+              var rand_x=0;
+              var rand_y=0;
+              var area;
+              var artist = $(this).data('artist');
+              var thingel = $('.entry-title[data-artist="'+artist+'"]');
+              var check_area = {x: thingel.position().left, y: thingel.position().top, width: thingel.width(), height: thingel.height()};
+              do {
+                  rand_x = Math.floor(Math.random()*max_x) + 1;
+                  rand_y = Math.floor(Math.random()*max_y) + 1;
+                  area = {x: rand_x, y: rand_y, width: $(this).width(), height: $(this).height()};
+              } while(check_overlap(area,check_area));
+
+              $(this).css({left:rand_x, top: rand_y});
+          });
+
+
         });
+
 
         $( '#artist__grid .entry-title a' )
         .mouseenter( function() {
@@ -403,7 +403,6 @@
             player.unMute();
             $("#sound").removeClass('muted');
             $(".splash-content").addClass('vhs-flicker vhs-reverse');
-            $("header.banner").addClass('vhs-flicker vhs-reverse');
             setTimeout(hide, 400);
           }
 
@@ -411,9 +410,7 @@
               player.mute();
               $("#sound").addClass('muted');
               $(".splash-content").removeClass('hidden');
-              $("header.banner").removeClass('hidden');
               $(".splash-content").addClass('vhs-flicker');
-              $("header.banner").addClass('vhs-flicker');
               setTimeout(clean, 400);
           }
 

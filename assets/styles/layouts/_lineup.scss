@@ -99,7 +99,7 @@
   #artist__grid {
     @include outer-container;
     position: relative;
-    @include pad(2em 0);
+    @include pad(4em 0);
     h2.entry-title {
       display: inline-block;
       position: relative;
@@ -122,6 +122,7 @@
       display: inline-block;
       position: absolute;
       background: white;
+      max-width: 15em;
       img {
         opacity: .8;
         filter: grayscale(100%);
