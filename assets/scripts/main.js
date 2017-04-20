@@ -362,14 +362,11 @@
 
         function hide() {
           $(".splash-content").addClass('hidden');
-          $("header.banner").addClass('hidden');
           $(".splash-content").removeClass('vhs-flicker vhs-reverse');
-          $("header.banner").removeClass('vhs-flicker vhs-reverse');
         }
 
         function clean() {
           $(".splash-content").removeClass('vhs-flicker');
-          $("header.banner").removeClass('vhs-flicker');
         }
 
         // Smooth Scrolling
@@ -446,6 +443,8 @@
             videoId: '-x_5aJFcWaI',
             playerVars: {
               mute: true,
+              rel: 0,
+              showinfo: 0,
               start: '24'
             },
             events: {

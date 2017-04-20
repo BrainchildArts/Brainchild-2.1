@@ -25,10 +25,8 @@
     }
     @include media($phablet) {
       &.sticky {
-        background-color: $bc-blue;
         transition: background ease 1s;
         ul li.menu-item a {
-          color: white;
         }
       }
     }

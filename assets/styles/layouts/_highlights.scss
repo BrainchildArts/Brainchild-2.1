@@ -1,4 +1,43 @@
+.home section.highlights {
+  @include row;
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 100%;
+  position: relative;
+  .highlights-background {
+    position: absolute;
+    left: -100px;
+    top: 100px;
+    g path {
+      fill: $bc-blue;
+    }
+  }
+}
+
+
 article.category-highlights {
+  position: relative;
+  .svg-button {
+    cursor: pointer;
+    text {
+      font-size: 5em;
+      font-family: roboto;
+      text-anchor: middle;
+      letter-spacing: 5px;
+    }
+    &:not(:hover) g path{
+      fill: #feea19;
+    }
+    &:hover {
+      filter: grayscale(100%);
+      text {
+        fill: white;
+      }
+    }
+  }
+  h1 {
+    display: none;
+  }
   header {
     position: relative;
     h1.entry-title {
@@ -27,12 +66,6 @@ article.category-highlights {
   }
 }
 
-.home section.highlights {
-  @include row;
-  padding-left: 0;
-  padding-right: 0;
-  max-width: 100%;
-}
 
 .posts {
   article.category-highlights {
@@ -43,8 +76,12 @@ article.category-highlights {
     display: inline-block;
     vertical-align: top;
     float: left;
+    padding: 2em;
     @include media($phone) {
       width: 49.999%;
+    }
+    @include media($phablet) {
+      width: 25%;
     }
     header {
       @include aspect-ratio(3,2);
