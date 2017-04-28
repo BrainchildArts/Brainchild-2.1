@@ -233,7 +233,9 @@ section#gallery {
   margin: 0 auto;
   padding: 0px;
   position: relative;
-  top: $navigation-height;
+  @include media($horizontal-bar-mode) {
+    top: $navigation-height;
+  }
   height: 90%;
   overflow: hidden;
   background-image: url(#{$image-path}/background/video-poster-16.jpg);
