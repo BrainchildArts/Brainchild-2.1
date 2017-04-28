@@ -33,10 +33,7 @@
   }
   .main-section {
     position: relative;
-    @include pad(4em 2%);
-    @include media($phone) {
-      @include pad(4em 5%);
-    }
+    @include pad(4em 5%);
     text-align: center;
     p {
       text-align: left;
@@ -48,14 +45,23 @@
       max-width: 50em;
       p {
         text-align: left;
+        max-width: 30em;
         font-size: 1.3em;
+        @include responsive-font(2vw, 1.2em, 1.4em, 40px);
         letter-spacing: 0.03em;
+      }
+      &.center {
+        columns: auto;
+        p {
+          text-align: center;
+        }
       }
     }
     h2 {
       letter-spacing: 2px;
       color: black;
       column-span: all;
+      @include responsive-font(6vw, 35px, 52px, 40px);
     }
     &#about {
       padding-top: 2em;
@@ -93,10 +99,13 @@
     }
     &#lineup {
       padding-top: 0em;
+      padding-bottom: 0;
     }§
     &#highlight {
       background-color: lighten($bc-blue, 30%);
       color: $black;
+      padding-top: 1em;
+      padding: 1em;
     }
     &#volunteering {
       p {
@@ -133,55 +142,35 @@ section#volunteer {
 section#tickets {
   text-align: center;
   .tickets__links {
-    background-color: $dark-gray;
-    background-image: url(#{$image-path}background/BW-17.jpg);
     text-align: center;
-    background-size: cover;
-    background-position: center center;
-    padding: 10%;
   }
   h1 {
     color: white;
     text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
   }
-  button,.button {
-    background-color: $bc-pink;
-    margin: 0 0.7em 0.7em;
-  }
-  button {
-    font-size: .9em;
-    opacity: 1;
-    background-color: desaturate($bc-pink, 80%);
-    position: relative;
-    &.previous:after {
-      border-bottom: solid #FFF 2px;
-      content: "";
-      position: absolute;
-      width: 90%;
-      left: 0;
-      right: 0;
-      margin: auto;
-      top: 17px;
-      opacity: .9;
+  .ticket-buttons {
+    span,.button {
+      margin: 0 0.7em 0.7em;
     }
-  }
-  .cta {
-    font-size: 1.4em;
-    margin: .5em 0 1em;
-    &:hover,&:active,&:focus {
-      color: $bc-pink;
-      border-color: $bc-pink;
-      background-color: white;
+    span {
+      font-size: .9em;
+      opacity: 1;
+      position: relative;
+      &.previous {
+        text-decoration: line-through;
+      }
     }
-  }
-  .active-tier {
-    @include media ($tablet) {
-      display: inline-block;
-      &.volunteer {
-        display: block;
-        a {
-          font-size: 1em;
-        }
+    .cta {
+      font-size: 1.4em;
+      margin: .5em 0 1em;
+      &:hover,&:active,&:focus {
+        color: $bc-blue;
+        border-color: $bc-blue;
+        background-color: white;
+      }
+      &.volunteer-link {
+        font-size: 1em;
+        margin-top: $base-spacing;
       }
     }
   }
@@ -199,6 +188,9 @@ section#getinvolved {
 }
 
 section#gallery {
+  a {
+    @extend %nolinkstyle;
+  }
   .slide {
     @include outer-container;
   }

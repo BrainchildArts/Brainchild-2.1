@@ -124,6 +124,7 @@ header.banner {
     z-index: 10;
 
     a {
+      @extend %nolinkstyle;
       align-self: flex-start;
       position: relative;
       color: $navigation-color;

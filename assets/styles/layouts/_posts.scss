@@ -33,7 +33,7 @@
       @include fill-parent();
       @include media($tablet) {
         display: block;
-        margin: 0 auto 1em;
+        margin: 0 auto 2.5em;
         overflow: hidden;
         object-fit: cover;
         max-height: 80vh;
@@ -85,4 +85,5 @@
   span {
     font-style: italic;
   }
+  margin-bottom: 0;
 }

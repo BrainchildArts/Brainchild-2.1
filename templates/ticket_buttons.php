@@ -1,5 +1,6 @@
 <?php if( have_rows('ticket_buttons') ): ?>
 
+
   <div class="ticket-buttons">
 
   <?php while( have_rows('ticket_buttons') ): the_row();
@@ -15,11 +16,11 @@
 
       <?php } elseif ( $status == 'Inactive' ) { ?>
 
-      <button disabled="disabled"><?php echo $text ?></button>
+      <span><?php echo $text ?></span>
 
       <?php } elseif ( $status == 'Sold Out' ) { ?>
 
-        <button class="previous" disabled="disabled"><?php echo $text?></button>
+        <span class="previous"><?php echo $text?></span>
 
       <?php }; ?>
 

@@ -65,11 +65,14 @@
         $( '#artist__grid .entry-image' ).each(function(index, el) {
 
           img = $(this);
+          console.log($(this).height());
 
           var min_x = 0;
           var max_x = $(window).width() - $(this).width();
-          var min_y = 0;
-          var max_y = $('#artist__grid').outerHeight();
+          var min_y = 0 - $(this).height();
+          console.log(min_y);
+          var max_y = $('#artist__grid').outerHeight() - $(this).height();
+          console.log(max_y);
 
 
           var check_overlap = function (area,check_area) {
@@ -97,8 +100,8 @@
               var thingel = $('.entry-title[data-artist="'+artist+'"]');
               var check_area = {x: thingel.position().left, y: thingel.position().top, width: thingel.width(), height: thingel.height()};
               do {
-                  rand_x = Math.floor(Math.random()*max_x) + 1;
-                  rand_y = Math.floor(Math.random()*max_y) + 1;
+                  rand_x = Math.random() * (max_x - 0) + 0;
+                  rand_y = Math.random() * (max_y - 0) + 0;
                   area = {x: rand_x, y: rand_y, width: $(this).width(), height: $(this).height()};
               } while(check_overlap(area,check_area));
 
@@ -123,9 +126,30 @@
         $('#artist__grid .entry-title a').featherlightGallery({
             targetAttr: 'data-mfp-src',
             variant: 'artist-lightbox',
+            loading: '<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>',
             previousIcon: '«',
             nextIcon: '»',
-            otherClose: '.artist__close span',
+            otherClose: '.lightbox__close span',
+            openSpeed: 0,
+            closeSpeed: 800,
+            galleryFadeOut: 1300,
+            galleryFadeIn: 1400,
+            afterOpen: function() {
+              noBackgroundScroll();
+            },
+            beforeClose: function() {
+              restoreBackgroundScroll();
+            }
+        });
+
+
+                //Artist gallery
+        $('#highlights a').featherlightGallery({
+            variant: 'highlights-lightbox',
+            previousIcon: '«',
+            nextIcon: '»',
+            loading: '<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>',
+            otherClose: '.lightbox__close span',
             openSpeed: 0,
             closeSpeed: 800,
             galleryFadeOut: 1300,
@@ -166,7 +190,7 @@
           previousIcon: '«',
           nextIcon: '»',
           variant: 'bc-zoom bc-gallery',
-          loading: '<div class="gallery__loader"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>',
+          loading: '<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>',
           openSpeed: 50,
           closeSpeed: 50,
           galleryFadeIn: 20,          /* fadeIn speed when slide is loaded */
@@ -189,7 +213,7 @@
         });
 
         if ($('#sc-widget').length) {
-          var $items        = $( '#artist__grid .hentry' ),
+          var $items        = $( '.lineup-overlays .hentry[data-is_track]' ),
               permalink_url = $($items).first().data('track'),
               widgetIframe = document.getElementById('sc-widget'),
               widget       = SC.Widget(widgetIframe),

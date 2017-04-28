@@ -4,40 +4,19 @@
   padding-right: 0;
   max-width: 100%;
   position: relative;
-  .highlights-background {
-    position: absolute;
-    left: -100px;
-    top: 100px;
-    g path {
-      fill: $bc-blue;
+  .highlights-svg {
+    float: left;
+    height: auto;
+    @include media($tablet) {
+      max-width: 90%;
+    }
+    @include media($laptop) {
+      max-width: 90%;
     }
   }
 }
 
-
-article.category-highlights {
-  position: relative;
-  .svg-button {
-    cursor: pointer;
-    text {
-      font-size: 5em;
-      font-family: roboto;
-      text-anchor: middle;
-      letter-spacing: 5px;
-    }
-    &:not(:hover) g path{
-      fill: #feea19;
-    }
-    &:hover {
-      filter: grayscale(100%);
-      text {
-        fill: white;
-      }
-    }
-  }
-  h1 {
-    display: none;
-  }
+.main-article.category-highlights {
   header {
     position: relative;
     h1.entry-title {
@@ -66,8 +45,52 @@ article.category-highlights {
   }
 }
 
+.single .main-article.category-highlights {
+  .lightbox__close {
+    display: none;
+  }
+}
 
-.posts {
+#highlights .posts {
+  position: relative;
+  .svg-button {
+    cursor: pointer;
+    text {
+      font-size: 5em;
+      font-family: $base-font-family;
+      letter-spacing: 5px;
+    }
+    &:hover, &:active {
+      filter: url(#grayscale);
+      text {
+        fill: white;
+      }
+    }
+    &:not(:hover), &:not(:active) {
+      .svg-button-1 {
+        fill: #01A4EA;
+      }
+      .svg-button-2 {
+        fill: #FC6545;
+      }
+      .svg-button-3 {
+        fill: #01A4EA;
+      }
+      .svg-button-4 {
+        fill: #FCE91F;
+      }
+      .svg-button-5 {
+        fill: #feea19;
+      }
+    }
+  }
+  h1 {
+    display: none;
+  }
+}
+
+
+.posts > a {
   article.category-highlights {
     width: 100%;
     padding: 0;

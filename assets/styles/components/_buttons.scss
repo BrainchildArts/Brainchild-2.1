@@ -7,7 +7,8 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: rgba($bc-pink,.6);
+    background: rgba($bc-blue,.6);
+    color: white;
     content: '';
     opacity: 0;
     -webkit-transition: opacity 0.095s, -webkit-transform 0.095s;
