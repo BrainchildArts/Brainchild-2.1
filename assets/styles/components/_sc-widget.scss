@@ -22,6 +22,7 @@
   &__controls {
     display: inline-block;
     a {
+      @extend %nolinkstyle;
       color: black;
       cursor: pointer;
       display: inline;

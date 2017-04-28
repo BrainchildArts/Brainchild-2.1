@@ -64,15 +64,10 @@
 
         $( '#artist__grid .entry-image' ).each(function(index, el) {
 
-          img = $(this);
-          console.log($(this).height());
-
           var min_x = 0;
           var max_x = $(window).width() - $(this).width();
           var min_y = 0 - $(this).height();
-          console.log(min_y);
           var max_y = $('#artist__grid').outerHeight() - $(this).height();
-          console.log(max_y);
 
 
           var check_overlap = function (area,check_area) {
@@ -86,7 +81,6 @@
             var right1 = area.x + area.width;
             var right2 = check_area.x + check_area.width;
             if (bottom1 < top2 || top1 > bottom2 || right1 < left2 || left1 > right2) {
-              console.log('overlap');
               return false;
             }
             return true;
@@ -213,8 +207,8 @@
         });
 
         if ($('#sc-widget').length) {
-          var $items        = $( '.lineup-overlays .hentry[data-is_track]' ),
-              permalink_url = $($items).first().data('track'),
+          var $items        = $( '.lineup-overlays .hentry[data-is_track=true]' ),
+              permalink_url = $($items).first().find('.soundcloud_link').attr("href"),
               widgetIframe = document.getElementById('sc-widget'),
               widget       = SC.Widget(widgetIframe),
               widget_wrap  = $('#sc-widget-wrap'),
@@ -227,12 +221,10 @@
                 auto_play: true
               };
 
-
           $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
             newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
             widget.bind(SC.Widget.Events.READY, function() {
               // load new widget
-              console.log($items);
               widget.load(newSoundUrl, {
                 show_artwork: false,
                 show_comments: false,

@@ -15,22 +15,6 @@
   footer {
     text-align: center;
   }
-  .banner {
-    // position: absolute;
-    // background-color: transparent;
-    // top: 2.5em;
-    ul li.menu-item a {
-      color: black;
-      transition: color ease .3s;
-    }
-    @include media($phablet) {
-      &.sticky {
-        transition: background ease 1s;
-        ul li.menu-item a {
-        }
-      }
-    }
-  }
   .main-section {
     position: relative;
     @include pad(4em 5%);
