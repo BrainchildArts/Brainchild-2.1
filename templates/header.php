@@ -1,6 +1,10 @@
 <header class="banner">
   <div class="container">
-    <a href="#" id="js-mobile-menu" class="menu-icon"></a>
+    <button id="js-mobile-menu" class="menu-icon hamburger hamburger--boring" type="button">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
     <nav class="nav-primary">
       <?php
         wp_nav_menu(['theme_location' => 'single_page_nav', 'menu_class' => 'nav']);

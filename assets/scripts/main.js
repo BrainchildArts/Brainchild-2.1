@@ -42,15 +42,19 @@
 
         // Responsive Menu
         var menuToggle = $('#js-mobile-menu').unbind();
-        $('#js-navigation-menu').removeClass("show");
+        $('.menu-single-page-navigation-container').removeClass("show");
 
         menuToggle.on('click', function(e) {
           e.preventDefault();
-          $('#js-navigation-menu').slideToggle(function(){
-            if($('#js-navigation-menu').is(':hidden')) {
-              $('#js-navigation-menu').removeAttr('style');
-            }
-          });
+          $(this).toggleClass('is-active');
+          $('.menu-single-page-navigation-container').toggleClass('show');
+          $('.menu-single-page-navigation-container ul').toggleClass('show');
+        });
+
+        $('.menu-item a').click(function() {
+          $('#js-mobile-menu').removeClass('show');
+          $('.menu-single-page-navigation-container.show').removeClass('show');
+          $('.menu-single-page-navigation-container ul.show').removeClass('show');
         });
 
 
@@ -139,6 +143,7 @@
 
                 //Artist gallery
         $('#highlights a').featherlightGallery({
+            targetAttr: 'data-mfp-src',
             variant: 'highlights-lightbox',
             previousIcon: '«',
             nextIcon: '»',
@@ -387,19 +392,19 @@
 
         // Smooth Scrolling
 
-        $('a[href*="#"]:not([href="#"])').click(function() {
-            if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
+        // $('a[href*="#"]:not([href="#"])').click(function() {
+        //     if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
 
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-                if (target.length) {
-                  $('html,body').animate({
-                    scrollTop: target.offset().top
-                  }, 200, 'easeInOutExpo');
-                return false;
-                }
-            }
-        });
+        //         var target = $(this.hash);
+        //         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        //         if (target.length) {
+        //           $('html,body').animate({
+        //             scrollTop: target.offset().top
+        //           }, 200, 'easeInOutExpo');
+        //         return false;
+        //         }
+        //     }
+        // });
 
 
         function onPlayerReady() {
@@ -435,6 +440,7 @@
               mute();
             }
           });
+
           var inview = new Waypoint.Inview({
             element: $('#splash')[0],
             enter: function(direction) {
@@ -446,8 +452,8 @@
               }
             }
           });
-
         }
+
         var videoElement = $('#video_background'),
             $window      = $(window);
 
@@ -468,17 +474,17 @@
             }
           });
         }
-
-
       },
       finalize: function() {
         // JavaScript to be fired on the home page, after the init JS
+
       }
     },
     // About us page, note the change from about-us to about_us.
     'about_us': {
       init: function() {
         // JavaScript to be fired on the about us page
+
       }
     }
   };

@@ -10,10 +10,10 @@
     <h3 class='splash-content'>Festival 2017</h3>
     <h2 class='dates splash-content'>7-9 July</h2>
     <h2 class='location splash-content'>East Sussex</h2>
+    <div class="mobile-socials"><?php get_template_part('templates/socials') ?></div>
   </div>
 </section>
 
-<?php get_template_part('templates/socials') ?>
 
 
 
@@ -143,6 +143,13 @@
   ?>
   </div>
   <p class="big-txt">Photography: <a target="_blank" href="http://www.holliefernandophotography.com/">Hollie Fernando</a></p>
+</section>
+
+<section class="home__section" id="faq">
+  <h2>FAQ</h2>
+  <div class="expandable">
+    <?php the_field('faq_text') ?>
+  </div>
 </section>
 
 <section class="main-section volunteering" id="volunteering">

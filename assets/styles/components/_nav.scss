@@ -16,12 +16,17 @@ header.banner {
   $navigation-submenu-width: 12em;
   $navigation-item-nudge: 2.2em;
 
-  background-color: $navigation-background;
   min-height: $navigation-height;
-  width: 100%;
   z-index: 10;
   position: fixed;
   top: 0;
+  right: 0;
+  background-color: transparent;
+  @include media($horizontal-bar-mode) {
+    background-color: $navigation-background;
+    width: 100%;
+    right: auto;
+  }
 
   &.sticky {
     position: fixed;
@@ -33,13 +38,17 @@ header.banner {
 
   .menu-icon {
     position: relative;
-    @extend .dashicons;
-    @extend .dashicons-menu;
-    @include hover-grow();
     color: white;
-    display: none;
-    right: 3.5em;
+    right: .5em;
+    top: .5em;
     float: right;
+    background: none;
+    z-index: 999;
+    &:hover,
+    &:focus {
+      background: none;
+      border: none;
+    }
     &:before {
       font-size: 2.2em;
     }
@@ -48,6 +57,7 @@ header.banner {
       display: none;
     }
   }
+
 
   .navigation-mobile-menu {
     color: $navigation-color;
@@ -81,10 +91,30 @@ header.banner {
     margin: auto;
   }
 
-  ul.nav#menu-single-page-navigation {
-    display: none;
-    @include media ($horizontal-bar-mode) {
-      display: flex;
+  .menu-single-page-navigation-container {
+
+    background: #fff;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left:0;
+    position: fixed;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    visibility: hidden;
+    &.show {
+      visibility: visible;
+    }
+
+    @include media($horizontal-bar-mode) {
+      visibility: visible;
+      height: auto;
+      width: auto;
+      position: static;
+      display: block;
     }
   }
 
@@ -96,19 +126,24 @@ header.banner {
     overflow: visible;
     padding: 0;
     width: 100%;
-    z-index: 99999;
+    z-index: 995;
     align-items: center;
     justify-content: space-around;
-    @include span-columns(11);
-    @include shift(.5);
-
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    display: flex;
     &.show {
-      display: block;
+      opacity: 1;
+      transition: all 500ms ease;
     }
-
-    @include media ($horizontal-bar-mode) {
-      display: flex;
+    @include media($horizontal-bar-mode) {
+      flex-direction: row;
       text-align: center;
+      opacity: 1;
+      @include span-columns(11);
+      @include shift(.5);
+      display: flex;
     }
   }
 
@@ -117,11 +152,14 @@ header.banner {
 
   ul li.menu-item {
     background: $navigation-background;
-    display: inline-block;
     line-height: $navigation-height;
     overflow: hidden;
     text-align: center;
     z-index: 10;
+    display: block;
+    @include media ($horizontal-bar-mode) {
+      display: inline-block;
+    }
 
     a {
       @extend %blacklink;
@@ -134,8 +172,9 @@ header.banner {
       text-decoration: none;
       text-transform: uppercase;
       font-weight: 600;
-      font-size: 1.3em;
+      font-size: 2em;
       letter-spacing: 1px;
+      line-height: 2;
 
       &:focus,
       &:hover {
@@ -145,8 +184,8 @@ header.banner {
     @include media($horizontal-bar-mode) {
       background: transparent;
       line-height: $navigation-height;
-
       a {
+        font-size: 1.3em;
       }
     }
   }

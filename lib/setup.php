@@ -47,7 +47,7 @@ function setup() {
 
     add_image_size( 'lineup', 750, 750, false);
 
-    add_image_size( 'lineup-list', 350, 350, false);
+    add_image_size( 'lineup-list', 250, 250, false);
   }
 
   // Enable post formats

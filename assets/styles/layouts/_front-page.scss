@@ -233,10 +233,11 @@ section#gallery {
   margin: 0 auto;
   padding: 0px;
   position: relative;
+  height: auto;
   @include media($horizontal-bar-mode) {
     top: $navigation-height;
+    height: 90%;
   }
-  height: 90%;
   overflow: hidden;
   background-image: url(#{$image-path}/background/video-poster-16.jpg);
   background-size: cover;
@@ -249,26 +250,20 @@ section#gallery {
     bottom: 0;
     left: 0;
     z-index: 1;
-    @include media($phone) {
-    }
   }
   .splash__text {
     text-align: left;
-    opacity: .99; //new stacking order.
+    opacity: .99;
     background: transparent;
     text-transform: uppercase;
     color: white;
     transition: visibility .2s ease-in-out;
     z-index: 2;
-    position: absolute;
-    top: 1.5em;
-    left: 1.5em;
+    @include pad(1.5em);
     @include media($phone) {
       img.logo {
         max-width: 12em;
       }
-    }
-    @include media($laptop) {
     }
     &>:not(.logo) {
       margin-left: 14px;
@@ -295,10 +290,10 @@ section#gallery {
 }
 
 div.social {
-  position: absolute;
-  bottom: 10%;
-  padding: 1.5em;
-  @include media($phone) {
+  padding-top: 1.5em;
+  @include media($horizontal-bar-mode) {
+    position: absolute;
+    bottom: 10%;
     padding: 1.5em;
   }
   .modal {

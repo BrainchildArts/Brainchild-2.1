@@ -44,7 +44,7 @@ if( have_rows('highlight_posts') ):
       $thumb_url = $thumb_url_array[0];
       ?>
 
-    <a data-featherlight="<?php the_permalink(); ?> .main-article" href="<?php the_permalink(); ?>">
+    <a data-mfp-src="<?php the_permalink(); ?> .main-article" href="<?php the_permalink(); ?>">
       <g class="svg-button">
         <path class="post-<?php the_id(); ?> svg-button-<?php echo $i ?>" fill-rule="evenodd" clip-rule="evenodd" fill="url(#pattern-<?php echo $i ?>)"
 
