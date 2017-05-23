@@ -66,12 +66,12 @@
           $('body').removeClass('modal-open');
         }
 
-        $( '#artist__grid .entry-image' ).each(function(index, el) {
+        $( '.artist__grid .entry-image' ).each(function(index, el) {
 
           var min_x = 0;
           var max_x = $(window).width() - $(this).width();
           var min_y = 0 - $(this).height();
-          var max_y = $('#artist__grid').outerHeight() - $(this).height();
+          var max_y = $('.artist__grid').outerHeight() - $(this).height();
 
 
           var check_overlap = function (area,check_area) {
@@ -110,7 +110,7 @@
         });
 
 
-        $( '#artist__grid .entry-title a' )
+        $( '.artist__grid .entry-title a' )
         .mouseenter( function() {
           var artist = $(this).data('artist');
           $('.entry-image[data-artist="'+artist+'"]').addClass('show');
@@ -121,7 +121,7 @@
         } );
 
         //Artist gallery
-        $('#artist__grid .entry-title a').featherlightGallery({
+        $('.artist__grid .entry-title a').featherlightGallery({
             targetAttr: 'data-mfp-src',
             variant: 'artist-lightbox',
             loading: '<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>',
@@ -353,20 +353,20 @@
           var ourClass = $(this).data('filter');
 
           // reset the active class on all the buttons
-          $('#artist__grid').children('.entry-title').hide();
+          $('.artist__grid').children('.entry-title').hide();
           $('.filter-tabs li').removeClass('active');
           // update the active state on our clicked button
           $(this).parent().addClass('active');
 
           if( ourClass === 'all') {
             // show all our items
-            $('#artist__grid').children('.entry-title').fadeIn().removeClass('filtered-out');
+            $('.artist__grid').children('.entry-title').fadeIn().removeClass('filtered-out');
           }
           else {
             // hide all elements that don't share ourClass
-            $('#artist__grid').children('.entry-title:not(.' + ourClass + ')').hide().addClass('filtered-out');
+            $('.artist__grid').children('.entry-title:not(.' + ourClass + ')').hide().addClass('filtered-out');
             // show all elements that do share ourClass
-            $('#artist__grid').children('.entry-title.' + ourClass).fadeIn().removeClass('filtered-out');
+            $('.artist__grid').children('.entry-title.' + ourClass).fadeIn().removeClass('filtered-out');
           }
           return false;
         });

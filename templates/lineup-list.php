@@ -19,7 +19,7 @@
   </li> -->
 </ul>
 
-<div id="artist__grid">
+<div class="artist__grid">
 
 <?php
 $lineupargs = array (

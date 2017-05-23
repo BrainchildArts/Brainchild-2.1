@@ -51,6 +51,7 @@
       'post_type'     => 'artists',
       'nopaging'      => true,
       'orderby'       => 'name',
+      'tag__not_in' => array( '21' ),
       'order'         => 'ASC'
     );
     // The Query
@@ -69,6 +70,9 @@
   <?php endif ?>
 </section>
 
+<section class="installations">
+<?php get_template_part( 'installationartists' ); ?>
+</section>
 
 <?php if( get_field('highlight_posts') ) : ?>
   <section class="home__section main-section highlights" id="highlights">
