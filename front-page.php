@@ -81,9 +81,8 @@
     <?php
     $lineupargs = array (
       'post_type'     => 'artists',
-      'nopaging'      => true,
       'orderby'       => 'post_date',
-      'posts_per_page'=> 2,
+      'posts_per_page'=> '3',
       'tag'           => 'installationartist',
       'order'         => 'DESC'
     );
@@ -226,7 +225,7 @@
   <?php the_field('get_involved_text'); ?>
 </section>
 
-<footer>
+<footer class="main-section">
   <?php the_field('footer_text'); ?>
 </footer>
 

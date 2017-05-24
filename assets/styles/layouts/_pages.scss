@@ -4,6 +4,10 @@
   text-transform: uppercase;
 }
 
+.entry-content {
+  padding: 0 5% 0 5%;
+}
+
 .main-section {
   position: relative;
   @include pad(0 5% 4em 5%);
@@ -38,5 +42,12 @@
       column-span: all;
       @include responsive-font(6vw, 35px, 52px, 40px);
     }
+  }
+}
+
+footer, footer.main-section {
+  padding-bottom: 0;
+  p {
+    text-align: center;
   }
 }

@@ -1,8 +1,5 @@
-<h2 class="scatterText">Installation Artists</h2>
 
-<div class="the_content">
-  <?php the_content(); ?>
-</div>
+<?php get_template_part('templates/content', 'page'); ?>
 
 
 <section class="installations">
