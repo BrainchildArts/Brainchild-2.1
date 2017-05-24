@@ -1,11 +1,20 @@
 body.woocommerce {
+  h1,h2,h3,h4,h5,h6 {
+    text-align: inherit;
+  }
+  .page-header h1,.page-title {
+    text-align: center;
+  }
+  h2 {
+    font-size: $base-font-size;
+  }
   .page-header {
     margin-bottom: 2.5em;
   }
   ul.products {
     text-align: center;
     li.product {
-      float: none;
+      float: none !important;
       margin-left: 1em;
       margin-right: 1em;
       display: inline-block;

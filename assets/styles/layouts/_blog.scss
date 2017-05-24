@@ -3,10 +3,6 @@
     @include outer-container;
   }
   .bc-words-allposts {
-    display: block;
-    font-size: 1.4em;
-    @extend %blacklink;
-    @include fill-parent;
   }
   article.hentry.category-blog {
     @include span-columns(12);

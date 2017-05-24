@@ -62,6 +62,19 @@
   }
 }
 
+%underlinelink {
+  color: black;
+  text-decoration: underline;
+  border-bottom: none;
+  box-shadow: none;
+  &:active,
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    background: none;
+  }
+}
+
 %nolinkstyle {
   color: inherit;
   border-bottom: none;

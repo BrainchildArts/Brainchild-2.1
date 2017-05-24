@@ -30,13 +30,6 @@ h2 {
   font-size: 3em;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  text-transform: uppercase;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 p {
   font-size: $base-font-size * 1.2;
   max-width: $reading-width;
@@ -103,10 +96,6 @@ a:focus {
 
 .scatterText {
   word-spacing: .2em;
-  max-width: 14em;
-  span[class^="word"] {
-    white-space: pre;
-  }
   span {
     @include scatterText();
   }
@@ -115,7 +104,7 @@ a:focus {
 .see-more {
   a {
     font-size: 1.4em;
-    @extend %underlinelink;
+    @extend %blacklink;
   }
   display: block;
   text-align: center;
@@ -139,4 +128,5 @@ a:focus {
     font: normal 16px/1 'Genericons';
     vertical-align: middle;
 }
+
 

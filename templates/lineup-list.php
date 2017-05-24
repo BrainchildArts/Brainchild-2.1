@@ -42,6 +42,6 @@ while ($lineup->have_posts()) : $lineup->the_post(); ?>
 
 
 <?php while ($lineup->have_posts()) : $lineup->the_post(); ?>
-  <h2 data-artist="<?php the_ID(); ?>" <?php post_class('entry-title'); ?>><a href="<?php the_permalink(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" data-artist="<?php the_ID(); ?>"><?php the_title(); ?></a></h2>
+  <h2 data-artist="<?php the_ID(); ?>" <?php post_class('entry-title'); ?>><a class="artist-overlay" href="<?php the_permalink(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" data-artist="<?php the_ID(); ?>"><?php the_title(); ?></a></h2>
   <?php endwhile;?>
 </div>

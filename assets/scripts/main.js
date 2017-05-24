@@ -121,7 +121,7 @@
         } );
 
         //Artist gallery
-        $('.artist__grid .entry-title a').featherlightGallery({
+        $('.artist__grid a.artist-overlay').featherlightGallery({
             targetAttr: 'data-mfp-src',
             variant: 'artist-lightbox',
             loading: '<div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>',
@@ -130,8 +130,8 @@
             otherClose: '.lightbox__close span',
             openSpeed: 0,
             closeSpeed: 800,
-            galleryFadeOut: 1300,
-            galleryFadeIn: 1400,
+            galleryFadeOut: 0,
+            galleryFadeIn: 0,
             afterOpen: function() {
               noBackgroundScroll();
             },

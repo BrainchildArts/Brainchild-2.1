@@ -3,3 +3,40 @@
   text-align: center;
   text-transform: uppercase;
 }
+
+.main-section {
+  position: relative;
+  @include pad(0 5% 4em 5%);
+  text-align: center;
+  p {
+    text-align: left;
+  }
+  &__text {
+    margin: 4em auto;
+    columns: 2 22em;
+    column-gap: 2em;
+    max-width: 50em;
+    p {
+      text-align: left;
+      max-width: 30em;
+      font-size: 1.3em;
+      @include responsive-font(2vw, 1.2em, 1.4em, 40px);
+      letter-spacing: 0.03em;
+    }
+    &.center {
+      columns: auto;
+      p {
+        text-align: center;
+      }
+    }
+    h2 {
+      + .main-section__text {
+        margin-top: 0;
+      }
+      letter-spacing: 2px;
+      color: black;
+      column-span: all;
+      @include responsive-font(6vw, 35px, 52px, 40px);
+    }
+  }
+}

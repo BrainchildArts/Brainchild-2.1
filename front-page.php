@@ -39,8 +39,8 @@
 </section>
 
 
-
 <section class="main-section" id="lineup">
+  <h2 class="scatterText">Lineup</h2>
   <div class="main-section__text"><?php the_field('lineup_text'); ?></div>
   <?php get_template_part('templates/lineup-list') ?>
 
@@ -51,7 +51,7 @@
       'post_type'     => 'artists',
       'nopaging'      => true,
       'orderby'       => 'name',
-      'tag__not_in' => array( '21' ),
+      'tag__not_in' => array( '3' ),
       'order'         => 'ASC'
     );
     // The Query
@@ -70,8 +70,67 @@
   <?php endif ?>
 </section>
 
-<section class="installations">
-<?php get_template_part( 'installationartists' ); ?>
+<section class="installations main-section">
+  <h2 class="scatterText">Installation Artists</h2>
+  <?php if (get_field('installations_text')): ?>
+    <div class="main-section__text"><?php the_field('installations_text'); ?></div>
+  <?php endif ?>
+
+    <div class="artist__grid">
+
+    <?php
+    $lineupargs = array (
+      'post_type'     => 'artists',
+      'nopaging'      => true,
+      'orderby'       => 'post_date',
+      'posts_per_page'=> 2,
+      'tag'           => 'installationartist',
+      'order'         => 'DESC'
+    );
+    // The Query
+    $lineup = new WP_Query( $lineupargs ); ?>
+
+
+
+    <?php while ($lineup->have_posts()) : $lineup->the_post(); ?>
+      <article <?php post_class(); ?> data-artist="<?php the_ID(); ?>" <?php echo ($is_track ? 'data-is_track="true"' : null) ?> >
+        <a class="artist-overlay" href="<?php the_permalink(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" data-artist="<?php the_ID(); ?>">
+          <div class="entry-image" data-artist="<?php the_ID(); ?>">
+            <?php if ( has_post_thumbnail() ) { the_post_thumbnail('lineup');} else {
+              echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" />';
+            } ?>
+          </div>
+          <h2 data-artist="<?php the_ID(); ?>" <?php post_class('entry-title'); ?>><?php the_title(); ?></h2>
+        </a>
+      </article>
+      <?php endwhile;?>
+    </div>
+
+
+    <div class="lineup-overlays">
+
+      <?php
+      $lineupargs = array (
+        'post_type'     => 'artists',
+        'nopaging'      => true,
+        'orderby'       => 'name',
+        'tag'           => 'installationartist',
+        'order'         => 'ASC'
+      );
+      // The Query
+      $lineup = new WP_Query( $lineupargs );
+
+      // The Loop
+      while ($lineup->have_posts()) : $lineup->the_post();
+        get_template_part('templates/content-lineup', get_post_type() != 'post' ? get_post_type() : get_post_format());
+        endwhile;?>
+
+    </div>
+    <?php wp_reset_postdata(); ?>
+
+    <div class="see-more"><a href="/installations">Explore all the installation artists &rarr;</a></div>
+
+
 </section>
 
 <?php if( get_field('highlight_posts') ) : ?>
@@ -117,7 +176,7 @@
     wp_reset_postdata();
     ?>
     </div>
-    <a class="bc-words-allposts" href="/blog">See all posts...</a>
+    <div class="see-more"><a class="bc-words-allposts" href="/blog">See all posts...  &rarr;</a></div>
 </section>
 
 
@@ -149,7 +208,7 @@
   <p class="big-txt">Photography: <a target="_blank" href="http://www.holliefernandophotography.com/">Hollie Fernando</a></p>
 </section>
 
-<section class="home__section" id="faq">
+<section class="home__section main-section" id="faq">
   <h2>FAQ</h2>
   <div class="expandable">
     <?php the_field('faq_text') ?>
