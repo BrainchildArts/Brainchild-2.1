@@ -129,7 +129,7 @@
             nextIcon: '»',
             otherClose: '.lightbox__close span',
             openSpeed: 0,
-            closeSpeed: 800,
+            closeSpeed: 0,
             galleryFadeOut: 0,
             galleryFadeIn: 0,
             afterOpen: function() {
