@@ -392,19 +392,19 @@
 
         // Smooth Scrolling
 
-        // $('a[href*="#"]:not([href="#"])').click(function() {
-        //     if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
+        $('a[href*="#"]:not([href="#"])').click(function() {
+            if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
 
-        //         var target = $(this.hash);
-        //         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-        //         if (target.length) {
-        //           $('html,body').animate({
-        //             scrollTop: target.offset().top
-        //           }, 200, 'easeInOutExpo');
-        //         return false;
-        //         }
-        //     }
-        // });
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                if (target.length) {
+                  $('html,body').animate({
+                    scrollTop: target.offset().top-100
+                  }, 200, 'easeInOutExpo');
+                return false;
+                }
+            }
+        });
 
 
         function onPlayerReady() {
@@ -462,12 +462,14 @@
           $('#video_background').YTPlayer({
             fitToBackground: false,
             width: $('#splash').width(),
-            videoId: '-x_5aJFcWaI',
+            videoId: '5XXNLVT8_zc',
             playerVars: {
               mute: true,
               rel: 0,
               showinfo: 0,
-              start: '24'
+              setPlaybackQuality: 'hd720',
+              suggestedQuality: 'hd720',
+              start: '11'
             },
             events: {
               'onReady': onPlayerReady

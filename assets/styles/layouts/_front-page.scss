@@ -1,11 +1,4 @@
 .home {
-  body &,
-  html &,
-  & div.wrap.container,
-  & div.content.row,
-  & main.main {
-    height: 100%;
-  }
   .main-section {
     &#about {
       padding-top: 2em;
@@ -13,9 +6,6 @@
       margin-top: 0;
       @include media($horizontal-bar-mode) {
         margin-top: 2em;
-      }
-      @include media(850px) {
-        margin-top: 0;
       }
       #welcome {
         position: relative;
@@ -52,9 +42,6 @@
       padding: 1em;
     }
     &#volunteering {
-      p {
-        text-align: center;
-      }
     }
     background-color: white;
   }
@@ -125,9 +112,6 @@ section#getinvolved {
   ul {
     margin-right: auto;
     margin-left: auto;
-    }
-  p {
-    text-align: center;
   }
 }
 
@@ -195,7 +179,7 @@ section#gallery {
   position: relative;
   height: auto;
   @include media(850px) {
-    height: 90%;
+    height: 70vh;
   }
   @include media($horizontal-bar-mode) {
     top: $navigation-height;
@@ -254,7 +238,7 @@ div.social {
   padding-top: 1.5em;
   @include media(850px) {
     position: absolute;
-    bottom: 10%;
+    bottom: 2em;
   }
   .modal {
     color: black;

@@ -1,8 +1,8 @@
-<div class='muted' id='sound'>
-  <img class='black' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/note.svg'>
-  <img class='white' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/note--white.svg'>
-</div>
 <section class='splash' id="splash">
+  <div class='muted' id='sound'>
+    <img class='black' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/note.svg'>
+    <img class='white' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/note--white.svg'>
+  </div>
   <div class="splash-content splash__frame"></div>
   <div id="video_background" class="headervideo responsive"></div>
   <div class='splash__text splash-content content'>
@@ -42,28 +42,8 @@
 <section class="main-section" id="lineup">
   <h2 class="scatterText">Lineup</h2>
   <div class="main-section__text"><?php the_field('lineup_text'); ?></div>
+
   <?php get_template_part('templates/lineup-list') ?>
-
-  <div class="lineup-overlays">
-
-    <?php
-    $lineupargs = array (
-      'post_type'     => 'artists',
-      'nopaging'      => true,
-      'orderby'       => 'name',
-      'tag__not_in' => array( '3' ),
-      'order'         => 'ASC'
-    );
-    // The Query
-    $lineup = new WP_Query( $lineupargs );
-
-    // The Loop
-    while ($lineup->have_posts()) : $lineup->the_post();
-      get_template_part('templates/content-lineup', get_post_type() != 'post' ? get_post_type() : get_post_format());
-      endwhile;?>
-
-  </div>
-  <?php wp_reset_postdata(); ?>
 
   <?php if (get_field('lineup_text_2')): ?>
     <div class="main-section__text center"><?php the_field('lineup_text_2'); ?></div>
@@ -81,10 +61,10 @@
     <?php
     $lineupargs = array (
       'post_type'     => 'artists',
-      'orderby'       => 'post_date',
+      'orderby'       => 'publish_date',
       'posts_per_page'=> '3',
       'tag'           => 'installationartist',
-      'order'         => 'DESC'
+      'order'         => 'ASC'
     );
     // The Query
     $lineup = new WP_Query( $lineupargs ); ?>
@@ -111,8 +91,8 @@
       <?php
       $lineupargs = array (
         'post_type'     => 'artists',
-        'nopaging'      => true,
-        'orderby'       => 'name',
+        'orderby'       => 'publish_date',
+        'posts_per_page'=> '3',
         'tag'           => 'installationartist',
         'order'         => 'ASC'
       );

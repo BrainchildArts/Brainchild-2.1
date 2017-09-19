@@ -14,9 +14,9 @@
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-talksworkshops">Talks &amp; Workshops</a>
   </li>
-<!--   <li>
-    <a class="filter" onclick="return false;" href="#" data-filter="tag-art">Art</a>
-  </li> -->
+  <li>
+    <a class="filter" onclick="return false;" href="#" data-filter="tag-comedy">Comedy</a>
+  </li>
 </ul>
 
 <div class="artist__grid">
@@ -26,6 +26,7 @@ $lineupargs = array (
   'post_type'     => 'artists',
   'nopaging'      => true,
   'orderby'       => 'name',
+  'tag__not_in' => array( 63 ),
   'order'         => 'ASC'
 );
 // The Query
@@ -45,3 +46,24 @@ while ($lineup->have_posts()) : $lineup->the_post(); ?>
   <h2 data-artist="<?php the_ID(); ?>" <?php post_class('entry-title'); ?>><a class="artist-overlay" href="<?php the_permalink(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" data-artist="<?php the_ID(); ?>"><?php the_title(); ?></a></h2>
   <?php endwhile;?>
 </div>
+
+<div class="lineup-overlays">
+
+  <?php
+  $lineupargs = array (
+    'post_type'     => 'artists',
+    'nopaging'      => true,
+    'orderby'       => 'name',
+    'tag__not_in'   => array( 63 ),
+    'order'         => 'ASC'
+  );
+  // The Query
+  $lineup = new WP_Query( $lineupargs );
+
+  // The Loop
+  while ($lineup->have_posts()) : $lineup->the_post();
+    get_template_part('templates/content-lineup', get_post_type() != 'post' ? get_post_type() : get_post_format());
+    endwhile;?>
+
+</div>
+<?php wp_reset_postdata(); ?>
