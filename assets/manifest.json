@@ -40,7 +40,11 @@
         "assets/scripts/vendor/featherlight.gallery.min.js",
         "assets/scripts/vendor/magnific.min.js",
         "assets/scripts/vendor/jquery.youtubebackground.js",
-        "assets/scripts/vendor/lettering.min.js"
+        "assets/scripts/vendor/lettering.min.js",
+        "assets/scripts/vendor/masonry.pkgd.min.js",
+        "assets/scripts/vendor/photoswipe.min.js",
+        "assets/scripts/vendor/photoswipe-ui-default.min.js",
+        "assets/scripts/vendor/flickity.pkgd.min.js"
       ]
     },
     "jquery.js": {

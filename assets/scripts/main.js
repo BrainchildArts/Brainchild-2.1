@@ -161,6 +161,159 @@
             }
         });
 
+          var $carousel = $('div.gallery-theme--slider').flickity({
+            // options
+            cellAlign: 'center',
+            imagesLoaded: true,
+            wrapAround: true
+          });
+
+
+
+          var $gallery = $('div.gallery-theme--default').masonry({
+            // options
+            itemSelector: '.gallery-item',
+            gridSizer: '.gallery-item',
+            columnWidth: '.gallery-item',
+            gutter: 10,
+            percentPosition: true
+          });
+
+        // Photoswipe
+
+          var $pswp = $('.pswp')[0];
+          var image = [];
+
+          $('.gallery-theme--default').each( function() {
+              var $pics     = $(this),
+                  getItems = function() {
+                      var items = [];
+                      $pics.find('a').each(function() {
+                          var $href   = $(this).attr('href'),
+                              $size   = $(this).data('size').split('x'),
+                              $width  = $size[0],
+                              $height = $size[1];
+                              $caption= $(this).find('figure').html();
+
+                          var item = {
+                              src : $href,
+                              w   : $width,
+                              h   : $height,
+                              cap : $caption
+                          };
+
+                          items.push(item);
+                      });
+                      return items;
+                  };
+
+              var items = getItems();
+
+              $.each(items, function(index, value) {
+                  image[index]     = new Image();
+                  image[index].src = value.src;
+              });
+
+
+              $pics.on('click', 'figure', function(event) {
+                  event.preventDefault();
+                  if (!$(this).parents('.gallery-theme--slider').length) {
+
+                    var $index = $(this).index();
+                    var options = {
+                        index: $index,
+                        bgOpacity: 1,
+                        showHideOpacity: true,
+                        fullscreenEl: false,
+                        history: false,
+                        zoomEl: false,
+                        shareEl: false,
+                        captionEl:true,
+                        // Function builds caption markup
+                        addCaptionHTMLFn: function(item, captionEl, isFake) {
+                            // item      - slide object
+                            // captionEl - caption DOM element
+                            // isFake    - true when content is added to fake caption container
+                            //             (used to get size of next or previous caption)
+
+                            if(!item.cap) {
+                                captionEl.children[0].innerHTML = '';
+                                return false;
+                            }
+                            captionEl.children[0].innerHTML = item.cap;
+                            return true;
+                        },
+                    };
+
+                    var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
+                    lightBox.init();
+                  }
+              });
+          });
+
+          $('.gallery-theme--slider').each( function() {
+              var $pics     = $(this),
+                  getItems = function() {
+                      var items = [];
+                      $pics.find('a').each(function() {
+                          var $href   = $(this).attr('href'),
+                              $size   = $(this).data('size').split('x'),
+                              $width  = $size[0],
+                              $height = $size[1];
+                              $caption= $(this).find('figure').html();
+
+                          var item = {
+                              src : $href,
+                              w   : $width,
+                              h   : $height,
+                              cap : $caption
+                          };
+
+                          items.push(item);
+                      });
+                      return items;
+                  };
+
+              var items = getItems();
+
+              $.each(items, function(index, value) {
+                  image[index]     = new Image();
+                  image[index].src = value.src;
+              });
+
+              $pics.on('click', 'figure', function(event) {
+                  event.preventDefault();
+              });
+
+              $carousel.on( 'staticClick.flickity', function( event, pointer, cellElement, cellIndex ) {
+                // dismiss if cell was not clicked
+                if ( !cellElement ) {
+                  return;
+                }
+
+                var options = {
+                    index: cellIndex,
+                    bgOpacity: 1,
+                    showHideOpacity: true,
+                    fullscreenEl: false,
+                    zoomEl: false,
+                    history: false,
+                    shareEl: false,
+                    captionEl:true
+                };
+
+
+                var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
+                lightBox.init();
+              });
+          });
+
+
+          // layout Masonry after each image loads
+          $gallery.imagesLoaded().progress( function() {
+            $gallery.masonry('layout');
+          });
+
         // Reveals
 
         var allReveals = $('.reveal');
