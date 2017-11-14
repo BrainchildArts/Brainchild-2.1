@@ -199,7 +199,7 @@
                               src : $href,
                               w   : $width,
                               h   : $height,
-                              cap : $caption
+                              title : $caption
                           };
 
                           items.push(item);
@@ -228,21 +228,7 @@
                         history: false,
                         zoomEl: false,
                         shareEl: false,
-                        captionEl:true,
-                        // Function builds caption markup
-                        addCaptionHTMLFn: function(item, captionEl, isFake) {
-                            // item      - slide object
-                            // captionEl - caption DOM element
-                            // isFake    - true when content is added to fake caption container
-                            //             (used to get size of next or previous caption)
-
-                            if(!item.cap) {
-                                captionEl.children[0].innerHTML = '';
-                                return false;
-                            }
-                            captionEl.children[0].innerHTML = item.cap;
-                            return true;
-                        },
+                        captionEl:true
                     };
 
                     var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
@@ -266,7 +252,7 @@
                               src : $href,
                               w   : $width,
                               h   : $height,
-                              cap : $caption
+                              title : $caption
                           };
 
                           items.push(item);
