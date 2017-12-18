@@ -1,52 +1,52 @@
-.archive.category-blog {
-  article.hentry {
-    @include span-columns(11);
-    @include shift(.5);
-    .entry-image,
-    .entry-text {
-      @include fill-parent();
-    }
-    @include media($phablet) {
-      .entry-image {
-        @include span-columns(8);
-      }
-      .entry-text {
-        @include span-columns(4);
-      }
-    }
-    margin-bottom: 2.5em;
-    img {
-      width:100%;
-      height: auto;
-    }
-    a {
-      text-decoration: none;
-      h2 {
-        color: black;
-        font-size: 1.5em;
-        text-transform: none;
-        text-align: left;
-        &:hover {
-          color: black;
-        }
-      }
-      &:hover h2{
-        text-decoration: underline;
-      }
+// .archive.category-blog {
+//   article.hentry {
+//     @include span-columns(11);
+//     @include shift(.5);
+//     .entry-image,
+//     .entry-text {
+//       @include fill-parent();
+//     }
+//     @include media($phablet) {
+//       .entry-image {
+//         @include span-columns(8);
+//       }
+//       .entry-text {
+//         @include span-columns(4);
+//       }
+//     }
+//     margin-bottom: 2.5em;
+//     img {
+//       width:100%;
+//       height: auto;
+//     }
+//     a {
+//       text-decoration: none;
+//       h2 {
+//         color: black;
+//         font-size: 1.5em;
+//         text-transform: none;
+//         text-align: left;
+//         &:hover {
+//           color: black;
+//         }
+//       }
+//       &:hover h2{
+//         text-decoration: underline;
+//       }
 
-      p {
-        color: $base-font-color;
-        padding: 0;
-        font-size: 1em;
-      }
-      @include media($tablet) {
-        p {
-          font-size: 1.2em;
-        }
-        h2 {
-          font-size: 1.8em;
-        }
-      }
-    }
-  }
-}
+//       p {
+//         color: $base-font-color;
+//         padding: 0;
+//         font-size: 1em;
+//       }
+//       @include media($tablet) {
+//         p {
+//           font-size: 1.2em;
+//         }
+//         h2 {
+//           font-size: 1.8em;
+//         }
+//       }
+//     }
+//   }
+// }

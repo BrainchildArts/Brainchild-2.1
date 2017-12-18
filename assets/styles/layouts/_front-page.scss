@@ -1,4 +1,10 @@
 .home {
+  h2.scatterText {
+    font-size: 2em;
+    @include media($phablet) {
+      font-size: 3em;
+    }
+  }
   .main-section {
     &#about {
       padding-top: 2em;
@@ -13,6 +19,9 @@
         margin-top: 1em;
         p {
           text-align: left;
+        }
+        h2 {
+          font-size: 2.3em;
         }
       }
       .images {
@@ -127,9 +136,6 @@ section#gallery {
     width: 50%;
     padding: 5px;
     @include omega();
-    &:nth-of-type(3) {
-      @include span-columns(12);
-    }
   }
   img {
     display: block;

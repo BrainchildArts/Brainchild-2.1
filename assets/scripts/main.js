@@ -184,7 +184,7 @@
           var $pswp = $('.pswp')[0];
           var image = [];
 
-          $('.gallery-theme--default').each( function() {
+          $('.gallery-theme--default, .gallery-theme--blocks').each( function() {
               var $pics     = $(this),
                   getItems = function() {
                       var items = [];
@@ -305,15 +305,15 @@
         var allReveals = $('.reveal');
         $('.reveal-button').bind('click', function(e){
           if ($(this).parent().hasClass('is-expanded')) {
-            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
-            $(this).parent().find('.reveal').toggleClass('vhs-fade');
+            $(this).parent().next('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parent().next('.reveal').toggleClass('vhs-fade');
             $(this).parent().toggleClass('is-expanded');
           } else {
             allReveals.hide();
             allReveals.parent().removeClass('is-expanded');
             allReveals.removeClass('vhs-fade');
-            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
-            $(this).parent().find('.reveal').toggleClass('vhs-fade');
+            $(this).parent().next('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parent().next('.reveal').toggleClass('vhs-fade');
             $(this).parent().toggleClass('is-expanded');
           }
           e.preventDefault();

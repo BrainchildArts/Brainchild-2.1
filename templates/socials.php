@@ -17,7 +17,7 @@
 
 
     <li class='social__icon splash__content'>
-      <a href="#mc_embed_signup" title="Sign up to our newsletter" data-featherlight="#mc_embed_signup" class="social__email">
+      <a href="#" title="Sign up to our newsletter" data-featherlight="#mc_embed_signup" class="social__email">
         <img class='splash__content splash-content' src='<?php bloginfo('template_directory'); ?>/dist/images/social/email.svg'>
       </a>
     </li>

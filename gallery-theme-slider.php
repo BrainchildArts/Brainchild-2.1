@@ -12,7 +12,7 @@
     ?>
 
   <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="gallery-item">
-    <a title="<?php echo esc_attr( $image['title'] ) ?>" data-size="<?php echo esc_attr($fullwidth) ?>x<?php echo esc_attr($fullheight) ?>" href="<?php echo $large_attributes[0]; ?>" data-index="<?php echo $i; ?>">
+    <a title="<?php echo esc_attr( $image['alt'] ) ?>" data-size="<?php echo esc_attr($fullwidth) ?>x<?php echo esc_attr($fullheight) ?>" href="<?php echo $large_attributes[0]; ?>" data-index="<?php echo $i; ?>">
       <img width="<?php echo esc_attr($thumbwidth) ?>" height="<?php echo esc_attr($thumbheight) ?>" <?php my_responsive_image($id, 'gallery_thumb', '1600px' )  ?> alt="<?php echo $image['alt']; ?>">
     </a>
     <figcaption><?php echo $image['caption']; ?></figcaption>

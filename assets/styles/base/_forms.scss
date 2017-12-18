@@ -74,6 +74,13 @@ input[type="file"] {
   width: 100%;
 }
 
+input[type="email"],
+input[type="url"] {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .2em;
+}
+
 select {
   margin-bottom: $base-spacing;
   max-width: 100%;
@@ -114,12 +121,6 @@ textarea {
     min-height: $base-line-height * 8;
 }
 
-label {
-    line-height: $base-line-height;
-    margin-bottom: $base-line-height / 4;
-    display: block;
-}
-
 .error {
     color: red;
     display: block;
@@ -129,4 +130,29 @@ label {
 #mc-embed-signup {
     max-width: 30em;
     margin: auto;
+}
+
+
+.signup-form {
+  background-color: $bc-pink;
+  padding: 3em;
+  margin: auto;
+  h2 {
+    font-size: 1.5em;
+    color: white
+  }
+  .mc-embed-flex {
+    display: flex;
+    justify-content: center;
+    .mc-field-group {
+      width: 100%;
+    }
+    label {
+      display: none;
+    }
+    input {
+      flex: 1;
+      height: 100%;
+    }
+  }
 }

@@ -35,6 +35,7 @@ use Roots\Sage\Wrapper;
       get_template_part('templates/footer');
       wp_footer();
       get_template_part('templates/mailchimp-signup');
+      get_template_part('templates/photoswipe');
     ?>
   </body>
 </html>

@@ -13,6 +13,10 @@ body.woocommerce main {
   }
   ul.products {
     text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
     li.product {
       float: none !important;
       margin-left: 1em;

@@ -1,5 +1,5 @@
-div.gallery.gallery-theme--slider,
-div.gallery.gallery-theme--default {
+div.gallery,
+div.gallery {
   margin: 2em 0;
   a {
     box-shadow: none;
@@ -52,6 +52,29 @@ div.gallery.gallery-theme--default {
     }
     @include media($tablet) {
       width: calc(25% - 10px);
+    }
+    img {
+      max-height: none;
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+.gallery.gallery-theme--blocks {
+  figure {
+    max-height: none;
+    margin: 0;
+  }
+  .gallery-item {
+    margin-bottom: 0px;
+    display: inline-block;
+    width: calc(50% - 5px);
+    @include media($phone) {
+      width: calc(33.333% - 6.666px);
+    }
+    @include media($tablet) {
+      width: calc(50% - 10px);
     }
     img {
       max-height: none;

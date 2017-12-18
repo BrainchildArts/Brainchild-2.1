@@ -1,5 +1,5 @@
 <!-- Begin MailChimp Signup Form -->
-<div id="mc_embed_signup">
+<div id="mc_embed_signup" class="signup-form">
   <form action="//brainchildfestival.us5.list-manage.com/subscribe/post?u=68b0d29fc481af44dddb8cd30&amp;id=ac61af5ccd&amp;SIGNUP=website_popup" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
       <div id="mc_embed_signup_scroll">
     <h2>Keep up to date with occasional updates from us</h2>
