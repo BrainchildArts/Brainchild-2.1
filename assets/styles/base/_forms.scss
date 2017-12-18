@@ -40,7 +40,6 @@ textarea {
   padding: $base-spacing / 3;
   transition: border-color;
   width: 100%;
-  border: 1px solid $bc-orange;
   border-radius: 0;
 
   &:hover {
@@ -86,12 +85,6 @@ select {
   max-width: 100%;
   width: auto;
 }
-
-
-
-
-
-
 
 
 [placeholder]:focus::-webkit-input-placeholder {
@@ -150,9 +143,18 @@ textarea {
     label {
       display: none;
     }
-    input {
-      flex: 1;
+    input[type] {
       height: 100%;
+    }
+    #{$all-text-inputs},
+    select[multiple=multiple],
+    textarea {
+      flex: 1;
+      box-shadow: none;
+      border-color: transparent;
+      &:focus {
+        border-color: $bc-yellow;
+      }
     }
   }
 }
