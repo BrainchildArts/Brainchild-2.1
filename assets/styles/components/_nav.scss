@@ -253,8 +253,8 @@ header.banner {
       }
     }
 
-    &:focus > .submenu,
-    &:hover > .submenu {
+    &:focus > .sub-menu,
+    &:hover > .sub-menu {
       display: block;
     }
 
@@ -264,7 +264,7 @@ header.banner {
     }
   }
 
-  ul.submenu {
+  ul.sub-menu {
     display: none;
     padding-left: 0;
 
@@ -274,7 +274,7 @@ header.banner {
       top: 1.5em;
     }
 
-    .submenu {
+    .sub-menu {
       @include media($horizontal-bar-mode) {
         left: $navigation-submenu-width - 0.2em;
         top: 0;

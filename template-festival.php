@@ -1,3 +1,9 @@
+<?php
+/**
+ * Template Name: Festival Page
+ */
+?>
+
 <section class='splash' id="splash">
   <div class='muted' id='sound'>
     <img class='black' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/note.svg'>
@@ -8,7 +14,7 @@
   <div class='splash__text splash-content content'>
     <img class='logo splash-content' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/bclogo.svg'>
     <h3 class='splash-content'>Festival 2018</h3>
-    <!-- <h2 class='dates splash-content'>Dates TBC</h2> -->
+    <h2 class='dates splash-content scatterText'>13-15 July</h2>
     <h2 class='location splash-content'>East Sussex</h2>
     <div class="mobile-socials"><?php get_template_part('templates/socials') ?></div>
   </div>

@@ -179,6 +179,6 @@ add_action( 'init', 'register_artists', 0 );
 
 
  function front_page_menu_item(){
-   add_menu_page('Front Page', 'Front Page', 'manage_options', '/post.php?post=4&action=edit', '', 'dashicons-welcome-write-blog', 4);
+   add_menu_page('Festival', 'Festival', 'manage_options', '/post.php?post=4&action=edit', '', 'dashicons-welcome-write-blog', 4);
  }
  add_action('admin_menu','front_page_menu_item');
