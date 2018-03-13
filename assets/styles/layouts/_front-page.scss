@@ -17,22 +17,35 @@
       }
       .images {
         z-index: -1;
-        overflow: hidden;
+        overflow: visible;
       }
       img.left {
-        top: 2%;
-        left: -250px;
+        top: 8vh;
+        left: -10%;
         position: absolute;
-        transform: rotate(2deg);
-        height: 90%;
+        width: 29%;
+        min-width: 220px;
+        @include media($phablet) {
+          left: 2%;
+        }
+      }
+      img.left--gap {
+        left: -5%;
+        top: 95%;
+        transform: rotate(195deg);
+        position: absolute;
+        min-width: 110px;
+        max-width: 39%;
+        height: 170vh;
       }
       img.right {
-        top: 7%;
-        right: -20%;
+        top: -1%;
+        right: -2%;
         position: absolute;
-        transform: rotate(-70deg);
-        width: 68%;
+        transform: rotate(26deg);
+        height: 117vh;
         min-width: 22em;
+        max-width: 55%;
       }
     }
     &#highlight {
@@ -43,13 +56,18 @@
     }
     &#volunteering {
     }
-    background-color: white;
   }
 }
 
 section#bc-words {
   >p {
     text-align: center;
+  }
+}
+
+section#lineup {
+  .main-section__text {
+    columns: 1;
   }
 }
 
@@ -72,6 +90,14 @@ section#volunteer {
 
 section#tickets {
   text-align: center;
+  img.decor-image.blue {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 95%;
+    max-width: 1000px;
+    transform: rotate(-23deg);
+  }
   .tickets__links {
     text-align: center;
   }

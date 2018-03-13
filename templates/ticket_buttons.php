@@ -12,7 +12,7 @@
 
       <?php if( $status == 'Active' ){ ?>
 
-        <div class="active-tier"><a class="cta button ticket-link" href="http://buytickets.at/brainchildfestival/80298/r/website" target="_blank"><?php echo $text ?></a></div>
+        <div class="active-tier"><a class="cta button ticket-link" href="http://buytickets.at/brainchildfestival/140274/r/website" target="_blank"><?php echo $text ?></a></div>
 
       <?php } elseif ( $status == 'Inactive' ) { ?>
 

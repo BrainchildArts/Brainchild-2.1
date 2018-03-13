@@ -1,0 +1,18 @@
+.decor-image-container {
+  z-index: -1;
+  overflow: visible;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+img.decor-image,
+svg.decor-image,
+.decor-image {
+  position: absolute;
+  user-select: none;
+  max-height: none;
+  max-width: none;
+}

@@ -44,7 +44,8 @@
         "assets/scripts/vendor/masonry.pkgd.min.js",
         "assets/scripts/vendor/photoswipe.min.js",
         "assets/scripts/vendor/photoswipe-ui-default.min.js",
-        "assets/scripts/vendor/flickity.pkgd.min.js"
+        "assets/scripts/vendor/flickity.pkgd.min.js",
+        "assets/scripts/vendor/jquery.stellar.min.js"
       ]
     },
     "jquery.js": {
@@ -52,6 +53,6 @@
     }
   },
   "config": {
-    "devUrl": "brainchildfestival.dev"
+    "devUrl": "brainchildfestival.test"
   }
 }

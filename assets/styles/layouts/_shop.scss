@@ -13,11 +13,21 @@ body.woocommerce main {
   }
   ul.products {
     text-align: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
     li.product {
       float: none !important;
       margin-left: 1em;
       margin-right: 1em;
       display: inline-block;
+      @media screen and (max-width: 768px) {
+        width: 40%;
+      }
+      @media screen and (max-width: 350px) {
+        width: 75%;
+      }
     }
   }
   p {
@@ -79,6 +89,9 @@ body.woocommerce.single-product {
   .woocommerce-tabs {
     ul.tabs li {
       border-radius: 1px;
+      a {
+        @extend %nolinkstyle;
+      }
     }
   }
   form.cart .variations select {

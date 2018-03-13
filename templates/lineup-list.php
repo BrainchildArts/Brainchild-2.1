@@ -1,4 +1,4 @@
-<ul class="filter-tabs">
+<!-- <ul class="filter-tabs">
   <li class="active">
     <a class="filter" onclick="return false;" href="#" data-filter="all">All</a>
   </li>
@@ -17,7 +17,7 @@
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-comedy">Comedy</a>
   </li>
-</ul>
+</ul> -->
 
 <div class="artist__grid">
 
@@ -27,6 +27,7 @@ $lineupargs = array (
   'nopaging'      => true,
   'orderby'       => 'name',
   'tag__not_in' => array( 63 ),
+  'category_name' => '2018-lineup',
   'order'         => 'ASC'
 );
 // The Query
@@ -55,6 +56,7 @@ while ($lineup->have_posts()) : $lineup->the_post(); ?>
     'nopaging'      => true,
     'orderby'       => 'name',
     'tag__not_in'   => array( 63 ),
+    'category_name' => '2018-lineup',
     'order'         => 'ASC'
   );
   // The Query

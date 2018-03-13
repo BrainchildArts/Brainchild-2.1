@@ -60,10 +60,10 @@
 
 
         function noBackgroundScroll(){
-          $('body').addClass('modal-open');
+          $('body').addClass('noscrolling');
         }
         function restoreBackgroundScroll(){
-          $('body').removeClass('modal-open');
+          $('body').removeClass('noscrolling');
         }
 
         $( '.artist__grid .entry-image' ).each(function(index, el) {
@@ -529,9 +529,13 @@
           $(".splash-content").removeClass('vhs-flicker');
         }
 
+
+        $.stellar('#about');
+
         // Smooth Scrolling
 
         $('a[href*="#"]:not([href="#"])').click(function() {
+            console.log('smpoothscroll');
             if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
 
                 var target = $(this.hash);

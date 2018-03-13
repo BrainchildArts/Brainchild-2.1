@@ -227,7 +227,7 @@ gulp.task('images', function() {
     .pipe(imagemin({
       progressive: true,
       interlaced: true,
-      svgoPlugins: [{removeUnknownsAndDefaults: false}, {cleanupIDs: false}]
+      svgoPlugins: [{removeUselessStrokeAndFill: false}, {removeUnknownsAndDefaults: false}, {cleanupIDs: false}]
     }))
     .pipe(gulp.dest(path.dist + 'images'))
     .pipe(browserSync.stream());
