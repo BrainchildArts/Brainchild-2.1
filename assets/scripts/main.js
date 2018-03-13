@@ -40,6 +40,10 @@
             stickyNav();
         });
 
+        //Lazy Load - lozad.js
+        const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+        observer.observe();
+
         // Responsive Menu
         var menuToggle = $('#js-mobile-menu').unbind();
         $('.menu-single-page-navigation-container').removeClass("show");
