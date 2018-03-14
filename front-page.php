@@ -24,9 +24,9 @@
     <?php the_field('welcome_text'); ?>
   </div>
   <div class="images decor-image-container" >
-    <img class="decor-image left--gap" data-stellar-ratio="0.2" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-15-2.svg">
-    <img class="decor-image left" data-stellar-ratio="0.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-22.svg">
-    <img class="decor-image right" data-stellar-ratio="0.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-11.svg">
+    <img class="decor-image left--gap" data-stellar-ratio="1.2" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-15-2.svg">
+    <img class="decor-image left" data-stellar-ratio="1.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-22.svg">
+    <img class="decor-image right" data-stellar-ratio="1.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-11.svg">
   </div>
 </section>
 
@@ -115,6 +115,7 @@
     <?php the_field('faq_text') ?>
   </div>
 </section>
+
 
 
 <section class="main-section getinvolved" id="getinvolved">

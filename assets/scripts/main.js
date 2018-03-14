@@ -64,10 +64,10 @@
 
 
         function noBackgroundScroll(){
-          $('body').addClass('noscrolling');
+          $('body, html').addClass('noscrolling modal-open');
         }
         function restoreBackgroundScroll(){
-          $('body').removeClass('noscrolling');
+          $('body, html').removeClass('noscrolling modal-open');
         }
 
         $( '.artist__grid .entry-image' ).each(function(index, el) {
@@ -369,8 +369,8 @@
                 auto_play: true
               };
 
-          $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-            newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
+          $.get('https://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+            newSoundUrl = 'https://api.soundcloud.com/tracks/'+result.id;
             widget.bind(SC.Widget.Events.READY, function() {
               // load new widget
               widget.load(newSoundUrl, {
@@ -416,8 +416,8 @@
               e.preventDefault();
               var permalink_url = $(this).attr('href');
               $(this).addClass('sc-playing');
-              $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-                  newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
+              $.get('https://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+                  newSoundUrl = 'https://api.soundcloud.com/tracks/'+result.id;
                   widget.bind(SC.Widget.Events.READY, function() {
                     // load new widget
                     widget.load(newSoundUrl, options);
@@ -465,7 +465,7 @@
             // Variables for iFrame code. Width and height from data attributes, else use default.
             var vidWidth = 560; // default
             var vidHeight = 315; // default
-            var iFrameCode = '<iframe width="' + vidWidth + '" height="'+ vidHeight +'" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/'+  queryVars.v +'?autoplay=true&rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>';
+            var iFrameCode = '<iframe width="' + vidWidth + '" height="'+ vidHeight +'" scrolling="no" allowtransparency="true" allowfullscreen="true" src="https://www.youtube.com/embed/'+  queryVars.v +'?autoplay=true&rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>';
 
 
             $.featherlight(iFrameCode);
@@ -534,12 +534,11 @@
         }
 
 
-        $.stellar('#about');
+        // $.stellar('main.main');
 
         // Smooth Scrolling
 
         $('a[href*="#"]:not([href="#"])').click(function() {
-            console.log('smpoothscroll');
             if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
 
                 var target = $(this.hash);

@@ -26,12 +26,15 @@ div.gallery.gallery-theme--default {
   padding-bottom: 2em;
   figure {
     max-height: none;
-    margin: 0;
+    margin: 0 .5em;
   }
   .gallery-item img {
     max-height: none;
     display: block;
     height: 200px;
+    @include media($phone) {
+      height: 300px;
+    }
     @include media($tablet) {
       height: 400px;
     }

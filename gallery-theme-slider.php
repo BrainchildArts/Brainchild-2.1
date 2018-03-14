@@ -22,8 +22,6 @@
   <?php endforeach; ?>
 </div>
 
-<?php get_template_part('templates/photoswipe'); ?>
-
 <?php
 //// Codes you can use in your gallery theme files (inside the loop):
 /*

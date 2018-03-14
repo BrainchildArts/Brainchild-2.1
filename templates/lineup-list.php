@@ -64,7 +64,7 @@ while ($lineup->have_posts()) : $lineup->the_post(); ?>
 
   // The Loop
   while ($lineup->have_posts()) : $lineup->the_post();
-    get_template_part('templates/content-lineup', get_post_type() != 'post' ? get_post_type() : get_post_format());
+    get_template_part('templates/content-lineup-overlay', get_post_type() != 'post' ? get_post_type() : get_post_format());
     endwhile;?>
 
 </div>
