@@ -31,6 +31,9 @@ use Roots\Sage\Wrapper;
       </div><!-- /.content -->
     </div><!-- /.wrap -->
     <?php
+    if (is_single()) {
+      get_template_part('templates/ticketfooter');
+    }
       do_action('get_footer');
       get_template_part('templates/footer');
       get_template_part('templates/player');

@@ -20,6 +20,17 @@
       init: function() {
         // JavaScript to be fired on all pages
 
+        //Lazy Load
+        const observer = lozad('.lazyload', {
+          load: function(el) {
+            el.src = el.dataset.src;
+            el.onload = function() {
+                el.classList.add('fadein');
+            };
+          }
+        });
+        observer.observe();
+
 
         //Sticky Nav
         var stickyNavTop = $('header.banner').offset().top;
@@ -39,10 +50,6 @@
         $(window).scroll(function() {
             stickyNav();
         });
-
-        //Lazy Load - lozad.js
-        const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-        observer.observe();
 
         // Responsive Menu
         var menuToggle = $('#js-mobile-menu').unbind();
@@ -75,7 +82,7 @@
           var min_x = 0;
           var max_x = $(window).width() - $(this).width();
           var min_y = 0 - $(this).height();
-          var max_y = $('.artist__grid').outerHeight() - $(this).height();
+          var max_y = $(window).height() - $(this).height();
 
 
           var check_overlap = function (area,check_area) {
@@ -139,6 +146,11 @@
             afterOpen: function() {
               noBackgroundScroll();
             },
+            afterContent: function() {
+              const modalImage = $('.featherlight .lazyload')[0];
+              console.log(modalImage);
+              observer.triggerLoad(modalImage);
+            },
             beforeClose: function() {
               restoreBackgroundScroll();
             }
@@ -159,6 +171,7 @@
             galleryFadeIn: 1400,
             afterOpen: function() {
               noBackgroundScroll();
+
             },
             beforeClose: function() {
               restoreBackgroundScroll();
@@ -308,17 +321,17 @@
 
         var allReveals = $('.reveal');
         $('.reveal-button').bind('click', function(e){
-          if ($(this).parent().hasClass('is-expanded')) {
-            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
-            $(this).parent().find('.reveal').toggleClass('vhs-fade');
-            $(this).parent().toggleClass('is-expanded');
+          if ($(this).parents('.faq__item').hasClass('is-expanded')) {
+            $(this).parents('.faq__item').find('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parents('.faq__item').find('.reveal').toggleClass('vhs-fade');
+            $(this).parents('.faq__item').toggleClass('is-expanded');
           } else {
-            allReveals.hide();
-            allReveals.parent().removeClass('is-expanded');
-            allReveals.removeClass('vhs-fade');
-            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
-            $(this).parent().find('.reveal').toggleClass('vhs-fade');
-            $(this).parent().toggleClass('is-expanded');
+            $(this).parents('.faq__item').siblings('.faq__item').find('.reveal').hide();
+            $(this).parents('.faq__item').siblings('.faq__item').removeClass('is-expanded');
+            $(this).parents('.faq__item').siblings('.faq__item').find('.reveal').removeClass('vhs-fade');
+            $(this).parents('.faq__item').find('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parents('.faq__item').find('.reveal').toggleClass('vhs-fade');
+            $(this).parents('.faq__item').toggleClass('is-expanded');
           }
           e.preventDefault();
         });

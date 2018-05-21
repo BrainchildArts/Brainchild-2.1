@@ -34,7 +34,7 @@
 
     if( $status == 'Volunteer' ){ ?>
 
-      <div class="active-tier volunteer"><a class="button cta volunteer-link" href="#volunteering"><?php echo $text ?></a></div>
+<!--       <div class="active-tier volunteer"><a class="button cta volunteer-link" href="#volunteering"><?php // echo $text ?></a></div> -->
 
 
     <?php }; ?>

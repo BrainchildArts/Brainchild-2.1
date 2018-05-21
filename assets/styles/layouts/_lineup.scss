@@ -25,11 +25,12 @@
     .entry-image {
       visibility: hidden;
       display: inline-block;
-      position: absolute;
+      position: fixed;
       background: white;
-      width: 15em;
+      width: 12em;
       img {
         opacity: .8;
+        width: 100%;
         filter: grayscale(100%);
       }
       &.show {

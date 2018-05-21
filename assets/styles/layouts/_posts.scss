@@ -50,12 +50,10 @@
 
 
     .featured-img {
-      @include fill-parent();
+      width: 100%;
       display: block;
       margin: 0 auto 1.5em;
       overflow: hidden;
-      object-fit: cover;
-      max-height: 50vh;
     }
 
     blockquote {
@@ -97,4 +95,8 @@
     font-style: italic;
   }
   margin-bottom: 0;
+}
+
+.entry-content iframe {
+  max-width: 100%;
 }

@@ -44,7 +44,7 @@ p {
 }
 
 a {
-  text-decoration:none;
+  text-decoration: none;
   border-bottom: .08em solid $action-color;
   box-shadow: inset 0 -.08em 0 $action-color;
   color: inherit;
@@ -122,6 +122,12 @@ a:focus {
   clear: both;
 }
 
+.cta {
+  &.cta--link {
+    @extend %bluelink;
+  }
+}
+
 /* =Genericons and Dashicons
 -------------------------------------------------------------- */
 @mixin dashicons {
@@ -140,3 +146,55 @@ a:focus {
     vertical-align: middle;
 }
 
+
+
+
+// Link Styles
+
+
+%blacklink {
+  color: black;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    background: none;
+  }
+}
+
+%bluelink {
+  color: $bc-blue;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    background: none;
+  }
+}
+
+%underlinelink {
+  color: black;
+  text-decoration: underline;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    background: none;
+  }
+}
+
+%nolinkstyle {
+  color: inherit;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    background: none;
+    box-shadow: none;
+    outline: none;
+  }
+}

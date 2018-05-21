@@ -72,12 +72,27 @@ section#lineup {
 }
 
 section#faq {
+  h2 {
+    margin-bottom: calc(#{$small-spacing} - 1rem);
+  }
   .expandable {
     max-width: $reading-width;
     margin: auto;
     p {
-      padding: .5em;
       text-align: center;
+    }
+  }
+
+  .faq__item {
+    transition: border-color ease .4s, padding ease .4s;
+    border: 0;
+    border-color: transparent;
+    padding: 1em 1em 0;
+    &.is-expanded {
+      padding: 1em;
+      border: 2px solid $bc-yellow;
+      border-width: 2px 0px;
+      margin: 1.5em;
     }
   }
 }
@@ -106,6 +121,7 @@ section#tickets {
     text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
   }
   .ticket-buttons {
+    margin-bottom: $base-spacing;
     span,.button {
       margin: 0 0.7em 0.7em;
     }
@@ -129,6 +145,33 @@ section#tickets {
         font-size: 1em;
         margin-top: $base-spacing;
       }
+    }
+  }
+  .volunteering {
+    &__or {
+      text-transform: uppercase;
+      font-size: 1em;
+      display: block;
+      padding-top: .5em;
+      margin-bottom: 1em;
+    }
+    h3 {
+      margin-bottom: $base-spacing;
+      .cta {
+        font-size: 1.8em;
+      }
+    }
+    .is-expanded .reveal {
+      border-color: $bc-yellow;
+      max-width: 46em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .reveal {
+      padding: 1.5em 2em;
+      background: white;
+      border: 2px solid transparent;
+      transition: border-color ease .4s, padding ease .4s;
     }
   }
 }

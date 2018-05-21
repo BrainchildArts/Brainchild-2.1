@@ -41,13 +41,26 @@
 
 
 
-  <div class="tickets__links">
+  <?php if (get_field('show_tickets')): ?>
 
-    <?php if (get_field('show_tickets')): ?>
+    <div class="tickets__links">
       <?php get_template_part('templates/ticket_buttons') ?>
-    <?php endif ?>
+    </div>
 
-  </div>
+    <div class="volunteering" id="volunteering">
+      <div class="volunteering__or">Or</div>
+      <div class="faq__item">
+
+        <h3><a href="#" class="cta cta--link reveal-button volunteermodal-link">Volunteer</a></h3>
+
+        <div class="reveal" style="display: none;">
+          <?php the_field('volunteering_text') ?>
+          <a class="volunteerticket-link button cta volunteer-link" href="http://buytickets.at/brainchildfestival/140274/r/website" target="_blank">Buy a Ticket</a>
+        </div>
+      </div>
+    </div>
+  <?php endif ?>
+
 </section>
 
 <section class="main-section" id="lineup">
@@ -115,7 +128,6 @@
     <?php the_field('faq_text') ?>
   </div>
 </section>
-
 
 
 <section class="main-section getinvolved" id="getinvolved">

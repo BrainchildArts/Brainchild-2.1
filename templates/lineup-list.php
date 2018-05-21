@@ -1,4 +1,4 @@
-<!-- <ul class="filter-tabs">
+<ul class="filter-tabs">
   <li class="active">
     <a class="filter" onclick="return false;" href="#" data-filter="all">All</a>
   </li>
@@ -9,15 +9,12 @@
     <a class="filter" onclick="return false;" href="#" data-filter="tag-poetrytheatre">Theatre &amp; Spoken Word</a>
   </li>
   <li>
-    <a class="filter" onclick="return false;" href="#" data-filter="tag-film">Film</a>
-  </li>
-  <li>
-    <a class="filter" onclick="return false;" href="#" data-filter="tag-talksworkshops">Talks &amp; Workshops</a>
+    <a class="filter" onclick="return false;" href="#" data-filter="tag-talksworkshopsfilm">Talks &amp; Workshops</a>
   </li>
   <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-comedy">Comedy</a>
   </li>
-</ul> -->
+</ul>
 
 <div class="artist__grid">
 
@@ -36,7 +33,20 @@ $lineup = new WP_Query( $lineupargs );
 
 while ($lineup->have_posts()) : $lineup->the_post(); ?>
   <div class="entry-image" data-artist="<?php the_ID(); ?>">
-    <?php if ( has_post_thumbnail() ) { the_post_thumbnail('lineup-list');} else {
+    <?php if ( has_post_thumbnail() ) {
+       $class = 'lazyload attachment-lineup-list size-lineup-list';
+
+       //Get thumbnail source
+       $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'lineup-list');
+       $src = $thumb['0'];
+       $width = $thumb['1'];
+       $height = $thumb['2'];
+
+       $placeholder = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+
+       echo '<img src="'.$placeholder.'" data-src="'.$src.'" class="'.$class.'" width="'.$width.'" height="'.$height.'"/>';
+
+    } else {
       echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" alt="" />';
     } ?>
   </div>
@@ -51,16 +61,6 @@ while ($lineup->have_posts()) : $lineup->the_post(); ?>
 <div class="lineup-overlays">
 
   <?php
-  $lineupargs = array (
-    'post_type'     => 'artists',
-    'nopaging'      => true,
-    'orderby'       => 'name',
-    'tag__not_in'   => array( 63 ),
-    'category_name' => '2018-lineup',
-    'order'         => 'ASC'
-  );
-  // The Query
-  $lineup = new WP_Query( $lineupargs );
 
   // The Loop
   while ($lineup->have_posts()) : $lineup->the_post();
