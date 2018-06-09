@@ -139,17 +139,18 @@
             previousIcon: '«',
             nextIcon: '»',
             otherClose: '.lightbox__close span',
-            openSpeed: 0,
-            closeSpeed: 0,
-            galleryFadeOut: 0,
-            galleryFadeIn: 0,
+            openSpeed: 100,
+            closeSpeed: 800,
+            galleryFadeOut: 100,
+            galleryFadeIn: 100,
             afterOpen: function() {
               noBackgroundScroll();
             },
             afterContent: function() {
-              const modalImage = $('.featherlight .lazyload')[0];
-              console.log(modalImage);
-              observer.triggerLoad(modalImage);
+              if ($('.featherlight .lazyload').length > 0) {
+                const modalImage = $('.featherlight .lazyload')[0];
+                observer.triggerLoad(modalImage);
+              }
             },
             beforeClose: function() {
               restoreBackgroundScroll();
@@ -167,8 +168,8 @@
             otherClose: '.lightbox__close span',
             openSpeed: 0,
             closeSpeed: 800,
-            galleryFadeOut: 1300,
-            galleryFadeIn: 1400,
+            galleryFadeOut: 100,
+            galleryFadeIn: 100,
             afterOpen: function() {
               noBackgroundScroll();
 
@@ -434,6 +435,7 @@
                   widget.bind(SC.Widget.Events.READY, function() {
                     // load new widget
                     widget.load(newSoundUrl, options);
+                    widget.play();
                     widget.bind(SC.Widget.Events.PLAY, function() {
                       $(widget_wrap).addClass('active');
                       $(widget_wrap).addClass('show');
@@ -509,20 +511,20 @@
           var ourClass = $(this).data('filter');
 
           // reset the active class on all the buttons
-          $('.artist__grid').children('.entry-title').hide();
+          $('.artist__grid').find('.entry-title').hide();
           $('.filter-tabs li').removeClass('active');
           // update the active state on our clicked button
           $(this).parent().addClass('active');
 
           if( ourClass === 'all') {
             // show all our items
-            $('.artist__grid').children('.entry-title').fadeIn().removeClass('filtered-out');
+            $('.artist__grid').find('.entry-title').fadeIn().removeClass('filtered-out');
           }
           else {
             // hide all elements that don't share ourClass
-            $('.artist__grid').children('.entry-title:not(.' + ourClass + ')').hide().addClass('filtered-out');
+            $('.artist__grid').find('.entry-title:not(.' + ourClass + ')').hide().addClass('filtered-out');
             // show all elements that do share ourClass
-            $('.artist__grid').children('.entry-title.' + ourClass).fadeIn().removeClass('filtered-out');
+            $('.artist__grid').find('.entry-title.' + ourClass).fadeIn().removeClass('filtered-out');
           }
           return false;
         });
@@ -546,24 +548,6 @@
           $(".splash-content").removeClass('vhs-flicker');
         }
 
-
-        // $.stellar('main.main');
-
-        // Smooth Scrolling
-
-        $('a[href*="#"]:not([href="#"])').click(function() {
-            if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-                if (target.length) {
-                  $('html,body').animate({
-                    scrollTop: target.offset().top-100
-                  }, 200, 'easeInOutExpo');
-                return false;
-                }
-            }
-        });
 
 
         function onPlayerReady() {

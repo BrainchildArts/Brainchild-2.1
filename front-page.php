@@ -75,6 +75,68 @@
   <?php endif ?>
 </section>
 
+<section class="installations main-section">
+  <h2 class="scatterText">Installation Artists</h2>
+  <?php if (get_field('installations_text')): ?>
+    <div class="main-section__text"><?php the_field('installations_text'); ?></div>
+  <?php endif ?>
+
+    <div class="artist__grid">
+
+    <?php
+    $lineupargs = array (
+      'post_type'     => 'artists',
+      'orderby'       => 'publish_date',
+      'posts_per_page'=> '5',
+      'category_name' => '2018-lineup',
+      'tag'           => 'installationartist',
+      'order'         => 'ASC'
+    );
+    // The Query
+    $lineup = new WP_Query( $lineupargs ); ?>
+
+
+
+    <?php while ($lineup->have_posts()) : $lineup->the_post(); ?>
+      <article <?php post_class(); ?> data-artist="<?php the_ID(); ?>" <?php echo ($is_track ? 'data-is_track="true"' : null) ?> >
+        <a class="artist-overlay" href="<?php the_permalink(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" data-artist="<?php the_ID(); ?>">
+          <div class="entry-image" data-artist="<?php the_ID(); ?>">
+            <?php if ( has_post_thumbnail() ) { the_post_thumbnail('lineup');} else {
+              echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" />';
+            } ?>
+          </div>
+          <h2 data-artist="<?php the_ID(); ?>" <?php post_class('entry-title'); ?>><?php the_title(); ?></h2>
+        </a>
+      </article>
+      <?php endwhile;?>
+    </div>
+
+
+    <div class="lineup-overlays">
+
+      <?php
+
+      // The Loop
+      while ($lineup->have_posts()) : $lineup->the_post();
+        get_template_part('templates/content-lineup-overlay', get_post_type() != 'post' ? get_post_type() : get_post_format());
+        endwhile;?>
+
+    </div>
+    <?php wp_reset_postdata(); ?>
+
+    <div class="see-more"><a href="/installations">Explore all the installation artists &rarr;</a></div>
+
+
+</section>
+
+<?php if( get_field('highlight_posts') ) : ?>
+  <section class="home__section main-section highlights" id="highlights">
+    <div class="posts">
+    <?php get_template_part('templates/highlights') ?>
+   </div>
+ </section>
+<?php endif; ?>
+
 
 <section class="main-section bc-words" id="bc-words">
   <h2 class="scatterText">Writing</h2>
