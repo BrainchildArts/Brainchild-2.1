@@ -24,9 +24,15 @@
     <?php the_field('welcome_text'); ?>
   </div>
   <div class="images decor-image-container" >
-    <img class="decor-image left--gap" data-stellar-ratio="1.2" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-15-2.svg">
-    <img class="decor-image left" data-stellar-ratio="1.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-22.svg">
-    <img class="decor-image right" data-stellar-ratio="1.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-11.svg">
+    <div class="imageleft--gap">
+      <img class="decor-image" data-stellar-ratio="1.2" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-15-2.svg">
+    </div>
+    <div class="imageleft">
+      <img class="decor-image" data-stellar-ratio="1.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-22.svg">
+    </div>
+    <div class="imageright">
+      <img class="decor-image" data-stellar-ratio="1.4" src="<?php bloginfo('template_directory'); ?>/dist/images/cutouts/cutout-11.svg">
+    </div>
   </div>
 </section>
 
@@ -128,14 +134,6 @@
 
 
 </section>
-
-<?php if( get_field('highlight_posts') ) : ?>
-  <section class="home__section main-section highlights" id="highlights">
-    <div class="posts">
-    <?php get_template_part('templates/highlights') ?>
-   </div>
- </section>
-<?php endif; ?>
 
 
 <section class="main-section bc-words" id="bc-words">

@@ -6,6 +6,7 @@
       margin-top: 0;
       @include media($horizontal-bar-mode) {
         margin-top: 2em;
+        background: white;
       }
       #welcome {
         position: relative;
@@ -16,36 +17,122 @@
         }
       }
       .images {
-        z-index: -1;
+        z-index: 0;
         overflow: visible;
+        .decor-image {
+          position: relative;
+        }
       }
-      img.left {
+      div.imageleft {
         top: 8vh;
         left: -10%;
         position: absolute;
         width: 29%;
         min-width: 220px;
+        animation: move-updown 60s ease-in-out infinite;
+        img {
+          animation: spin 230s linear infinite;
+        }
         @include media($phablet) {
           left: 2%;
         }
       }
-      img.left--gap {
+      div.imageleft--gap {
         left: -5%;
         top: 95%;
         transform: rotate(195deg);
         position: absolute;
-        min-width: 110px;
         max-width: 39%;
-        height: 170vh;
+        img {
+          animation: float 25s ease-in-out infinite;
+          animation-delay: -10s;
+          min-width: 110px;
+          height: 170vh;
+        }
       }
-      img.right {
+      div.imageright {
         top: -1%;
         right: -2%;
         position: absolute;
         transform: rotate(26deg);
-        height: 117vh;
-        min-width: 22em;
-        max-width: 55%;
+        animation: floatimageright 50s ease-in-out infinite;
+        img {
+          height: 117vh;
+          min-width: 22em;
+          max-width: 55vw;
+          animation: whobblereverse 20s ease-in-out infinite;
+          animation-delay: -20s;
+        }
+      }
+
+      @keyframes spin {
+        50% {
+            transform: rotate(180deg)
+        }
+
+        to {
+            transform: rotate(1turn)
+        }
+      }
+      @keyframes whobble {
+        0% {
+          transform: rotate(0deg)
+        }
+        50% {
+            transform: rotate(9deg)
+        }
+
+        to {
+            transform: rotate(0deg)
+        }
+      }
+      @keyframes whobblereverse {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(-5deg);
+        }
+
+        to {
+            transform: rotate(0deg);
+        }
+      }
+      @keyframes float {
+        0% {
+          transform: translate(0px, 0px)
+        }
+        50% {
+            transform: translate(-16px, 12px)
+        }
+
+        to {
+            transform: translate(0px, 0px)
+        }
+      }
+      @keyframes floatimageright {
+        0% {
+          transform: translate(0px, 0px) rotate(26deg)
+        }
+        50% {
+            transform: translate(3px, -40px) rotate(26deg);
+        }
+
+        to {
+            transform: translate(0px, 0px) rotate(26deg);
+        }
+      }
+      @keyframes move-updown {
+        0% {
+          transform: translate(0px, 0px)
+        }
+        50% {
+            transform: translate(0px, 120px)
+        }
+
+        to {
+            transform: translate(0px, 0px)
+        }
       }
     }
     &#highlight {
@@ -248,7 +335,7 @@ section#gallery {
   position: relative;
   height: auto;
   @include media(850px) {
-    height: 70vh;
+    height: 69vh;
   }
   @include media($horizontal-bar-mode) {
     top: $navigation-height;

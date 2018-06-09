@@ -240,17 +240,23 @@
   margin-bottom: $base-spacing;
   >li {
     transition: all ease .2s;
-    text-transform: uppercase;
     display: inline-block;
-    margin: 0 .35em;
-    margin-bottom: 0.2em;
-    padding: 0 .1em;
-    line-height: 1.3;
-    a {
-    }
+    margin: 0 .35em .5em;
+    padding: .2rem .4rem;
+    color: white;
+    font-size: .75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid $bc-blue;
+    color: $bc-blue;
   }
-  >li.active a {
-    font-weight: 600;
+  >li.active,
+  >li:hover {
+    background: $bc-blue;
+    color: white;
+  }
+  a {
+    @extend %nolinkstyle;
   }
 }
 

@@ -11,6 +11,7 @@
     'post_type'     => 'artists',
     'nopaging'      => true,
     'orderby'       => 'name',
+    'category_name' => '2018-lineup',
     'tag'           => 'installationartist',
     'order'         => 'ASC'
   );
