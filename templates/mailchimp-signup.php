@@ -3,7 +3,7 @@
   <form action="//brainchildfestival.us5.list-manage.com/subscribe/post?u=68b0d29fc481af44dddb8cd30&amp;id=ac61af5ccd&amp;SIGNUP=website_popup" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
       <div id="mc_embed_signup_scroll">
     <p>Receive our monthly newsletter – <b>OFFCUTS</b> – a collection of artwork, news and upcoming events we're excited about.</p>
-    <p style="font-size: .8em;">By entering your email below, you agree to receive occasional news and updates from Brainchild</p>
+    <p style="font-size: .8em;">By entering your email below, you agree to receive occasional news and updates from Brainchild.<br>You can unsubscribe at any time.</p>
     <p>
   <div class="mc-field-group">
     <label for="mce-EMAIL">Email Address </label>

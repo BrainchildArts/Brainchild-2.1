@@ -18,8 +18,9 @@
 
 <div class="artist__grid">
 
+
 <?php
-$lineupargs = array (
+$lineupallargs = array (
   'post_type'     => 'artists',
   'nopaging'      => true,
   'orderby'       => 'name',
@@ -28,10 +29,10 @@ $lineupargs = array (
   'order'         => 'ASC'
 );
 // The Query
-$lineup = new WP_Query( $lineupargs );
+$lineupall = new WP_Query( $lineupallargs );
 
 
-while ($lineup->have_posts()) : $lineup->the_post(); ?>
+while ($lineupall->have_posts()) : $lineupall->the_post(); ?>
   <div class="entry-image" data-artist="<?php the_ID(); ?>">
     <?php if ( has_post_thumbnail() ) {
        $class = 'lazyload attachment-lineup-list size-lineup-list';
@@ -53,6 +54,63 @@ while ($lineup->have_posts()) : $lineup->the_post(); ?>
 <?php endwhile;?>
 
 
+
+  <?php
+
+  // Featured Artists
+  $featuredargs = array (
+    'post_type'     => 'artists',
+    'nopaging'      => true,
+    'meta_key'      => 'featured_order',
+    'orderby'     => 'meta_value_num',
+    'order'         => 'ASC',
+    'tag__not_in' => array( 63 ),
+    'category_name' => '2018-lineup',
+    'meta_query' => array(
+      array(
+        'key' => 'featured_artist',
+        'value'     => '1',
+        'compare'   => '=',
+      )
+    ),
+  );
+  // The Query
+  $featured = new WP_Query( $featuredargs );
+
+if ($featured->have_posts()) { ?>
+  <div class="lineup-featured">
+    <?php while ($featured->have_posts()) : $featured->the_post(); ?>
+      <h2 data-artist="<?php the_ID(); ?>" <?php post_class('entry-title'); ?>><a class="artist-overlay" href="<?php the_permalink(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" data-artist="<?php the_ID(); ?>"><?php the_title(); ?></a></h2>
+    <?php endwhile;?>
+  </div>
+
+<?php } ?>
+
+
+<?php
+$lineupargs = array (
+  'post_type'     => 'artists',
+  'nopaging'      => true,
+  'orderby'       => 'name',
+  'tag__not_in' => array( 63 ),
+  'category_name' => '2018-lineup',
+  'order'         => 'ASC',
+  'meta_query'  => array(
+    'relation' => 'OR',
+    array(
+        'key'     => 'featured_artist',
+        'compare' => 'NOT EXISTS',
+    ),
+    array(
+        'key'     => 'featured_artist',
+        'value'   => '1',
+        'compare' => '!=',
+    ),
+  ),
+);
+// The Query
+$lineup = new WP_Query( $lineupargs ); ?>
+
 <?php while ($lineup->have_posts()) : $lineup->the_post(); ?>
   <h2 data-artist="<?php the_ID(); ?>" <?php post_class('entry-title'); ?>><a class="artist-overlay" href="<?php the_permalink(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" data-artist="<?php the_ID(); ?>"><?php the_title(); ?></a></h2>
   <?php endwhile;?>
@@ -63,7 +121,7 @@ while ($lineup->have_posts()) : $lineup->the_post(); ?>
   <?php
 
   // The Loop
-  while ($lineup->have_posts()) : $lineup->the_post();
+  while ($lineupall->have_posts()) : $lineupall->the_post();
     get_template_part('templates/content-lineup-overlay', get_post_type() != 'post' ? get_post_type() : get_post_format());
     endwhile;?>
 
