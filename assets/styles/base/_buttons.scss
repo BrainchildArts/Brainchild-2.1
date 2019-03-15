@@ -1,7 +1,17 @@
 #{$all-button-inputs},
 button,
 .button {
-  @extend %nolinkstyle;
+  color: inherit;
+  border-bottom: none;
+  box-shadow: none;
+  &:active,
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    background: none;
+    box-shadow: none;
+    outline: none;
+  }
   @include appearance(none);
   background-color: $action-color;
   border: solid 2px rgba(0,0,0,0);

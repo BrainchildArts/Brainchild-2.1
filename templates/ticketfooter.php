@@ -1,12 +1,20 @@
 <?php
-$days = ceil((strtotime("7/7/2017") - time())/(60*60*24));
+
+
+$date1 = new DateTime("2018-07-13");
+$date2 = new DateTime();
+
+$diff = $date2->diff($date1)->format("%r%a");
+
+
 $s='';
-if ($days!=1) {
+if ($diff!=1) {
      $s='s';
 }
-
 ?>
-<aside class="countdown">
-  <span><?php echo $days. " day$s "; ?>to go!</span>
-  <a href="http://buytickets.at/brainchildfestival/80298/r/countdown" target="_blank">Buy Tickets</a>
-</aside>
+<?php if ( $diff >= 1 ): ?>
+  <aside class="countdown">
+    <span><?php echo $diff. " day$s "; ?>to go!</span>
+    <!-- <a href="http://buytickets.at/brainchildfestival/140274/r/websitecountdown" target="_blank">Buy Tickets</a> -->
+  </aside>
+<?php endif ?>

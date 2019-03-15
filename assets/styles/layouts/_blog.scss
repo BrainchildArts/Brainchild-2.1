@@ -4,20 +4,7 @@
     @include span-columns(12);
     @include shift(0);
     @include media($phablet) {
-      @include span-columns(6);
-      &:nth-of-type(2n+3) {
-        @include omega();
-      }
-      &:nth-of-type(1) {
-        @include span-columns(12);
-        .entry-image {
-          @include span-columns(8);
-        }
-        .entry-text {
-          @include span-columns(4);
-          margin-top: 0;
-        }
-      }
+      @include span-columns(4);
     }
 
     .entry-image,
@@ -25,9 +12,9 @@
       @include fill-parent();
     }
     .entry-text {
-      margin-top: 1em;
+      margin-top: .3em;
     }
-    margin-bottom: 1em;
+    margin-bottom: $base-spacing;
     .entry-image {
       background-color: $white;
       overflow: hidden;
@@ -36,6 +23,7 @@
       width: 100%;
       display: block;
       @include transition( all .5s ease );
+      max-width: none;
     }
     a {
       text-decoration: none;
@@ -45,6 +33,7 @@
         text-align: left;
         text-transform: none;
         display: block;
+        margin-bottom: .25em;
         &:hover, &:active, &:focus {
           color: black;
         }

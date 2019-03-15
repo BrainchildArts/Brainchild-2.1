@@ -134,7 +134,7 @@
     $id = (get_the_id());
 
     $args = array (
-    	'category_name'          => 'blog',
+      'category_name'          => 'blog',
       'post__not_in'           => array($post->ID),
       'posts_per_page'         => '3',
     );

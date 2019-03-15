@@ -5,7 +5,7 @@ body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: .03em;
 }
 
@@ -44,16 +44,17 @@ p {
 }
 
 a {
-  text-decoration:none;
-  border-bottom: .08em solid $action-color;
-  box-shadow: inset 0 -.08em 0 $action-color;
+  text-decoration: none;
+  border-bottom: .05em solid $action-color;
+  box-shadow: inset 0 -.07em 0 $action-color;
   color: inherit;
-  transition: background 0.1s cubic-bezier(.33,.66,.66,1);
+  transition: all 0.1s cubic-bezier(.33,.66,.66,1);
 
   &:active,
   &:focus,
   &:hover {
     background: $action-color;
+    color: white;
   }
 
   &:active,
@@ -122,6 +123,12 @@ a:focus {
   clear: both;
 }
 
+.cta {
+  &.cta--link {
+    @extend %bluelink;
+  }
+}
+
 /* =Genericons and Dashicons
 -------------------------------------------------------------- */
 @mixin dashicons {
@@ -140,3 +147,55 @@ a:focus {
     vertical-align: middle;
 }
 
+
+
+
+// Link Styles
+
+
+%blacklink {
+  color: black;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    background: none;
+  }
+}
+
+%bluelink {
+  color: $bc-blue;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    background: none;
+  }
+}
+
+%underlinelink {
+  color: black;
+  text-decoration: underline;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    background: none;
+  }
+}
+
+%nolinkstyle {
+  color: inherit;
+  border-bottom: none;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    background: none;
+    box-shadow: none;
+    outline: none;
+  }
+}

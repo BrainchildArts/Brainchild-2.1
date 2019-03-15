@@ -22,7 +22,6 @@
   <?php endforeach; ?>
 </div>
 
-
 <?php
 //// Codes you can use in your gallery theme files (inside the loop):
 /*

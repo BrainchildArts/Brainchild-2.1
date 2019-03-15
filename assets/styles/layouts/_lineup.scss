@@ -6,40 +6,55 @@
     position: relative;
     h2.entry-title {
       display: inline-block;
+      text-transform: none;
       position: relative;
       overflow: hidden;
-      font-size: 1.3em;
-      margin: 0 0 .25em;
+      font-size: 1.2em;
+      margin: 0;
       text-align: left;
+      line-height: 1.5;
+      font-weight: 400;
       a {
         @extend %blacklink;
+        padding: 0.2em 0.4em;
         &:hover, &:active, &:focus {
           text-decoration: none;
+          background: $bc-blue;
+          color: white;
         }
       }
       &:not(:last-of-type):after {
         content: " / ";
         margin: .5em;
+        font-weight: 700;
+        color: $bc-blue;
       }
     }
     .entry-image {
       visibility: hidden;
       display: inline-block;
-      position: absolute;
+      position: fixed;
       background: white;
-      width: 15em;
+      width: 12em;
       img {
         opacity: .8;
+        width: 100%;
         filter: grayscale(100%);
       }
       &.show {
         visibility: visible;
       }
     }
+    .lineup-featured {
+      h2.entry-title {
+        font-size: 1.6em;
+      }
+      margin-bottom: $base-spacing;
+    }
   }
 
-  h2.entry-title, li a {
-    text-transform: lowercase;
+  li a {
+    text-transform: uppercase;
   }
 
   section {
@@ -131,6 +146,21 @@
   }
 }
 
+.artist__tags {
+  margin-bottom: $small-spacing;
+  text-align: left;
+  span {
+    background: $bc-blue;
+    padding: .2rem .4rem;
+    color: white;
+    margin-right: .5em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 2;
+    text-transform: uppercase;
+  }
+}
+
 .artist__links {
   a {
       @extend %blacklink;
@@ -206,21 +236,27 @@
   list-style: none;
   text-align: center;
   padding: 0;
-  font-size: 1.2em;
-  margin-bottom: $base-spacing * 2;
+  font-size: 1em;
+  margin-bottom: $base-spacing;
   >li {
     transition: all ease .2s;
-    text-transform: uppercase;
     display: inline-block;
-    margin: 0 .35em;
-    margin-bottom: 0.2em;
-    padding: 0 .1em;
-    line-height: 1.3;
-    a {
-    }
+    margin: 0 .35em .5em;
+    padding: .2rem .4rem;
+    color: white;
+    font-size: .75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid $bc-blue;
+    color: $bc-blue;
   }
-  >li.active a {
-    font-weight: 600;
+  >li.active,
+  >li:hover {
+    background: $bc-blue;
+    color: white;
+  }
+  a {
+    @extend %nolinkstyle;
   }
 }
 

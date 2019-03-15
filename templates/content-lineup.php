@@ -2,6 +2,8 @@
 <?php $is_track = get_field('soundcloud_link') ?>
 <?php $is_yt = get_field('youtube_link') ?>
 
+<?php $posttags = get_the_tags(); ?>
+
 <article <?php post_class(); ?> data-artist="<?php the_ID(); ?>" <?php echo ($is_track ? 'data-is_track="true"' : null) ?> >
     <div class="artist__content" id="artist<?php the_ID(); ?>">
       <div class="lightbox__close"><span>close</span></div>
@@ -10,6 +12,14 @@
           echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" />';
         } ?>
       </div>
+      <?php if ($posttags) {
+        echo '<div class="artist__tags">';
+        foreach($posttags as $tag) {
+          echo '<span>' .$tag->name. '</span>';
+        }
+        echo '</div>';
+      }
+      ?>
       <h2 class="entry-title"><?php the_title(); ?></h2>
       <div class="artist__links">
         <?php if ( $is_link ) { ?>

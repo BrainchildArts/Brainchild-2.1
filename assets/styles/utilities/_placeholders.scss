@@ -42,49 +42,11 @@
     list-style: none;
 }
 
-.hide-overflow {
+.hide-overflow,
+.noscrolling {
     overflow: hidden;
 }
 
 .hidden {
   visibility: hidden;
-}
-
-%blacklink {
-  color: black;
-  border-bottom: none;
-  box-shadow: none;
-  &:active,
-  &:focus,
-  &:hover {
-    text-decoration: underline;
-    background: none;
-  }
-}
-
-%underlinelink {
-  color: black;
-  text-decoration: underline;
-  border-bottom: none;
-  box-shadow: none;
-  &:active,
-  &:focus,
-  &:hover {
-    text-decoration: none;
-    background: none;
-  }
-}
-
-%nolinkstyle {
-  color: inherit;
-  border-bottom: none;
-  box-shadow: none;
-  &:active,
-  &:focus,
-  &:hover {
-    text-decoration: none;
-    background: none;
-    box-shadow: none;
-    outline: none;
-  }
 }

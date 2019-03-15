@@ -15,7 +15,6 @@ div.gallery {
     max-height: none;
     margin: 0;
     max-width: none;
-    width: auto;
   }
   figcaption {
     display: none;
@@ -23,15 +22,23 @@ div.gallery {
 }
 
 .gallery.gallery-theme--slider {
+  &.flickity-enabled {
+    img {
+      width: auto;
+    }
+  }
   padding-bottom: 2em;
   figure {
     max-height: none;
-    margin: 0;
+    margin: 0 .5em;
   }
   .gallery-item img {
     max-height: none;
     display: block;
     height: 200px;
+    @include media($phone) {
+      height: 300px;
+    }
     @include media($tablet) {
       height: 400px;
     }
@@ -54,6 +61,7 @@ div.gallery {
       width: calc(25% - 10px);
     }
     img {
+      width: auto;
       max-height: none;
       width: 100%;
       display: block;

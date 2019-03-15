@@ -1,4 +1,4 @@
-<article <?php post_class(); ?> data-artist="<?php the_ID(); ?>" data-mfp-src="#artist<?php the_ID(); ?>" >
+<article <?php post_class(); ?> data-artist="<?php the_ID(); ?>" data-mfp-src="<?php the_permalink(); ?>" >
   <div class="entry-image" data-artist="<?php the_ID(); ?>">
     <?php if ( has_post_thumbnail() ) { the_post_thumbnail('lineup-list');} else {
       echo '<img src="' . trailingslashit( get_template_directory_uri() ) . 'dist/images/contents/default-thumbnail.png' . '" alt="" />';

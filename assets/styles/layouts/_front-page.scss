@@ -12,6 +12,7 @@
       margin-top: 0;
       @include media($horizontal-bar-mode) {
         margin-top: 2em;
+        background: white;
       }
       #welcome {
         position: relative;
@@ -25,23 +26,122 @@
         }
       }
       .images {
-        z-index: -1;
-        overflow: hidden;
+        z-index: 0;
+        overflow: visible;
+        .decor-image {
+          position: relative;
+        }
       }
-      img.left {
-        top: 2%;
-        left: -250px;
+      div.imageleft {
+        top: 8vh;
+        left: -10%;
         position: absolute;
-        transform: rotate(2deg);
-        height: 90%;
+        width: 29%;
+        min-width: 220px;
+        animation: move-updown 60s ease-in-out infinite;
+        img {
+          animation: spin 230s linear infinite;
+        }
+        @include media($phablet) {
+          left: 2%;
+        }
       }
-      img.right {
-        top: 7%;
-        right: -20%;
+      div.imageleft--gap {
+        left: -5%;
+        top: 95%;
+        transform: rotate(195deg);
         position: absolute;
-        transform: rotate(-70deg);
-        width: 68%;
-        min-width: 22em;
+        max-width: 39%;
+        img {
+          animation: float 25s ease-in-out infinite;
+          animation-delay: -10s;
+          min-width: 110px;
+          height: 170vh;
+        }
+      }
+      div.imageright {
+        top: -1%;
+        right: -2%;
+        position: absolute;
+        transform: rotate(26deg);
+        animation: floatimageright 50s ease-in-out infinite;
+        img {
+          height: 117vh;
+          min-width: 22em;
+          max-width: 55vw;
+          animation: whobblereverse 20s ease-in-out infinite;
+          animation-delay: -20s;
+        }
+      }
+
+      @keyframes spin {
+        50% {
+            transform: rotate(180deg)
+        }
+
+        to {
+            transform: rotate(1turn)
+        }
+      }
+      @keyframes whobble {
+        0% {
+          transform: rotate(0deg)
+        }
+        50% {
+            transform: rotate(9deg)
+        }
+
+        to {
+            transform: rotate(0deg)
+        }
+      }
+      @keyframes whobblereverse {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(-5deg);
+        }
+
+        to {
+            transform: rotate(0deg);
+        }
+      }
+      @keyframes float {
+        0% {
+          transform: translate(0px, 0px)
+        }
+        50% {
+            transform: translate(-16px, 12px)
+        }
+
+        to {
+            transform: translate(0px, 0px)
+        }
+      }
+      @keyframes floatimageright {
+        0% {
+          transform: translate(0px, 0px) rotate(26deg)
+        }
+        50% {
+            transform: translate(3px, -40px) rotate(26deg);
+        }
+
+        to {
+            transform: translate(0px, 0px) rotate(26deg);
+        }
+      }
+      @keyframes move-updown {
+        0% {
+          transform: translate(0px, 0px)
+        }
+        50% {
+            transform: translate(0px, 120px)
+        }
+
+        to {
+            transform: translate(0px, 0px)
+        }
       }
     }
     &#highlight {
@@ -52,7 +152,6 @@
     }
     &#volunteering {
     }
-    background-color: white;
   }
 }
 
@@ -62,13 +161,34 @@ section#bc-words {
   }
 }
 
+section#lineup {
+  .main-section__text {
+    columns: 1;
+  }
+}
+
 section#faq {
+  h2 {
+    margin-bottom: calc(#{$small-spacing} - 1rem);
+  }
   .expandable {
     max-width: $reading-width;
     margin: auto;
     p {
-      padding: .5em;
       text-align: center;
+    }
+  }
+
+  .faq__item {
+    transition: border-color ease .4s, padding ease .4s;
+    border: 0;
+    border-color: transparent;
+    padding: 1em 1em 0;
+    &.is-expanded {
+      padding: 1em;
+      border: 2px solid $bc-yellow;
+      border-width: 2px 0px;
+      margin: 1.5em;
     }
   }
 }
@@ -81,6 +201,14 @@ section#volunteer {
 
 section#tickets {
   text-align: center;
+  img.decor-image.blue {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 95%;
+    max-width: 1000px;
+    transform: rotate(-23deg);
+  }
   .tickets__links {
     text-align: center;
   }
@@ -89,6 +217,7 @@ section#tickets {
     text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
   }
   .ticket-buttons {
+    margin-bottom: $base-spacing;
     span,.button {
       margin: 0 0.7em 0.7em;
     }
@@ -112,6 +241,33 @@ section#tickets {
         font-size: 1em;
         margin-top: $base-spacing;
       }
+    }
+  }
+  .volunteering {
+    &__or {
+      text-transform: uppercase;
+      font-size: 1em;
+      display: block;
+      padding-top: .5em;
+      margin-bottom: 1em;
+    }
+    h3 {
+      margin-bottom: $base-spacing;
+      .cta {
+        font-size: 1.8em;
+      }
+    }
+    .is-expanded .reveal {
+      border-color: $bc-yellow;
+      max-width: 46em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .reveal {
+      padding: 1.5em 2em;
+      background: white;
+      border: 2px solid transparent;
+      transition: border-color ease .4s, padding ease .4s;
     }
   }
 }
@@ -185,7 +341,7 @@ section#gallery {
   position: relative;
   height: auto;
   @include media(850px) {
-    height: 70vh;
+    height: 69vh;
   }
   @include media($horizontal-bar-mode) {
     top: $navigation-height;
