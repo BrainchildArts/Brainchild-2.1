@@ -605,14 +605,12 @@
           $('#video_background').YTPlayer({
             fitToBackground: false,
             width: $('#splash').width(),
-            videoId: '5XXNLVT8_zc',
+            videoId: 'R_VEdd29meY',
             playerVars: {
               mute: true,
               rel: 0,
               showinfo: 0,
-              setPlaybackQuality: 'hd720',
-              suggestedQuality: 'hd720',
-              start: '11'
+              start: '9'
             },
             events: {
               'onReady': onPlayerReady

@@ -12,6 +12,9 @@
     <a class="filter" onclick="return false;" href="#" data-filter="tag-talksworkshopsfilm">Talks &amp; Workshops</a>
   </li>
   <li>
+    <a class="filter" onclick="return false;" href="#" data-filter="tag-film">Film</a>
+  </li>
+  <li>
     <a class="filter" onclick="return false;" href="#" data-filter="tag-comedy">Comedy</a>
   </li>
 </ul>

@@ -7,8 +7,8 @@
   <div id="video_background" class="headervideo responsive"></div>
   <div class='splash__text splash-content content'>
     <img class='logo splash-content' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/bclogo.svg'>
-    <h3 class='splash-content'>Festival 2018</h3>
-    <h2 class='dates splash-content scatterText'>13-15 July</h2>
+    <h3 class='splash-content'>Festival 2019</h3>
+    <h2 class='dates splash-content scatterText'>12-14 July</h2>
     <h2 class='location splash-content'>East Sussex</h2>
     <div class="mobile-socials"><?php get_template_part('templates/socials') ?></div>
   </div>
@@ -73,7 +73,7 @@
   <h2 class="scatterText">Lineup</h2>
   <div class="main-section__text"><?php the_field('lineup_text'); ?></div>
 
-  <?php get_template_part('templates/lineup-list') ?>
+  <?php // get_template_part('templates/lineup-list') ?>
 
 
   <?php if (get_field('lineup_text_2')): ?>
@@ -81,6 +81,9 @@
   <?php endif ?>
 </section>
 
+
+<?php
+/*
 <section class="installations main-section">
   <h2 class="scatterText">Installation Artists</h2>
   <?php if (get_field('installations_text')): ?>
@@ -134,6 +137,9 @@
 
 
 </section>
+
+*/
+?>
 
 
 <section class="main-section bc-words" id="bc-words">

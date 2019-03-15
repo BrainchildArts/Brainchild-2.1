@@ -15,6 +15,6 @@ if ($diff!=1) {
 <?php if ( $diff >= 1 ): ?>
   <aside class="countdown">
     <span><?php echo $diff. " day$s "; ?>to go!</span>
-    <a href="http://buytickets.at/brainchildfestival/140274/r/websitecountdown" target="_blank">Buy Tickets</a>
+    <!-- <a href="http://buytickets.at/brainchildfestival/140274/r/websitecountdown" target="_blank">Buy Tickets</a> -->
   </aside>
 <?php endif ?>

@@ -22,6 +22,11 @@ div.gallery.gallery-theme--default {
 }
 
 .gallery.gallery-theme--slider {
+  &.flickity-enabled {
+    img {
+      width: auto;
+    }
+  }
   padding-bottom: 2em;
   figure {
     max-height: none;
