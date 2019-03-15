@@ -55,3 +55,11 @@ main.main {
     opacity: 1;
   }
 }
+
+//Make linked to sections on the page have padding to account for the nav
+.main-section[id]:target:before {
+    content: "";
+    display: block;
+    height: $navigation-height + 1em;
+    margin: -($navigation-height + 1em) 0 0;
+}

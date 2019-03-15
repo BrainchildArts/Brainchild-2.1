@@ -15,7 +15,6 @@ div.gallery.gallery-theme--default {
     max-height: none;
     margin: 0;
     max-width: none;
-    width: auto;
   }
   figcaption {
     display: none;
@@ -23,6 +22,11 @@ div.gallery.gallery-theme--default {
 }
 
 .gallery.gallery-theme--slider {
+  &.flickity-enabled {
+    img {
+      width: auto;
+    }
+  }
   padding-bottom: 2em;
   figure {
     max-height: none;
@@ -57,6 +61,7 @@ div.gallery.gallery-theme--default {
       width: calc(25% - 10px);
     }
     img {
+      width: auto;
       max-height: none;
       width: 100%;
       display: block;

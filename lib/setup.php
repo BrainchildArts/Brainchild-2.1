@@ -43,6 +43,8 @@ function setup() {
 
     add_image_size( 'gallery', 1800, 1013, true); // used in Gallery Ratio 16:9
 
+    add_image_size( 'gallery_thumb', 600, 338, true); // used in Gallery Ratio 16:9
+
     add_image_size( 'large-3-2', 750, 500, true);
 
     add_image_size( 'lineup', 750, 750, false);

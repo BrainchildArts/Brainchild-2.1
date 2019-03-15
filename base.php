@@ -36,7 +36,7 @@ use Roots\Sage\Wrapper;
     }
       do_action('get_footer');
       get_template_part('templates/footer');
-      get_template_part('templates/player');
+      // get_template_part('templates/player');
       get_template_part('templates/photoswipe');
       get_template_part('templates/mailchimp-signup');
       wp_footer();
