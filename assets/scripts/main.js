@@ -107,14 +107,17 @@
               var area;
               var artist = $(this).data('artist');
               var thingel = $('.entry-title[data-artist="'+artist+'"]');
-              var check_area = {x: thingel.position().left, y: thingel.position().top, width: thingel.width(), height: thingel.height()};
-              do {
-                  rand_x = Math.random() * (max_x - 0) + 0;
-                  rand_y = Math.random() * (max_y - 0) + 0;
-                  area = {x: rand_x, y: rand_y, width: $(this).width(), height: $(this).height()};
-              } while(check_overlap(area,check_area));
+              if (thingel.length) {
+                var check_area = {x: thingel.position().left, y: thingel.position().top, width: thingel.width(), height: thingel.height()};
 
-              $(this).css({left:rand_x, top: rand_y});
+                do {
+                    rand_x = Math.random() * (max_x - 0) + 0;
+                    rand_y = Math.random() * (max_y - 0) + 0;
+                    area = {x: rand_x, y: rand_y, width: $(this).width(), height: $(this).height()};
+                } while(check_overlap(area,check_area));
+
+                $(this).css({left:rand_x, top: rand_y});
+              }
           });
 
 
@@ -490,21 +493,16 @@
 
 
         $(".ticket-link").on("click", function() {
-          mixpanel.track("Click on Ticket Link");
           ga('send', 'event', 'Clicks', 'click', 'Ticket Link');
         });
 
         $(".volunteerticket-link").on("click", function() {
-          mixpanel.track("Click on Volunteer Ticket Link");
           ga('send', 'event', 'Clicks', 'click', 'Volunteer Ticket Link');
         });
 
         $(".volunteermodal-link").on("click", function() {
-          mixpanel.track("Click on Volunteer modal Link");
           ga('send', 'event', 'Clicks', 'click', 'Volunteer modal Link');
         });
-
-        $.scrollDepth({labelPrefix:"Scroll: "});
 
         $('#lineup .filter').click(function() {
           // fetch the class of the clicked item

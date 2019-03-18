@@ -28,7 +28,6 @@ $lineupallargs = array (
   'nopaging'      => true,
   'orderby'       => 'name',
   'tag__not_in' => array( 63 ),
-  'category_name' => '2018-lineup',
   'order'         => 'ASC'
 );
 // The Query
@@ -68,7 +67,7 @@ while ($lineupall->have_posts()) : $lineupall->the_post(); ?>
     'orderby'     => 'meta_value_num',
     'order'         => 'ASC',
     'tag__not_in' => array( 63 ),
-    'category_name' => '2018-lineup',
+    // 'category_name' => '2018-lineup',
     'meta_query' => array(
       array(
         'key' => 'featured_artist',
@@ -96,7 +95,7 @@ $lineupargs = array (
   'nopaging'      => true,
   'orderby'       => 'name',
   'tag__not_in' => array( 63 ),
-  'category_name' => '2018-lineup',
+  // 'category_name' => '2018-lineup',
   'order'         => 'ASC',
   'meta_query'  => array(
     'relation' => 'OR',
