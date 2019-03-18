@@ -42,14 +42,14 @@
     list-style: none;
 }
 
-.hide-overflow,
-.noscrolling {
+.hide-overflow {
     overflow: hidden;
 }
 
 .hidden {
   visibility: hidden;
 }
+
 %blacklink {
   color: black;
   border-bottom: none;

@@ -75,10 +75,12 @@
 
   <?php // get_template_part('templates/lineup-list') ?>
 
+
   <?php if (get_field('lineup_text_2')): ?>
     <div class="main-section__text center"><?php the_field('lineup_text_2'); ?></div>
   <?php endif ?>
 </section>
+
 
 <?php
 /*
@@ -139,6 +141,7 @@
 */
 ?>
 
+
 <section class="main-section bc-words" id="bc-words">
   <h2 class="scatterText">Writing</h2>
   <div class="bc-words__posts blog-feed">
@@ -191,6 +194,7 @@
     <?php the_field('faq_text') ?>
   </div>
 </section>
+
 
 <section class="main-section getinvolved" id="getinvolved">
   <h2 class="scatterText">Get In Touch</h2>

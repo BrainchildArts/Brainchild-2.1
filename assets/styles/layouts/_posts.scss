@@ -8,6 +8,10 @@
     .header__content {
       margin-bottom: $base-spacing;
       @include pad(0 5%);
+      @include media($phablet) {
+        @include span-columns(8);
+        @include shift(2);
+      }
       .entry-title {
         font-weight: 500;
         text-align: left;
@@ -35,6 +39,7 @@
       margin-bottom: 2.5em;
       img {
           display: block;
+          margin: 0 auto;
           max-height: 80vh;
           width: auto;
       }
@@ -45,23 +50,25 @@
 
 
     .featured-img {
-      width: 100%;
+      @include fill-parent();
       display: block;
       margin: 0 auto 1.5em;
       overflow: hidden;
+      object-fit: cover;
+      max-height: 50vh;
     }
 
     blockquote {
+      @include media($tablet) {
+        @include shift(-2);
+        @include span-columns(14);
+      }
+      text-decoration: underline;
       margin: 1em .8em;
     }
 
     blockquote {
-      font-style: $base-font-size*1.4;
-
-      @include media($tablet) {
-        font-size: $base-font-size*1.8;
-      }
-
+      font-size: $base-font-size*1.8;
       p {
         padding: 0;
       }
@@ -90,8 +97,4 @@
     font-style: italic;
   }
   margin-bottom: 0;
-}
-
-.entry-content iframe {
-  max-width: 100%;
 }

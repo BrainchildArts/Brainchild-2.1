@@ -1,10 +1,24 @@
-.blog-feed {
-  @include outer-container;
+.bc-words {
+  &__posts {
+    @include outer-container;
+  }
+  .bc-words-allposts {
+  }
   article.hentry.category-blog {
     @include span-columns(12);
     @include shift(0);
     @include media($phablet) {
-      @include span-columns(4);
+      @include span-columns(6);
+      &:nth-of-type(1) {
+        @include span-columns(12);
+        .entry-image {
+          @include span-columns(8);
+        }
+        .entry-text {
+          @include span-columns(4);
+          margin-top: 0;
+        }
+      }
     }
 
     .entry-image,
@@ -12,18 +26,27 @@
       @include fill-parent();
     }
     .entry-text {
-      margin-top: .3em;
+      margin-top: 1em;
     }
-    margin-bottom: $base-spacing;
+    margin-bottom: 1em;
     .entry-image {
       background-color: $white;
+      @include aspect-ratio(3,2);
       overflow: hidden;
     }
     img {
       width: 100%;
       display: block;
       @include transition( all .5s ease );
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      object-fit: cover;
+      object-position: 50% 50%;
       max-width: none;
+      width: auto;
     }
     a {
       text-decoration: none;
@@ -33,7 +56,6 @@
         text-align: left;
         text-transform: none;
         display: block;
-        margin-bottom: .25em;
         &:hover, &:active, &:focus {
           color: black;
         }

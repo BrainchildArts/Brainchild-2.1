@@ -1,12 +1,12 @@
 .featherlight, .featherlight:last-of-type {
-  background: rgba(128, 128, 128, 0.1);;
+  background: rgba(255,255,255,.95);
   animation: .6s ease-out 0s 1 background;
   @keyframes background {
     0% {
-      background: rgba(128, 128, 128, 0);;
+      background: rgba(255,255,255,0);
     }
     100% {
-      background: rgba(128, 128, 128, 0.1);;
+      background: rgba(255,255,255,.95);
     }
   }
   .featherlight-content {
@@ -19,11 +19,11 @@
   overflow-y: scroll;
   .featherlight-content {
     width: 100%;
-    margin: 0 0 $large-spacing;
+    margin: 0;
     height: 100%;
     @include media($phablet) {
       top: 100%;
-      width: 50em;
+      width: 40em;
       max-width: 100%;
       height: auto;
     }
@@ -57,8 +57,6 @@
     span {
       cursor: pointer;
       line-height: 40px;
-      font-size: 1.2em;
-      color: $bc-blue;
       font-weight: 500;
     }
   }
@@ -78,7 +76,7 @@
     top: 0px;
     span {
       position: static;
-      color: $bc-blue;
+      color: black;
       display: inline-block;
       font-size: 30px;
       top: auto;
@@ -91,20 +89,13 @@
     }
   }
   .featherlight-inner {
-    max-width: 45em;
+    max-width: 35em;
     margin: auto;
-  }
-  .entry-content {
-    padding: 0;
-  }
-  p {
-    max-width: none;
   }
   .entry-image {
     margin: auto;
     text-align: center;
     margin-bottom: $base-spacing;
-    margin-top: $base-spacing;
     min-height: 12em;
     img {
       width: auto;

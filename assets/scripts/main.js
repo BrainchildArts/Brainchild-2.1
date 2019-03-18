@@ -20,17 +20,6 @@
       init: function() {
         // JavaScript to be fired on all pages
 
-        //Lazy Load
-        const observer = lozad('.lazyload', {
-          load: function(el) {
-            el.src = el.dataset.src;
-            el.onload = function() {
-                el.classList.add('fadein');
-            };
-          }
-        });
-        observer.observe();
-
 
         //Sticky Nav
         var stickyNavTop = $('header.banner').offset().top;
@@ -71,10 +60,10 @@
 
 
         function noBackgroundScroll(){
-          $('body, html').addClass('noscrolling modal-open');
+          $('body').addClass('modal-open');
         }
         function restoreBackgroundScroll(){
-          $('body, html').removeClass('noscrolling modal-open');
+          $('body').removeClass('modal-open');
         }
 
         $( '.artist__grid .entry-image' ).each(function(index, el) {
@@ -82,7 +71,7 @@
           var min_x = 0;
           var max_x = $(window).width() - $(this).width();
           var min_y = 0 - $(this).height();
-          var max_y = $(window).height() - $(this).height();
+          var max_y = $('.artist__grid').outerHeight() - $(this).height();
 
 
           var check_overlap = function (area,check_area) {
@@ -139,18 +128,12 @@
             previousIcon: '«',
             nextIcon: '»',
             otherClose: '.lightbox__close span',
-            openSpeed: 100,
-            closeSpeed: 800,
-            galleryFadeOut: 100,
-            galleryFadeIn: 100,
+            openSpeed: 0,
+            closeSpeed: 0,
+            galleryFadeOut: 0,
+            galleryFadeIn: 0,
             afterOpen: function() {
               noBackgroundScroll();
-            },
-            afterContent: function() {
-              if ($('.featherlight .lazyload').length > 0) {
-                const modalImage = $('.featherlight .lazyload')[0];
-                observer.triggerLoad(modalImage);
-              }
             },
             beforeClose: function() {
               restoreBackgroundScroll();
@@ -168,11 +151,10 @@
             otherClose: '.lightbox__close span',
             openSpeed: 0,
             closeSpeed: 800,
-            galleryFadeOut: 100,
-            galleryFadeIn: 100,
+            galleryFadeOut: 1300,
+            galleryFadeIn: 1400,
             afterOpen: function() {
               noBackgroundScroll();
-
             },
             beforeClose: function() {
               restoreBackgroundScroll();
@@ -202,7 +184,7 @@
           var $pswp = $('.pswp')[0];
           var image = [];
 
-          $('.gallery-theme--default, .gallery-theme--blocks').each( function() {
+          $('.gallery-theme--default').each( function() {
               var $pics     = $(this),
                   getItems = function() {
                       var items = [];
@@ -322,17 +304,17 @@
 
         var allReveals = $('.reveal');
         $('.reveal-button').bind('click', function(e){
-          if ($(this).parents('.faq__item').hasClass('is-expanded')) {
-            $(this).parents('.faq__item').find('.reveal').toggle();  // apply the toggle to the reveal
-            $(this).parents('.faq__item').find('.reveal').toggleClass('vhs-fade');
-            $(this).parents('.faq__item').toggleClass('is-expanded');
+          if ($(this).parent().hasClass('is-expanded')) {
+            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parent().find('.reveal').toggleClass('vhs-fade');
+            $(this).parent().toggleClass('is-expanded');
           } else {
-            $(this).parents('.faq__item').siblings('.faq__item').find('.reveal').hide();
-            $(this).parents('.faq__item').siblings('.faq__item').removeClass('is-expanded');
-            $(this).parents('.faq__item').siblings('.faq__item').find('.reveal').removeClass('vhs-fade');
-            $(this).parents('.faq__item').find('.reveal').toggle();  // apply the toggle to the reveal
-            $(this).parents('.faq__item').find('.reveal').toggleClass('vhs-fade');
-            $(this).parents('.faq__item').toggleClass('is-expanded');
+            allReveals.hide();
+            allReveals.parent().removeClass('is-expanded');
+            allReveals.removeClass('vhs-fade');
+            $(this).parent().find('.reveal').toggle();  // apply the toggle to the reveal
+            $(this).parent().find('.reveal').toggleClass('vhs-fade');
+            $(this).parent().toggleClass('is-expanded');
           }
           e.preventDefault();
         });
@@ -383,8 +365,8 @@
                 auto_play: true
               };
 
-          $.get('https://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-            newSoundUrl = 'https://api.soundcloud.com/tracks/'+result.id;
+          $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+            newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
             widget.bind(SC.Widget.Events.READY, function() {
               // load new widget
               widget.load(newSoundUrl, {
@@ -430,12 +412,11 @@
               e.preventDefault();
               var permalink_url = $(this).attr('href');
               $(this).addClass('sc-playing');
-              $.get('https://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
-                  newSoundUrl = 'https://api.soundcloud.com/tracks/'+result.id;
+              $.get('http://api.soundcloud.com/resolve.json?url='+permalink_url+'/tracks&client_id='+client_id , function (result) {
+                  newSoundUrl = 'http://api.soundcloud.com/tracks/'+result.id;
                   widget.bind(SC.Widget.Events.READY, function() {
                     // load new widget
                     widget.load(newSoundUrl, options);
-                    widget.play();
                     widget.bind(SC.Widget.Events.PLAY, function() {
                       $(widget_wrap).addClass('active');
                       $(widget_wrap).addClass('show');
@@ -480,7 +461,7 @@
             // Variables for iFrame code. Width and height from data attributes, else use default.
             var vidWidth = 560; // default
             var vidHeight = 315; // default
-            var iFrameCode = '<iframe width="' + vidWidth + '" height="'+ vidHeight +'" scrolling="no" allowtransparency="true" allowfullscreen="true" src="https://www.youtube.com/embed/'+  queryVars.v +'?autoplay=true&rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>';
+            var iFrameCode = '<iframe width="' + vidWidth + '" height="'+ vidHeight +'" scrolling="no" allowtransparency="true" allowfullscreen="true" src="http://www.youtube.com/embed/'+  queryVars.v +'?autoplay=true&rel=0&wmode=transparent&showinfo=0" frameborder="0"></iframe>';
 
 
             $.featherlight(iFrameCode);
@@ -511,20 +492,20 @@
           var ourClass = $(this).data('filter');
 
           // reset the active class on all the buttons
-          $('.artist__grid').find('.entry-title').hide();
+          $('.artist__grid').children('.entry-title').hide();
           $('.filter-tabs li').removeClass('active');
           // update the active state on our clicked button
           $(this).parent().addClass('active');
 
           if( ourClass === 'all') {
             // show all our items
-            $('.artist__grid').find('.entry-title').fadeIn().removeClass('filtered-out');
+            $('.artist__grid').children('.entry-title').fadeIn().removeClass('filtered-out');
           }
           else {
             // hide all elements that don't share ourClass
-            $('.artist__grid').find('.entry-title:not(.' + ourClass + ')').hide().addClass('filtered-out');
+            $('.artist__grid').children('.entry-title:not(.' + ourClass + ')').hide().addClass('filtered-out');
             // show all elements that do share ourClass
-            $('.artist__grid').find('.entry-title.' + ourClass).fadeIn().removeClass('filtered-out');
+            $('.artist__grid').children('.entry-title.' + ourClass).fadeIn().removeClass('filtered-out');
           }
           return false;
         });
@@ -548,6 +529,24 @@
           $(".splash-content").removeClass('vhs-flicker');
         }
 
+
+        $.stellar('#about');
+
+        // Smooth Scrolling
+
+        $('a[href*="#"]:not([href="#"])').click(function() {
+            if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') || location.hostname === this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+                if (target.length) {
+                  $('html,body').animate({
+                    scrollTop: target.offset().top-100
+                  }, 200, 'easeInOutExpo');
+                return false;
+                }
+            }
+        });
 
 
         function onPlayerReady() {
@@ -605,12 +604,14 @@
           $('#video_background').YTPlayer({
             fitToBackground: false,
             width: $('#splash').width(),
-            videoId: 'R_VEdd29meY',
+            videoId: '5XXNLVT8_zc',
             playerVars: {
               mute: true,
               rel: 0,
               showinfo: 0,
-              start: '9'
+              setPlaybackQuality: 'hd720',
+              suggestedQuality: 'hd720',
+              start: '11'
             },
             events: {
               'onReady': onPlayerReady
