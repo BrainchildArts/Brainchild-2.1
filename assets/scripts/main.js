@@ -20,18 +20,6 @@
       init: function() {
         // JavaScript to be fired on all pages
 
-        //Lazy Load
-        const observer = lozad('.lazyload', {
-          load: function(el) {
-            el.src = el.dataset.src;
-            el.onload = function() {
-                el.classList.add('fadein');
-            };
-          }
-        });
-        observer.observe();
-
-
         //Sticky Nav
         var stickyNavTop = $('header.banner').offset().top;
 
@@ -148,12 +136,6 @@
             galleryFadeIn: 100,
             afterOpen: function() {
               noBackgroundScroll();
-            },
-            afterContent: function() {
-              if ($('.featherlight .lazyload').length > 0) {
-                const modalImage = $('.featherlight .lazyload')[0];
-                observer.triggerLoad(modalImage);
-              }
             },
             beforeClose: function() {
               restoreBackgroundScroll();

@@ -31,8 +31,7 @@
       }
     }
     .entry-image {
-      visibility: hidden;
-      display: inline-block;
+      display: none;
       position: fixed;
       background: white;
       width: 12em;
@@ -42,7 +41,7 @@
         filter: grayscale(100%);
       }
       &.show {
-        visibility: visible;
+        display: inline-block;
       }
     }
     .lineup-featured {

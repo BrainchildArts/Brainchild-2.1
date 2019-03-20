@@ -178,7 +178,92 @@ add_action( 'init', 'register_artists', 0 );
 
 
 
- function front_page_menu_item(){
+function front_page_menu_item(){
    add_menu_page('Front Page', 'Front Page', 'manage_options', '/post.php?post=4&action=edit', '', 'dashicons-welcome-write-blog', 4);
- }
- add_action('admin_menu','front_page_menu_item');
+}
+add_action('admin_menu','front_page_menu_item');
+
+
+
+/**
+ * Get an HTML img element representing an image attachment while allowing
+ * custom image names and individual size/srcset filtering
+ *
+ * @param int          $attachment_id Image attachment ID.
+ * @param string       $name          Optional. Custom image name used for filtering purposes. Default
+ *                                    'default'.
+ * @param string|array $size          Optional. Image size. Accepts any valid image size, or an array of width
+ *                                    and height values in pixels (in that order). Default 'original'.
+ * @param bool         $icon          Optional. Whether the image should be treated as an icon. Default false.
+ * @param string|array $attr          Optional. Attributes for the image markup. Default are filtered responsive
+ *                                    attributes.
+ * @return string HTML img element or empty string on failure.
+ */
+function get_responsive_attachment_image($attachment_id, $name = 'default', $size = 'original', $icon = false, $attr = '') {
+  if(!$attachment_id) {
+    return false;
+  }
+  $src = wp_get_attachment_image_src($attachment_id, $size, $icon);
+  if(!$src) {
+    return false;
+  }
+  $default_attr = array(
+    'srcset' => apply_filters('responsive_image_srcset', false, $name, $attachment_id),
+    'sizes'  => apply_filters('responsive_image_sizes',  false, $name, $attachment_id)
+  );
+  $attr = wp_parse_args($attr, $default_attr);
+  $img  = wp_get_attachment_image($attachment_id, $size, false, $attr);
+  if ( is_plugin_active( 'bj-lazy-load/bj-lazy-load.php' ) ) {
+    // $img  = apply_filters( 'bj_lazy_load_html', $img );
+  }
+  return $img;
+}
+
+function responsive_image_sizes($sizes, $img_name, $attachment_id) {
+  $sizes  = wp_get_attachment_image_sizes($attachment_id, 'original');
+  $meta   = wp_get_attachment_metadata($attachment_id);
+  $width  = $meta['width'];
+  if(!$width) {
+    return $sizes;
+  }
+
+  if('gallery_thumb' == $img_name) {
+    $sizes = '';
+    $media_queries = array(
+      '(max-width: 440px) 50vw',
+      '(max-width: 960px) 33.333vw',
+      '25vw',
+    );
+
+    $sizes = sprintf('%s', implode(', ', $media_queries));
+
+  }
+
+  if('slider' == $img_name) {
+    $sizes = '';
+    $media_queries = array(
+      '(max-width: 600px) 100vw',
+      '(max-width: 960px) 33.333vw',
+      '600px',
+    );
+
+    $sizes = sprintf('%s', implode(', ', $media_queries));
+
+  }
+
+  if('post-feed' == $img_name) {
+    $sizes = '';
+    $media_queries = array(
+      '(max-width: 640px) 90vw',
+      '(max-width: 960px) 60vw',
+      '660px',
+    );
+
+    $sizes = sprintf('%s', implode(', ', $media_queries));
+  }
+
+  return $sizes;
+}
+
+add_filter('responsive_image_sizes', 'responsive_image_sizes', 10, 3);
+

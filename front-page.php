@@ -73,7 +73,9 @@
   <h2 class="scatterText">Lineup</h2>
   <div class="main-section__text"><?php the_field('lineup_text'); ?></div>
 
-  <?php get_template_part('templates/lineup-list') ?>
+  <?php if (get_field('show_lineup')): ?>
+    <?php get_template_part('templates/lineup-list') ?>
+  <?php endif ?>
 
   <?php if (get_field('lineup_text_2')): ?>
     <div class="main-section__text center"><?php the_field('lineup_text_2'); ?></div>
@@ -150,9 +152,8 @@
     $id = (get_the_id());
 
     $args = array (
-      'category_name'          => 'blog',
-      'post__not_in'           => array($post->ID),
-      'posts_per_page'         => '3',
+      'post_type' => 'post',
+      'posts_per_page' => '3',
     );
 
     // The Query

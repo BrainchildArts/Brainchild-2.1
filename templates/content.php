@@ -2,7 +2,10 @@
   <a href="<?php the_permalink(); ?>">
     <header>
       <div class="entry-image">
-        <?php if ( has_post_thumbnail() ) { the_post_thumbnail('medium');} ?>
+        <?php if ( has_post_thumbnail() ) {
+          $id = get_post_thumbnail_id();
+          echo get_responsive_attachment_image($id, 'post-feed');
+        } ?>
       </div>
       <div class="entry-text">
         <h2 class="entry-title"><?php the_title(); ?></h2>

@@ -1,5 +1,4 @@
-div.gallery,
-div.gallery {
+.gallery {
   margin: 2em 0;
   a {
     box-shadow: none;
@@ -22,25 +21,41 @@ div.gallery {
 }
 
 .gallery.gallery-theme--slider {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  figure {
+    flex: 25%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
   &.flickity-enabled {
+    display: block;
+
     img {
       width: auto;
     }
-  }
-  padding-bottom: 2em;
-  figure {
-    max-height: none;
-    margin: 0 .5em;
-  }
-  .gallery-item img {
-    max-height: none;
-    display: block;
-    height: 200px;
-    @include media($phone) {
-      height: 300px;
+
+    padding-bottom: 2em;
+    figure {
+      max-height: none;
+      margin: 0 .5em;
     }
-    @include media($tablet) {
-      height: 400px;
+    .gallery-item img {
+      max-height: none;
+      display: block;
+      height: 200px;
+      max-width: unset;
+      @include media($phone) {
+        height: 300px;
+      }
+      @include media($tablet) {
+        height: 400px;
+      }
     }
   }
 }

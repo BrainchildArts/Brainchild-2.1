@@ -1,0 +1,70 @@
+nav.posts-navigation {
+  margin-bottom: $base-spacing;
+  @include outer-container;
+  article & {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  div.nav-links {
+    width: 100%;
+    display: flex;
+    font-weight: 500;
+    justify-content: space-between;
+    a {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  div.nav-previous {
+    margin-right: auto;
+    padding-right: 10%;
+    padding-left: 15px;
+    text-align: left;
+    a {
+      display: flex;
+      position: relative;
+      &:before {
+        content: "‹";
+        font-weight: 700;
+        position: absolute;
+        left: -12px;
+        transition: all .4s ease;
+      }
+      &:hover:before,
+      &:active:before {
+        left: -15px;
+      }
+    }
+  }
+  div.nav-next {
+    margin-left: auto;
+    padding-left: 10%;
+    padding-right: 15px;
+    text-align: right;
+    a {
+      display: flex;
+      position: relative;
+      &:hover {
+        text-decoration: none;
+      }
+      &:after {
+        content: "›";
+        font-weight: 700;
+        position: absolute;
+        right: -12px;
+        transition: all .4s ease;
+      }
+      &:hover:after,
+      &:active:after {
+        right: -14px;
+      }
+    }
+  }
+  div span {
+    display: block;
+    font-size: .6em;
+    color: #999;
+    text-transform: uppercase;
+  }
+}
