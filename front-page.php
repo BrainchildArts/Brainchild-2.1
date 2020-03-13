@@ -7,15 +7,12 @@
   <div id="video_background" class="headervideo responsive"></div>
   <div class='splash__text splash-content content'>
     <img class='logo splash-content' src='<?php bloginfo('template_directory'); ?>/dist/images/partials/bclogo.svg'>
-    <h3 class='splash-content'>Festival 2019</h3>
-    <h2 class='dates splash-content scatterText'>12-14 July</h2>
+    <h3 class='splash-content'>Festival 2020</h3>
+    <h2 class='dates splash-content scatterText'>10-12 July</h2>
     <h2 class='location splash-content'>East Sussex</h2>
     <div class="mobile-socials"><?php get_template_part('templates/socials') ?></div>
   </div>
 </section>
-
-
-
 
 <!-- Splash Section -->
 <section class="main-section" id="about">
@@ -61,7 +58,6 @@
 
         <div class="reveal" style="display: none;">
           <?php the_field('volunteering_text') ?>
-          <a class="volunteerticket-link button cta volunteer-link" href="http://buytickets.at/brainchildfestival/140274/r/website" target="_blank">Buy a Ticket</a>
         </div>
       </div>
     </div>
@@ -82,8 +78,7 @@
   <?php endif ?>
 </section>
 
-<?php
-/*
+<?php /*
 <section class="installations main-section">
   <h2 class="scatterText">Installation Artists</h2>
   <?php if (get_field('installations_text')): ?>
@@ -97,7 +92,7 @@
       'post_type'     => 'artists',
       'orderby'       => 'publish_date',
       'posts_per_page'=> '5',
-      'category_name' => '2018-lineup',
+      'category_name' => '2019-lineup',
       'tag'           => 'installationartist',
       'order'         => 'ASC'
     );
@@ -124,22 +119,19 @@
     <div class="lineup-overlays">
 
       <?php
-
       // The Loop
-      while ($lineup->have_posts()) : $lineup->the_post();
-        get_template_part('templates/content-lineup-overlay', get_post_type() != 'post' ? get_post_type() : get_post_format());
-        endwhile;?>
+        while ($lineup->have_posts()) : $lineup->the_post();
+            get_template_part('templates/content-lineup-overlay', get_post_type() != 'post' ? get_post_type() : get_post_format());
+        endwhile;
+      ?>
 
     </div>
     <?php wp_reset_postdata(); ?>
 
     <div class="see-more"><a href="/installations">Explore all the installation artists &rarr;</a></div>
 
-
 </section>
-
-*/
-?>
+*/ ?>
 
 <section class="main-section bc-words" id="bc-words">
   <h2 class="scatterText">Writing</h2>

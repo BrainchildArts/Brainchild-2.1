@@ -213,12 +213,8 @@ function get_responsive_attachment_image($attachment_id, $name = 'default', $siz
   );
   $attr = wp_parse_args($attr, $default_attr);
   $img  = wp_get_attachment_image($attachment_id, $size, false, $attr);
-  if ( is_plugin_active( 'bj-lazy-load/bj-lazy-load.php' ) ) {
-    // $img  = apply_filters( 'bj_lazy_load_html', $img );
-  }
   return $img;
 }
-
 function responsive_image_sizes($sizes, $img_name, $attachment_id) {
   $sizes  = wp_get_attachment_image_sizes($attachment_id, 'original');
   $meta   = wp_get_attachment_metadata($attachment_id);
@@ -266,4 +262,3 @@ function responsive_image_sizes($sizes, $img_name, $attachment_id) {
 }
 
 add_filter('responsive_image_sizes', 'responsive_image_sizes', 10, 3);
-
